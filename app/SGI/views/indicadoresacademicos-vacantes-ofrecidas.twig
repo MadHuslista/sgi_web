@@ -1,0 +1,246 @@
+{% extends "base.twig" %}
+{% block title %}Vacantes Ofrecidas{% endblock %}
+{% block contentheader %}Vacantes Ofrecidas{% endblock %}
+{% block content %}
+
+<section class="content">
+	<section class="col-lg-12 connectedSortable">
+		<div class="box box-success">
+			<div class="box-header">
+				<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+				</div>
+			</div>
+			<div class="box-body chat" id="chat-box">
+				<div class="row">
+					<div class="col-xs-12">
+						<canvas id="canvas1" height="150" width="500"></canvas>
+					</div>
+					<div class="col-xs-2 col-sm-3">
+						 <button class="btn btn-block btn-primary" id="exportar_grafico1"><i class="fa fa-area-chart"></i> Exportar Gráfico</button>
+						 <br>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="tablav2">
+								<thead>
+									<tr>
+										<th colspan="24">Vacantes ofrecidas/matrícula efectiva y ratios de ocupación</th>
+									</tr>
+									<tr>
+										<th colspan="24">Casa Central</th>
+									</tr>
+									<tr>
+										<th colspan="3">Comuna</th>
+										<th colspan="3">Jornada</th>
+										<th colspan="3">Modalidad</th>
+										<th colspan="3">2012</th>
+										<th colspan="3">2013</th>
+										<th colspan="3">2014</th>
+										<th colspan="3">2015</th>
+										<th colspan="3">2016</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="3"></td>
+										<td colspan="3"></td>
+										<td>X</td>
+										<td>Y</td>
+										<td style="background-color: #0082D5; color: #FFF">Y/X</td>
+										<td>X</td>
+										<td>Y</td>
+										<td style="background-color: #0082D5; color: #FFF">Y/X</td>
+										<td>X</td>
+										<td>Y</td>
+										<td style="background-color: #0082D5; color: #FFF">Y/X</td>
+										<td>X</td>
+										<td>Y</td>
+										<td style="background-color: #0082D5; color: #FFF">Y/X</td>
+										<td>X</td>
+										<td>Y</td>
+										<td style="background-color: #0082D5; color: #FFF">Y/X</td>
+									</tr>
+									<tr>
+										<td colspan="3">Valparaíso</td>
+										<td colspan="3">Diurna</td>
+										<td colspan="3">Presencial</td>
+										<td id="anio5x">{{vac.anio5x}}</td>
+										<td id="anio5y">{{vac.anio5y}}</td>
+										<td style="background-color: #0082D5; color: #FFF">{{vac.anio5yx}}%</td>
+										<td id="anio4x">{{vac.anio4x}}</td>
+										<td id="anio4y">{{vac.anio4y}}</td>
+										<td style="background-color: #0082D5; color: #FFF">{{vac.anio4yx}}%</td>
+										<td id="anio3x">{{vac.anio3x}}</td>
+										<td id="anio3y">{{vac.anio3y}}</td>
+										<td style="background-color: #0082D5; color: #FFF">{{vac.anio3yx}}%</td>
+										<td id="anio2x">{{vac.anio2x}}</td>
+										<td id="anio2y">{{vac.anio2y}}</td>
+										<td style="background-color: #0082D5; color: #FFF">{{vac.anio2yx}}%</td>
+										<td id="anio1x">{{vac.anio1x}}</td>
+										<td id="anio1y">{{vac.anio1y}}</td>
+										<td style="background-color: #0082D5; color: #FFF">{{vac.anio1yx}}%</td>
+									</tr>
+									<tr>
+										<th colspan="1">X</th>
+										<td colspan="10" style="text-align: left;">Vacantes Ofrecidas</td>
+									</tr>
+									<tr>
+										<th colspan="1">Y</th>
+										<td colspan="10" style="text-align: left;">Matrícula Efectiva</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+					<!--div class="row" style="display: none;">
+
+						<div class="col-xs-12">
+                				<table class="table table-bordered table-hover" id="tabla">
+								<thead>
+									<tr>
+										<th style="vertical-align: middle;">Vacantes Ofrecidas</th>
+										<th style="vertical-align: middle;">Matriculados</th>
+										<th style="vertical-align: middle;">Tasa</th>
+										<th style="vertical-align: middle;">Año</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>80</td>
+										<td>78</td>
+										<td>98%</td>
+										<td>2007</td>
+									</tr>
+									<tr>
+										<td>85</td>
+										<td>82</td>
+										<td>96%</td>
+										<td>2008</td>
+									</tr>
+									<tr>
+										<td>85</td>
+										<td>80</td>
+										<td>94%</td>
+										<td>2009</td>
+									</tr>
+									<tr>
+										<td>85</td>
+										<td>84</td>
+										<td>99%</td>
+										<td>2010</td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div>
+
+						<div class="col-xs-2 col-sm-3">
+							<button class="btn btn-block btn-primary" id="exportar_tabla"><i class="fa fa-table"></i> Exportar Tabla</button>
+						</div>					
+
+					</div-->
+			</div>
+		</div>
+	</section>
+</section>
+<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/xlsx.core.min.js"></script>
+<script src="{{ baseUrl() }}/js/Blob.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/tabla.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/bootstrap-datepicker.js"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.js"></script>
+<script src="{{ baseUrl() }}/js/ChartNew.js"></script>
+<script>
+$("#exportar_tabla").on('click', function(){
+		
+		export_table_to_excel('tabla', 'Vacantes Ofrecidas');
+});
+
+
+$("#exportar_grafico").on('click', function(){
+		$("#canvas").mousedown();
+});
+</script>
+<script>
+// Canvas 1
+var myBarChart1;
+var anio5x = $('#anio5x').html();
+var anio5y = $('#anio5y').html();
+var anio4x = $('#anio4x').html();
+var anio4y = $('#anio4y').html();
+var anio3x = $('#anio3x').html();
+var anio3y = $('#anio3y').html();
+var anio2x = $('#anio2x').html();
+var anio2y = $('#anio2y').html();
+var anio1x = $('#anio1x').html();
+var anio1y = $('#anio1y').html();
+var data1 = {
+	labels: ["2012", "2013", "2014", "2015", "2016"],
+	datasets: [
+		{
+			label: "Vacantes Ofrecidas",
+			fillColor: "#ff9c43",
+			strokeColor: "rgba(220,220,220,0.8)",
+			highlightFill: "rgba(220,220,220,0.75)",
+			highlightStroke: "rgba(220,220,220,1)",
+			data: [anio5x, anio4x, anio3x, anio2x, anio1x]
+    },
+		{
+			label: "Matrículas Efectivas",
+			fillColor: "#ff7700",
+			strokeColor: "rgba(220,220,220,0.8)",
+			highlightFill: "rgba(220,220,220,0.75)",
+			highlightStroke: "rgba(220,220,220,1)",
+			data: [anio5y, anio4y, anio3y, anio2y, anio1y]
+    }
+	],
+  graphMax: 100,
+};
+var ctx1 = $("#canvas1").get(0).getContext("2d");
+myBarChart1 = new Chart(ctx1).Bar(data1, {
+responsive: true,
+bezierCurve : false,
+datasetFill : false,
+/* El objeto 'scales' en las versiones 2.x es muy distinto por lo cual este codigo quedará obsoleto. Para version 2.x revisar la documentación oficial. 
+*/
+// override a objeto scale
+scaleOverride : true,
+scaleSteps : 5, 		// cantidad de intervalos
+scaleStepWidth : Math.ceil(Math.max.apply(Math,[Math.max.apply(Math,data1.datasets[0].data),Math.max.apply(Math,data1.datasets[1].data)])/5), 	// intervalo minimo
+scaleStartValue : 0 , 	// punto de partida
+// fin override a objeto scale
+legend : true,
+savePng : true,
+savePngOutput: "Save",
+xAxisLabel: "Años",
+yAxisLabel: "Vacantes y Matrículas",
+annotateDisplay : true,
+annotateLabel: "<%= v1 %> <%= v2 %> - <%= v3 %>",
+});
+$("#exportar_grafico1").on('click', function(){
+	$.ajax({
+		url:'../api/save_canvas',
+		type:'POST',
+		data:{
+			data:document.getElementById("canvas1").toDataURL("image/png"), 
+			csrf_token: $("#csrf").val()
+		}
+	}).success(function(data){
+		var a = document.createElement('a');
+		a.href = "../img/grafico.png";
+		a.download = "grafico.png";
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+	});
+});
+</script>
+{% endblock %}

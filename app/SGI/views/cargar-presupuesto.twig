@@ -1,0 +1,134 @@
+{% extends "base.twig" %}
+{% block title %}Carga Presupuesto{% endblock %}
+{% block contentheader %}Carga Masiva Presupuesto Anual{% endblock %}
+
+{% block head %}
+<link href="{{ baseUrl() }}/css/dashboard/datepicker3.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/select2.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section class="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box box-info">
+
+                <div class="box-header with-border">
+                  	<h3 class="box-title">Ingrese los datos solicitados y el archivo a cargar</h3>
+                </div><!-- /.box-header -->
+
+
+                <!-- form start -->
+                <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ siteUrl('/presupuesto/cargar-presupuesto-anual') }}">
+                  <div class="box-body">
+
+										{% if (flash['error']) %}<div class="alert alert-danger"><strong>Error!</strong> {{flash['error']}}</div>
+										{% endif %}
+										{% if (flash['success']) %}<div class="alert alert-success">{{flash['success']}}</div>
+										{% endif %}
+
+										<div class="form-group">
+                      <label for="organizacion" class="col-sm-1 control-label">Organizacion</label>
+                      	<div class="col-sm-3">
+													<select class="form-control select2"  required name="organizacion" id="organizacion" style="width: 100%;">
+														{% for j in organizaciones %}
+															<option value="{{j.id}}">{{j.codigo }} - {{j.nombre}}</option>
+														{% endfor %}
+													</select>
+                      	</div>
+
+												<label for="organizacion" class="col-sm-1 control-label">Año</label>
+	                      	<div class="col-sm-3">
+														<input type="text" name="anio" class="form-control" value="{{date('Y')|date('Y')}}" readonly>
+	                      	</div>
+
+
+
+
+																<label for="archivo" class="col-sm-1 control-label">Archivo </label>
+										                      	<div class="col-sm-3">
+										                        	<input type="file" required name="archivo" value="">
+										                      	</div>
+					   					</div>
+
+
+						<div class="form-group">
+
+
+                    	<center>
+                    		<strong style = "color:red;">
+                    			* Todos los campos obligatorios
+                    		</strong>
+                    	</center>
+											<center>
+                    		<strong style = "color:red;">
+                    			* El archivo a cargar debe tener extensión .xlsx (MS Excel) y tener el formato adecuado.
+
+													<a href="{{ baseUrl() }}/docs/ejemplos/ejemplo_carga.xlsx" target="_blank"> Descargar Formato</a>
+                    		</strong>
+                    	</center>
+
+											<center>
+                    		<strong style = "color:green;" id="mensaje_ya_cargado">
+                    			* Los datos de la organizacion del presente año ya fueron cargados. Si realiza una nueva carga, se actualizarán los datos anteriores.
+                    		</strong>
+                    	</center>
+
+
+
+                  		</div><!-- /.box-body -->
+                  		<hr>
+
+                  		<center>
+	                  		<div class="box-footer">
+								<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+	                    		<button id="guardar" type="submit" class="btn btn-info" >Guardar</button>
+	                  		</div><!-- /.box-footer -->
+                  		</center>
+                </form>
+
+             </div><!-- /.box -->
+		</div>
+	</div>
+
+	<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select2.full.min.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select_es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/tinymce/tinymce.min.js"></script>
+
+<script>
+
+$("#organizacion").on('change', function(){
+
+	console.log("entra aca");
+
+	$.ajax({
+	url: '{{ siteUrl('/presupuesto/ya-cargado') }}',
+	type:'POST',
+	data:{
+			organizacion: $("#organizacion").val(),
+			csrf_token: $("#csrf").val()
+	}
+
+}).success(function(data){
+	if (data == 1){
+		$("#mensaje_ya_cargado").show();
+	}else{
+		$("#mensaje_ya_cargado").hide();
+	}
+});
+}).trigger('change');
+
+</script>
+
+{% endblock %}

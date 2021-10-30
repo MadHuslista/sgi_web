@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="shortcut icon" href="http://usm.cl/assets/img/icon/favicon.ico">
+    <link href="{{ baseUrl() }}/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ baseUrl() }}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ baseUrl() }}/css/sgi.css" rel="stylesheet">
+
+  </head>
+
+  <body class="container-fluid">
+   <div class="wrapper">
+
+     <div class="row">
+      <a href="http://usm.cl/"><img src="img/header-login.jpg" class="usm img-responsive"  alt=""></a>
+     </div>
+     <br>
+     <div class="row" align="center" >
+			   <a href="http://usm.cl/"><img src="img/Logo.png" class="usm img-responsive" alt="" ></a>   
+     </div>
+
+     <!--
+     <br/>
+     <div class="row">
+      <div class="col-xs-7 col-xs-offset-3">
+        <h3 style="color:#0082D5; font-family:Roboto Condensed, sans-serif;">Sistema de Gestión de la Información de Postgrado</h3>
+        <p class="text-center">Para ingresar al sistema debe utilizar su pasaporte USM</p>
+      </div>
+     </div>-->
+
+	   <div class="row">
+      <br>
+	    <div  align="center" class="responsive">
+        <div id="iframe-container">
+				  <iframe  name="iframe1" id="iframe1" width="210px" height="250px" frameBorder="0" scrolling="no" src="https://ssonew.usm.cl/loginusm/index.xhtml?varE=7&varXML={{ varxml }}"></iframe>
+        </div>
+      
+
+		  <!--<form class="login" id="form1" name="form1" method="post" action="login.php">
+
+			<div>Usuario:</div>
+			<input typ.e="text" class="form-control" name="username" id="username" />
+			<br>
+			<div>Contraseña:</div>
+			<input type="password" class="form-control" name="password" id="password" />
+			<BR>
+			<input type="submit" class="btn btn-default" name="button" id="button" value="Acceder" />
+
+		  </form>-->
+
+	       <div class="error responsive">
+		     <p class="bg-danger responsive"></p>
+	      </div>
+
+      </div> 
+
+	   </div>
+	 
+      <script type="text/javascript" src="{{ baseUrl() }}/js/jquery-2.2.0.min.js"></script>
+      <script type="text/javascript" src="{{ baseUrl() }}/js/bootstrap.min.js"></script>
+  
+   </div>  
+  </body>
+
+</html>

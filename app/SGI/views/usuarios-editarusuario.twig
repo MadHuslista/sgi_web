@@ -1,0 +1,151 @@
+{% extends "base.twig" %}
+{% block title %}Editar Usuario{% endblock %}
+{% block contentheader %}Editar Usuario{% endblock %}
+{% block head %}
+<link href="{{ baseUrl() }}/css/dashboard/datepicker3.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/select2.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<section class="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">Datos Personales</h3>
+				</div>
+				<form id="form-agregar" enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ siteUrl('/usuario/editar') }}/{{persona.id}}">
+					<div class="box-body">
+						<div class="form-group">
+							<label for="nombre" class="col-sm-2 control-label">Nombres</label>
+							<div class="col-sm-10">
+								<input type="text" value="{{persona.name}}" class="form-control"	name="name" id="name" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="apellido_pat" class="col-sm-2 control-label">Apellido Paterno</label>
+							<div class="col-sm-10">
+								<input type="text" value="{{persona.last_name}}" class="form-control"	name="last_name" id="last_name" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="apellido_mat" class="col-sm-2 control-label">Apellido Materno</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" value="{{persona.m_name}}" name="m_name" id="m_name" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="rut" class="col-sm-2 control-label">Rut</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" value="{{persona.run}}-{{persona.dv}}"" name="run" id="run" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" value="{{persona.nacionalidad}}" name="nacionalidad" id="nacionalidad" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="journal" class="col-sm-2 control-label">Institución</label>
+							<div class="col-sm-10">
+								<select class="form-control select2" data-id="{{persona.institucion_id}}" id="institution" name="institution" style="width: 100%;" value ="{{persona.institucion_id}}">
+									{% for j in instituciones %}
+										{% if j.id == persona.institucion_id %}
+											<option value="{{j.id}}" selected>{{j.name}}	</option>
+										{% else %}
+											<option value="{{j.id}}">{{j.name}}	</option>
+										{% endif%}
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="username" class="col-sm-2 control-label">Nombre de Usuario</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" value="{{persona.username}}" name="username" id="username" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="mail" class="col-sm-2 control-label">Email</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" value="{{persona.email}}" name="email" id="email" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="birthday" class="col-sm-2 control-label">Fecha de Nacimiento</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" data-fecha="{{persona.birthday}}" id="birthday" name="birthday"	placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="phone" class="col-sm-2 control-label">Teléfono</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" value="{{persona.phone}}" id="phone" name="phone"	placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="gender" class="col-sm-2 control-label">Sexo</label>
+							<div class="col-sm-10">
+								<select	class="form-control"	data-id="{{persona.gender}} id="gender" name="gender">
+									{% if persona.gender == "M" %}
+										<option value="M" selected> Masculino</option>
+										<option value="F">Femenino</option>
+									{% else %}
+										<option value="M"> Masculino</option>
+										<option value="F" selected>Femenino</option>
+									{% endif%}
+								</select>
+							</div>
+						</div>									
+						<div class="form-group">
+							<label for="avatar" class="col-sm-2 control-label">Imagen para mostrar</label>
+							<div class="col-sm-2">
+								<img src="{{ baseUrl() }}/img/personas/{{persona.avatar}}" class="img-circle" alt="User Image"><br><br><input type="file" name="avatar" value="" accept="image/*">
+							</div>
+						</div>
+					</div>
+					<div class="box-footer">
+						<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+						<button id="guardar" type="submit" class="btn btn-info pull-right">Guardar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+<div style="font-size:0;height:200px;"></div>		
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select2.full.min.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select_es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/tinymce/tinymce.min.js"></script>
+<script>
+
+$(document).ready(function(){
+
+	$("#guardar").on('click', function(){
+		alert("¡Usuario Modificado Correctamente!");
+	});
+
+	var birthday = $("#birthday").data('fecha');
+	birthday = birthday.split('-');
+	$("#birthday").val(birthday[0]+'/'+birthday[1]+'/'+birthday[2]);
+
+	$('#birthday').datepicker({
+			format: 'yyyy/mm/dd',
+			 language: 'es'
+	});
+
+
+	tinymce.init({
+		selector: "textarea",
+		plugins: ["advlist autolink lists link image charmap print preview anchor",
+		"searchreplace visualblocks code fullscreen",
+		"insertdatetime media table contextmenu paste"],
+		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+	});
+});
+</script>
+{% endblock %}

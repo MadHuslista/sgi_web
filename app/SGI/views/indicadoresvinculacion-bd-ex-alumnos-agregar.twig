@@ -1,0 +1,76 @@
+{% if (panel_persona) %}
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-nombre">Nombre</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control" id="persona-nombre" name="persona-nombre" placeholder="Ingrese Nombre" required>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-paterno">Ap. Paterno</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control" id="persona-paterno" name="persona-paterno" placeholder="Ingrese Apellido Paterno" required>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-materno">Ap. Materno</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control" id="persona-materno" name="persona-materno" placeholder="Ingrese Apellido Materno" required>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-nacimiento">Fecha de Nacimiento</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control calendario" id="persona-nacimiento" name="persona-nacimiento" placeholder="Ingrese Fecha de Nacimiento" required>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-nacionalidad">Nacionalidad</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control" id="persona-nacionalidad" name="persona-nacionalidad" placeholder="Ingrese Nacionalidad" value="Chilena" required>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label">Sexo</label>
+	<div class="col-md-7">
+		<label class="radio-inline">
+			<input type="radio" name="persona-sexo" value="M" checked="checked">Masculino
+		</label>
+		<label class="radio-inline">
+			<input type="radio" name="persona-sexo" value="F">Femenino
+		</label>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-email">E-mail</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control" id="persona-email" name="persona-email" placeholder="Ingrese E-mail" required>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-fono">Teléfono</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control" id="persona-fono" name="persona-fono" placeholder="Ingrese Teléfono" required>
+	</div>
+</div>
+{% endif %}
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-fecha-grado">Fecha de Graduación</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control calendario" id="persona-fecha-grado" name="persona-fecha-grado" placeholder="Ingrese Fecha de Graduación" required>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-grado">Grado Obtenido</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control" id="persona-grado" name="persona-grado" placeholder="Ingrese Grado Obtenido" required>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="persona-egreso">Año de egreso</label>
+	<div class="col-md-7">
+		<input type="text" class="form-control" id="persona-egreso" name="persona-egreso" placeholder="Ingrese Año de Egreso" required>
+	</div>
+</div>
+<input type="hidden" value="{{ persona_id }}" name="persona-id" id="persona-id">
+<input type="hidden" value="{{ persona_run }}" name="persona-run" id="persona-run">
+<input type="hidden" value="{{ persona_dv }}" name="persona-dv" id="persona-dv">

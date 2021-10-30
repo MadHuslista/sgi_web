@@ -1,0 +1,168 @@
+{% extends "base.twig" %}
+{% block title %}Tiempo Real de Titulación{% endblock %}
+{% block contentheader %}Tiempo Real de Titulación{% endblock %}
+{% block content %}
+<section class="content">
+	<div class="row">
+		<section class="col-lg-12 connectedSortable">
+			<div class="box box-success">
+				<div class="box-header">
+					<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+					</div>
+				</div>
+				<div class="box-body chat" id="chat-box">
+					<div class="row">
+						<div class="col-xs-12">
+							<canvas id="canvas1" height="150" width="500"></canvas>
+						</div>
+						<div class="col-xs-2 col-sm-3">
+							 <button class="btn btn-block btn-primary" id="exportar_grafico1"><i class="fa fa-area-chart"></i> Exportar Gráfico</button>
+							 <br>
+						</div>
+					</div>							
+					<div class="row">
+						<div class="col-xs-12">
+							<table class="table table-bordered table-hover" id="tabla">
+								<thead>
+									<tr>
+										<th colspan="9">DURACIÓN NOMINAL DE LA CARRERA = 12 SEMESTRES</th>
+									</tr>
+									<tr>
+										<th colspan="9">TIEMPO REAL DE TITULACIÓN EXPRESADO EN SEMESTRES, POR COHORTE</th>
+									</tr>
+									<tr>
+										<th colspan="9">CAMPUS SANTIAGO</th>
+									</tr>
+									<tr>
+										<th>Comuna</th>
+										<th>Jornada</th>
+										<th>Modalidad</th>
+										<th>2007</th>
+										<th>2008</th>
+										<th>2009</th>
+										<th>2010</th>
+										<th>2011</th>
+										<th>PROMEDIO DE LA OFERTA</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Valparaíso</td>
+										<td>Diurna</td>
+										<td>Presencial</td>
+										<td id="año_1">{{tiempo_real.año1}}</td>
+										<td id="año_2">{{tiempo_real.año2}}</td>
+										<td id="año_3">{{tiempo_real.año3}}</td>
+										<td id="año_4">{{tiempo_real.año4}}</td>
+										<td id="año_5">{{tiempo_real.año5}}</td>
+										<td id="prom">{{tiempo_real.prom}}</td>
+									</tr>
+									<tr>
+										<td colspan="3">PROMEDIO DEL AÑO DE LA SEDE</td>
+										<td id="prom_año_1">{{tiempo_real.año1}}</td>
+										<td id="prom_año_2">{{tiempo_real.año2}}</td>
+										<td id="prom_año_3">{{tiempo_real.año3}}</td>
+										<td id="prom_año_4">{{tiempo_real.año4}}</td>
+										<td id="prom_año_5">{{tiempo_real.año5}}</td>
+										<td id="prom_prom">{{tiempo_real.prom}}</td>
+									</tr></tbody>
+							</table>
+						</div>
+						<div class="col-xs-2 col-sm-3">
+							<button class="btn btn-block btn-primary" id="exportar_tabla"><i class="fa fa-table"></i> Exportar Tabla</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</section>
+<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/xlsx.core.min.js"></script>
+<script src="{{ baseUrl() }}/js/Blob.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/tabla.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/bootstrap-datepicker.js"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.js"></script>
+<script src="{{ baseUrl() }}/js/ChartNew.js"></script>
+<script>
+$("#exportar_tabla").on('click', function(){
+		/*$("#tabla").table2excel({
+			exclude: ".noExl",
+			name: "Worksheet Name",
+			filename: "Estudiantes programas doctorado real.xls"
+
+
+		});*/
+		export_table_to_excel('tabla', 'Tiempo Real de Titulación');
+});
+
+$("#exportar_grafico").on('click', function(){
+		$("#canvas").mousedown();
+});
+</script>
+<script>
+// Canvas 1
+var año1 = $('#prom_año_1').html();
+var año2 = $('#prom_año_2').html();
+var año3 = $('#prom_año_3').html();
+var año4 = $('#prom_año_4').html();
+var año5 = $('#prom_año_5').html();
+var myBarChart1;
+var data1 = {
+	labels: ["2007","2008","2009","2010","2011"],
+	datasets: [
+		{
+			label: "Tiempo Real de Titulación",
+			fillColor: "#ff9c43",
+			strokeColor: "rgba(220,220,220,0.8)",
+			highlightFill: "rgba(220,220,220,0.75)",
+			highlightStroke: "rgba(220,220,220,1)",
+			data: [año1,año2,año3,año4,año5]
+    }
+	]
+};
+var ctx1 = $("#canvas1").get(0).getContext("2d");
+myBarChart1 = new Chart(ctx1).Bar(data1, {
+responsive: true,
+bezierCurve : false,
+datasetFill : false,
+/* El objeto 'scales' en las versiones 2.x es muy distinto por lo cual este codigo quedará obsoleto. Para version 2.x revisar la documentación oficial. 
+*/
+// override a objeto scale
+scaleOverride : true,
+scaleSteps : 5, 		// cantidad de intervalos
+scaleStepWidth : Math.ceil(Math.max.apply(Math,data1.datasets[0].data))/5, 	// intervalo minimo
+scaleStartValue : 0 , 	// punto de partida
+// fin override a objeto scale
+legend : true,
+savePng : true,
+savePngOutput: "Save",
+xAxisLabel: "Años",
+yAxisLabel: "Tiempo Real de Titulación",
+annotateDisplay : true,
+annotateLabel: "<%= v1 %> <%= v2 %> - <%= v3 %> semestres",
+});
+
+$("#exportar_grafico1").on('click', function(){
+	$.ajax({
+		url:'../api/save_canvas',
+		type:'POST',
+		data:{
+			data:document.getElementById("canvas1").toDataURL("image/png"),
+			csrf_token: $("#csrf").val()
+		}
+	}).success(function(data){
+		var a = document.createElement('a');
+		a.href = "../img/grafico.png";
+		a.download = "grafico.png";
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+	});
+});
+
+</script>
+{% endblock %}

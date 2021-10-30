@@ -1,0 +1,259 @@
+{% extends "base.twig" %}
+{% block title %}{{persona.name}} {{persona.last_name}} {{persona.m_name}}{% endblock %}
+{% block head %}
+<link href="{{ baseUrl() }}/css/token-input.css" type="text/css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+<link href="{{ baseUrl() }}/css/bootstrap-tokenfield.min.css" type="text/css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/datepicker.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/token-input-facebook.css" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block contentheader %}Becas de Usuario <br><a class="btn btn-success" href="{{ siteUrl('/usuario/editar') }}/{{persona.id}}" style="color:#ffffff;"><i class="fa fa-edit"></i> Editar usuario</a>  <a class="btn btn-primary pull-right" href="{{ siteUrl('/autores/autor') }}/{{persona.id}}" style="color:#ffffff;"><i class="fa fa-eye"></i> Ver Perfil Académico</a>{% endblock %}
+{% block content %}
+
+		<section class="content">
+			<!-- Main row -->
+			<div class="row">
+				<!-- Left col -->
+				<div class="col-md-4">
+
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-body box-profile">
+									  <img src="{{ baseUrl() }}/img/personas/{{persona.avatar}}" class="img-circle img-responsive" style="width:160px; max-width:100%;margin:auto;" alt="{{persona.name}} {{persona.last_name}} {{persona.m_name}}" title="{{persona.name}} {{persona.last_name}} {{persona.m_name}}">
+                  <h3 class="profile-username text-center">{{persona.name}} {{persona.last_name}} {{persona.m_name}}</h3>
+                  <p class="text-muted text-center">
+									{% if titulos is empty %}
+											Título No Definido
+									{% else %}
+											{% for titulo in titulos %}
+													{% if titulo.name %}
+															{{ titulo.name }}
+															{% if titulo.university %}
+																	, {{ titulo.university }}
+															{% endif %}
+															{% if titulo.country %}
+																	, {{ titulo.country }}
+															{% endif %}
+															<br>
+													{% endif %}
+											{% endfor %}
+									{% endif %}
+									</p>
+
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                      <b>Cantidad becas alimentación</b> <a class="pull-right">{{ cant_alimentacion }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Total becas congreso</b> <a class="pull-right">{{ totalcongreso }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Total becas PIIC</b> <a class="pull-right">{{ totalpiic }}</a>
+                    </li>
+										<li class="list-group-item">
+                      <b>Total becas conycit</b> <a class="pull-right">{{ totalconycit }}</a>
+                    </li>
+										<li class="list-group-item">
+                      <b>Total becas de arancel</b> <a class="pull-right">{{ totalarancel }}</a>
+                    </li>
+										<li class="list-group-item">
+                      <b>Total becas de manutención</b> <a class="pull-right">{{ totalfinancieras }}</a>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              <!-- About Me Box -->
+              <div class="box box-primary">
+
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+				<section class="col-lg-8 connectedSortable">
+					<!-- Chat box -->
+					<div class="box box-success">
+						<div class="box-header">
+							<i class="fa fa-comments-o"></i>
+							<h3 class="box-title">Resumen de Becas</h3>
+							<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+							</div>
+						</div>
+						<div class="box-body chat" id="chat-box">
+							<div class="row">
+                    <div class="col-xs-12">
+                        <h3>Becas de Congreso</h3>
+                    </div>
+                    <div class="col-xs-12">
+											{% if becascongreso is empty %}
+											<p>No posee becas de congreso asignadas</p>
+											{% else %}
+											<table class="table table-bordered table-hover" id="tabla">
+												<thead>
+													<tr>
+													<th>Congreso</th><th>Año</th><th>Monto</th><th>País</th>
+												</tr>
+												</thead>
+												<tbody>
+
+													{% for c in becascongreso %}
+														<tr>
+														<td align="left">	{{ c.congress }} </td>
+														<td>{{c.year}}</td>
+														<td>{{c.amount}}</td>
+														<td>{{c.country}}</td>
+														</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+											{% endif %}
+                    </div>
+
+
+										<div class="col-xs-12">
+                        <h3>Becas de programa de incentivo a la iniciación científica</h3>
+                    </div>
+                    <div class="col-xs-12">
+											{% if piic is empty %}
+											<p>No posee becas de programa de incentivo a la iniciación científica</p>
+											{% else %}
+											<table class="table table-bordered table-hover" id="tabla">
+												<thead>
+													<tr>
+													<th>Programa</th><th>Título</th><th>Año</th><th>Mes</th><th>Monto</th>
+												</tr>
+												</thead>
+												<tbody>
+
+													{% for c in piic %}
+														<tr>
+														<td align="left">	{{ c.name }} </td>
+														<td>{{c.title}}</td>
+														<td>{{c.year}}</td>
+														<td>{{c.month}}</td>
+														<td>{{c.amount}}</td>
+														</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+											{% endif %}
+                    </div>
+
+										<div class="col-xs-12">
+                        <h3>Becas Conycit</h3>
+                    </div>
+                    <div class="col-xs-12">
+											{% if conycit is empty %}
+											<p>No posee becas conycit</p>
+											{% else %}
+											<table class="table table-bordered table-hover" id="tabla">
+												<thead>
+													<tr>
+													<th>Programa</th><th>Año</th><th>Mes</th><th>Monto</th>
+												</tr>
+												</thead>
+												<tbody>
+
+													{% for c in conycit %}
+														<tr>
+														<td align="left">	{{ c.name }} </td>
+														<td>{{c.year}}</td>
+														<td>{{c.month}}</td>
+														<td>{{c.amount}}</td>
+														</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+											{% endif %}
+                    </div>
+
+										<div class="col-xs-12">
+                        <h3>Becas de arancel</h3>
+                    </div>
+                    <div class="col-xs-12">
+											{% if arancel is empty %}
+											<p>No posee becas de arancel</p>
+											{% else %}
+											<table class="table table-bordered table-hover" id="tabla">
+												<thead>
+													<tr>
+													<th>Programa</th><th>Año</th><th>Monto</th>
+												</tr>
+												</thead>
+												<tbody>
+
+													{% for c in arancel %}
+														<tr>
+														<td align="left">	{{ c.name }} </td>
+														<td>{{c.year}}</td>
+														<td>{{c.amount}}</td>
+														</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+											{% endif %}
+                    </div>
+
+										<div class="col-xs-12">
+                        <h3>Becas de manutención</h3>
+                    </div>
+                    <div class="col-xs-12">
+											{% if financieras is empty %}
+											<p>No posee becas de manutención</p>
+											{% else %}
+											<table class="table table-bordered table-hover" id="tabla">
+												<thead>
+													<tr>
+													<th>Programa</th><th>Año</th><th>Mes</th><th>Monto</th>
+												</tr>
+												</thead>
+												<tbody>
+
+													{% for c in financieras %}
+														<tr>
+														<td align="left">	{{ c.name }} </td>
+														<td>{{c.year}}</td>
+														<td>{{c.month}}</td>
+														<td>{{c.amount}}</td>
+														</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+											{% endif %}
+                    </div>
+
+										<div class="col-xs-12">
+                        <h3>Becas de alimentación</h3>
+                    </div>
+                    <div class="col-xs-12">
+											{% if alimentacion is empty %}
+											<p>No posee becas de alimentación</p>
+											{% else %}
+											<table class="table table-bordered table-hover" id="tabla">
+												<thead>
+													<tr>
+													<th>Programa</th><th>Año</th><th>Semestre</th>
+												</tr>
+												</thead>
+												<tbody>
+
+													{% for c in alimentacion %}
+														<tr>
+														<td align="left">	{{ c.name }} </td>
+														<td>{{c.year}}</td>
+														<td>{{c.term}}</td>
+														</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+											{% endif %}
+                    </div>
+            </div>
+					</div><!-- /.box (chat box) -->
+			</div><!-- /.row (main row) -->
+
+		</section><!-- /.content -->
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/jquery.wordexport.js" type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/docx.js"></script>
+{% endblock %}

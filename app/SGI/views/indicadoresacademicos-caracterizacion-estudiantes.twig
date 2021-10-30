@@ -1,0 +1,321 @@
+{% extends "base.twig" %}
+{% block title %}Caracterizacion estudiantes{% endblock %}
+{% block contentheader %}Caracterización Estudiantes{% endblock %}
+{% block content %}
+<section class="content">	
+	<div class="row">		
+		<section class="col-lg-12 connectedSortable">
+			<div class="box box-success">
+				<div class="box-header">
+					<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+					</div>
+				</div>
+				<div class="box-body chat" id="chat-box">
+					<div class="row">
+						<div class="col-xs-12">
+							<canvas id="canvas1" height="150" width="500"></canvas>
+						</div>
+						<div class="col-xs-2 col-sm-3">
+							 <button class="btn btn-block btn-primary" id="exportar_grafico1"><i class="fa fa-area-chart"></i> Exportar Gráfico</button>
+							 <br>
+						</div>
+					</div>					
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th colspan="23">Caracterización estudiantes (Grupo de Control)</th>
+										</tr>
+										<tr>
+											<th colspan="23">Casa Central</th>
+										</tr>
+										<tr>
+											<th>Comuna</th>
+											<th>Jornada</th>
+											<th>Modalidad</th>
+											<th colspan="4">2012</th>
+											<th colspan="4">2013</th>
+											<th colspan="4">2014</th>
+											<th colspan="4">2015</th>
+											<th colspan="4">2016</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<th>PPLMX</th>
+											<th style="background-color: #0082D5; color: #FFF">PMX</th>
+											<th>PMI</th>
+											<th style="background-color: #0082D5; color: #FFF">DE</th>
+											<th>PPLMX</th>
+											<th style="background-color: #0082D5; color: #FFF">PMX</th>
+											<th>PMI</th>
+											<th style="background-color: #0082D5; color: #FFF">DE</th>
+											<th>PPLMX</th>
+											<th style="background-color: #0082D5; color: #FFF">PMX</th>
+											<th>PMI</th>
+											<th style="background-color: #0082D5; color: #FFF">DE</th>
+											<th>PPLMX</th>
+											<th style="background-color: #0082D5; color: #FFF">PMX</th>
+											<th>PMI</th>
+											<th style="background-color: #0082D5; color: #FFF">DE</th>
+											<th>PPLMX</th>
+											<th style="background-color: #0082D5; color: #FFF">PMX</th>
+											<th>PMI</th>
+											<th style="background-color: #0082D5; color: #FFF">DE</th>
+										</tr>
+										<tr>
+											<td>Valparaíso</td>
+											<td>Diurna</td>
+											<td>Presencial</td>
+											<th>680,3</th>
+											<th style="background-color: #0082D5; color: #FFF">816,3</th>
+											<th>646,4</th>
+											<th style="background-color: #0082D5; color: #FFF">37,1</th>
+											<th>692,7</th>
+											<th style="background-color: #0082D5; color: #FFF">784,1</th>
+											<th>666,7</th>
+											<th style="background-color: #0082D5; color: #FFF">30,9</th>
+											<th>674,8</th>
+											<th style="background-color: #0082D5; color: #FFF">747,0</th>
+											<th>639,0</th>
+											<th style="background-color: #0082D5; color: #FFF">27,4</th>
+											<th>672,6</th>
+											<th style="background-color: #0082D5; color: #FFF">785,4</th>
+											<th>642,8</th>
+											<th style="background-color: #0082D5; color: #FFF">30,7</th>
+											<th>658,7</th>
+											<th style="background-color: #0082D5; color: #FFF">739,0</th>
+											<th>628,5</th>
+											<th style="background-color: #0082D5; color: #FFF">25,1</th>
+										</tr>
+										<tr>
+											<td colspan="3">PROMEDIO DEL AÑO EN LA SEDE</td>
+											<th>680,3</th>
+											<th style="background-color: #0082D5; color: #FFF">816,3</th>
+											<th>646,4</th>
+											<th style="background-color: #0082D5; color: #FFF">37,1</th>
+											<th>692,7</th>
+											<th style="background-color: #0082D5; color: #FFF">784,1</th>
+											<th>666,7</th>
+											<th style="background-color: #0082D5; color: #FFF">30,9</th>
+											<th>674,8</th>
+											<th style="background-color: #0082D5; color: #FFF">747,0</th>
+											<th>639,0</th>
+											<th style="background-color: #0082D5; color: #FFF">27,4</th>
+											<th>672,6</th>
+											<th style="background-color: #0082D5; color: #FFF">785,4</th>
+											<th>642,8</th>
+											<th style="background-color: #0082D5; color: #FFF">30,7</th>
+											<th>658,7</th>
+											<th style="background-color: #0082D5; color: #FFF">739,0</th>
+											<th>628,5</th>
+											<th style="background-color: #0082D5; color: #FFF">25,1</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<table class="table table-bordered table-hover" id="tabla" style="display: none;">
+								<thead>
+									<tr>
+										<th style="vertical-align: middle;">Año</th>
+										<th style="vertical-align: middle;">PPLM</th>
+										<th style="vertical-align: middle;">PMX</th>
+										<th style="vertical-align: middle;">PMI</th>
+										<th style="vertical-align: middle;">DE</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2012</td>
+										<td id="pplmx_anio5">680.3</td>
+										<td id="pmx_anio5">816.3</td>
+										<td id="pmi_anio5">646.4</td>
+										<td id="de_anio5">37.1</td>
+									</tr>
+									<tr>
+										<td>2013</td>
+										<td id="pplmx_anio4">692.7</td>
+										<td id="pmx_anio4">784.1</td>
+										<td id="pmi_anio4">666.7</td>
+										<td id="de_anio4">30.9</td>
+									</tr>
+									<tr>
+										<td>2014</td>
+										<td id="pplmx_anio3">674.8</td>
+										<td id="pmx_anio3">747.0</td>
+										<td id="pmi_anio3">639.0</td>
+										<td id="de_anio3">27.4</td>
+									</tr>
+									<tr>
+										<td>2015</td>
+										<td id="pplmx_anio2">672.6</td>
+										<td id="pmx_anio2">785.4</td>
+										<td id="pmi_anio2">642.8</td>
+										<td id="de_anio2">30.7</td>
+									</tr>
+									<tr>
+										<td>2016</td>
+										<td id="pplmx_anio1">658.7</td>
+										<td id="pmx_anio1">739.0</td>
+										<td id="pmi_anio1">628.5</td>
+										<td id="de_anio1">25.1</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-xs-2 col-sm-3">
+							<button class="btn btn-block btn-primary" id="exportar_tabla"><i class="fa fa-table"></i> Exportar Tabla</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>				
+	</div>
+</section>
+<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/xlsx.core.min.js"></script>
+<script src="{{ baseUrl() }}/js/Blob.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/tabla.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/bootstrap-datepicker.js"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.js"></script>
+<script src="{{ baseUrl() }}/js/ChartNew.js"></script>
+<script>
+$("#exportar_tabla").on('click', function(){
+		/*$("#tabla").table2excel({
+			exclude: ".noExl",
+			name: "Worksheet Name",
+			filename: "Estudiantes programas doctorado real.xls"
+
+
+		});*/
+		export_table_to_excel('tabla', 'Estudiantes programas doctorado real');
+});
+$("#exportar_tabla2").on('click', function(){
+		/*$("#tabla2").table2excel({
+			exclude: ".noExl",
+			name: "Worksheet Name",
+			filename: "Estudiantes programas doctorado proyectado.xls"
+
+		});*/
+		export_table_to_excel('tabla2', 'Estudiantes programas doctorado proyectado');
+});
+
+$("#exportar_grafico").on('click', function(){
+		$("#canvas").mousedown();
+});
+</script>
+<script>
+// Canvas 1
+var myBarChart1;
+
+var pplmx_anio5 = $('#pplmx_anio5').html();
+var pplmx_anio4 = $('#pplmx_anio4').html();
+var pplmx_anio3 = $('#pplmx_anio3').html();
+var pplmx_anio2 = $('#pplmx_anio2').html();
+var pplmx_anio1 = $('#pplmx_anio1').html();
+
+var pmx_anio5 = $('#pmx_anio5').html();
+var pmx_anio4 = $('#pmx_anio4').html();
+var pmx_anio3 = $('#pmx_anio3').html();
+var pmx_anio2 = $('#pmx_anio2').html();
+var pmx_anio1 = $('#pmx_anio1').html();
+
+var pmi_anio5 = $('#pmi_anio5').html();
+var pmi_anio4 = $('#pmi_anio4').html();
+var pmi_anio3 = $('#pmi_anio3').html();
+var pmi_anio2 = $('#pmi_anio2').html();
+var pmi_anio1 = $('#pmi_anio1').html();
+
+var de_anio5 = $('#de_anio5').html();
+var de_anio4 = $('#de_anio4').html();
+var de_anio3 = $('#de_anio3').html();
+var de_anio2 = $('#de_anio2').html();
+var de_anio1 = $('#de_anio1').html();
+
+var data1 = {
+	labels: ["2012", "2013", "2014", "2015","2016"],
+	datasets: [
+	{
+		label: "PPLMX",
+		fillColor: "#cc5f00",
+		strokeColor: "rgba(220,220,220,0.8)",
+		highlightFill: "rgba(220,220,220,0.75)",
+		highlightStroke: "rgba(220,220,220,1)",
+		data: [pplmx_anio5, pplmx_anio4, pplmx_anio3, pplmx_anio2, pplmx_anio1]
+	},
+	{
+		label: "PMX",
+		fillColor: "#ff7700",
+		strokeColor: "rgba(220,220,220,0.8)",
+		highlightFill: "rgba(220,220,220,0.75)",
+		highlightStroke: "rgba(220,220,220,1)",
+		data: [pmx_anio5, pmx_anio4, pmx_anio3, pmx_anio2, pmx_anio1]
+	},
+	{
+		label: "PMI",
+		fillColor: "#ff9c43",
+		strokeColor: "rgba(220,220,220,0.8)",
+		highlightFill: "rgba(220,220,220,0.75)",
+		highlightStroke: "rgba(220,220,220,1)",
+		data: [pmi_anio5, pmi_anio4, pmi_anio3, pmi_anio2, pmi_anio1]
+	},
+	{
+		label: "DE",
+		fillColor: "#ffc999",
+		strokeColor: "rgba(220,220,220,0.8)",
+		highlightFill: "rgba(220,220,220,0.75)",
+		highlightStroke: "rgba(220,220,220,1)",
+		data: [de_anio5, de_anio4, de_anio3, de_anio2, de_anio1]
+	}]
+};
+var ctx1 = $("#canvas1").get(0).getContext("2d");
+myBarChart1 = new Chart(ctx1).Bar(data1, {
+responsive: true,
+bezierCurve : false,
+datasetFill : false,
+
+scaleOverride : true,
+scaleSteps : 5,
+// scaleStepWidth es igual al máximo valor numerico de los datasets dividido por 5 aproximado hacia arriba. Requiere que ningun dataset tenga valores nulos o no numericos.
+scaleStepWidth : Math.ceil(Math.max.apply(Math,[Math.max.apply(Math,data1.datasets[0].data),Math.max.apply(Math,data1.datasets[1].data),Math.max.apply(Math,data1.datasets[2].data),Math.max.apply(Math,data1.datasets[3].data)])/5),
+scaleStartValue : 0,
+
+legend : true,
+savePng : true,
+savePngOutput: "Save",
+xAxisLabel: "Años",
+yAxisLabel: "",
+annotateDisplay : true,
+annotateLabel: "<%= v1 %> - <%= v3 %>",
+});
+
+$("#exportar_grafico1").on('click', function(){
+	$.ajax({
+		url:'../api/save_canvas',
+		type:'POST',
+		data:{
+			data:document.getElementById("canvas1").toDataURL("image/png"),
+			csrf_token: $("#csrf").val()
+		}
+	}).success(function(data){
+		var a = document.createElement('a');
+		a.href = "../img/grafico.png";
+		a.download = "grafico.png";
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+	});
+});
+
+</script>
+{% endblock %}

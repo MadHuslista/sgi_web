@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+{% block title %}Cargar{% endblock %}
+{% block contentheader %}<h1>Cargar</h1><hr>{% endblock %}
+{% block content %}
+
+		<section class="content">
+			<div class="row">
+				<section class="col-lg-12 connectedSortable">
+					<div class="box box-success">
+						<div class="box-header">
+							<div class="col-lg-12">
+							<br>
+						
+								<form method="POST" class="form-horizontal" enctype="multipart/form-data">
+          							<div class="form-group">
+            							<div class="box-body">
+            
+							              <div class="col-sm-10">
+							              	<label for="file" class="control-label">Cargar Excel:</label>
+							                <input type="file" class="btn btn-default" name="file" id="file" required>
+							              </div>
+							            </div>
+							         </div>  
+							         <div class="form-group">
+							            <div class="col-sm-10">
+							          		<input class="btn btn-primary pull-right" type="submit" id="agregar" value="Cargar Datos">
+							        	</div>
+							        </div>
+							        <input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+							    </form>		
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</section><!-- /.content -->
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/jquery.redirect.js"></script>
+<script>
+$("#buscar").on('click',function(){
+		$.redirect("../programa/listar-publicaciones",{ s: $('#s').val()}, 'GET');
+});
+$("#s").keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		$.redirect("../programa/listar-publicaciones",{ s: $('#s').val()}, 'GET');
+	}
+	event.stopPropagation();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,232 @@
+{% extends "base.twig" %}
+{% block title %}Programas asociados a unidades académicas{% endblock %}
+{% block head %}
+{% endblock %}
+{% block contentheader %}Tablas Asignaturas{% endblock %}
+{% block content %}
+
+{% include "modal.html" %}
+
+		<section class="content">
+			<!-- Main row -->
+			<div class="row">
+				<!-- Left col -->
+				<section class="col-lg-12 connectedSortable">
+					<!-- Chat box -->
+					<div class="box box-success">
+						<div class="box-header">
+							<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+							</div>
+						</div>
+						<div class="box-body chat" id="chat-box">
+							<div class="row">
+								<div class="col-xs-12">
+									
+								   <center>
+				                   <h3> <strong>Plan de estudios Ingeniería Civil Metalúrgica</strong></h3> 
+				                   <h3> Plan 5406</h3>
+				                   </center>
+				                   <br>
+ 
+				                   <table style = "margin-right: 0px; margin-left: auto;" cellpadding="10" CELLSPACING="4" CELLPADDING="8" BORDER="2"  BORDERCOLOR="black">
+  										<tr>
+    										<th colspan = "2"><center>Simbología</center></th>
+    										
+  										</tr>
+  										<tr>
+    										<td style = "background-color: #FFFF00;"> <span style="display:inline-block; width: 70px;"></span></td>
+    										<td style = "padding-left:0.5cm; padding-right:0.5cm;"> Pulsado</td> 
+    										
+  										</tr>
+  										<tr>
+    										<td style = "background-color: #F75D59;">&nbsp; </td>
+    										<td style = "padding-left:0.5cm; padding-right:0.5cm; "><center>Prerrequisitos</center></td> 
+    									
+  										</tr>
+									</table>
+
+									<br>
+
+
+				                    <div>
+				                        <table class="table" style="text-align: left; font-size: 70%; font-weight: bold;" cellspacing="1">
+
+					                        <colgroup>
+					                          <col width="7%">
+					                          <col width="7%">
+
+					                          <col width="7%">
+					                          <col width="7%">
+
+					                          <col width="7%">
+					                          <col width="7%">
+
+					                          <col width="7%">
+					                          <col width="7%">
+
+					                          <col width="7%">
+					                          <col width="7%">
+
+					                          <col width="7%">
+					                          <col width="7%">
+
+					                        </colgroup>
+
+					                        <tr>
+					                          <th><center><strong>Sem 1</strong></center></th>
+					                          <td><center><strong>Sem 2</strong></center></td>
+					                          <td><center><strong>Sem 3</strong></center></td>
+					                          <td><center><strong>Sem 4</strong></center></td>
+					                          <td><center><strong>Sem 5</strong></center></td>
+					                          <td><center><strong>Sem 6</strong></center></td>
+					                          <td><center><strong>Sem 7</strong></center></td>
+					                          <td><center><strong>Sem 8</strong></center></td>
+					                          <td><center><strong>Sem 9</strong></center></td>
+					                          <td><center><strong>Sem 10</strong></center></td>
+					                          <td><center><strong>Sem 11</strong></center></td>
+					                          <td><center><strong>Sem 12</strong></center></td>
+
+					                        </tr>
+
+					                        <tr>
+					                          <td id = "introduccion_ingenieria"><center><strong>Introducción a la Ing. Metalúrgica <br> (MET-100)</strong></center></td>
+					                          <td><center></center></td>
+					                          <td id = "lab_mat_procesos"><center>Lab. Materiales y Procesos <br> (MET-101)</center></td>
+					                          <td id = "lab_met_extractiva"><center>Lab. Metalurgía Extractiva <br> (MET-102)</center></td>
+					                          <td id ="termo_metI"><center>Termodinámica Metalúrgica I <br> (MET-136)</center></td>
+					                          <td id="termo_metII"><center>Termodinámica Metalúrgica II <br> (MET-137)</center></td>
+					                          <td id ="cinetica_metalurgica"><center>Cinética y diseño de Reactores Met <br> (MET-332)</center></td>
+					                          <td id ="hidrometalurgia"><center>Hidrometalurgía <br> (MET-237)</center></td>
+					                          <td id ="pirometalurgia"><center>Pirometalurgía <br> (MET-236)</center></td>
+					                          <td id ="simulacion_de_procesos_metalurgicos"><center>Simulación de Procesos Met. <br> (MET-311)</center></td>
+					                          <td id= "taller_titulacion"><center>Taller de Titulación<br> (MET-391)</center></td>
+					                          <td id ="memoria"><center>Memoria<br> (MET-392)</center></td>
+
+					                        </tr>
+
+					                        <tr>
+
+					                          <td id = "matematicaI"><center>Matemática I <br> (MAT-021)</center></td>
+					                          <td id = "matematicaII"><center>Matemática II <br> (MAT-022)</center></td>
+					                          <td id = "matematicaIII"><center>Matemática III <br> (MAT-023)</center></td>
+					                          <td id = "matematicaIV"><center>Matemática IV <br> (MAT-024)</center></td>
+					                          <td id = "ciencias_materiales"><center>Ciencias de Materiales <br> (MET-120)</center></td>
+					                          <td id = "metalurgia_fisicaI"><center>Metalúrgica Física I <br> (MET-226)</center></td>
+					                          <td id = "metalurgia_fisicaII"><center>Metalúrgica Física II <br> (MET-227)</center></td>
+					                          <td id ="fundicion"><center>Fundición <br> (MET-310)</center></td>
+					                          <td id ="flotacion"><center>Flotación <br> (ILQ-327)</center></td>
+					                          <td id = "laboratorio_ingenieria_metalurgica"><center>Lab. Ingeniería Metalúrgica <br> (MET-308)</center></td>
+					                          <td id ="proyecto_metalurgicoI"><center>Proyecto Metalúrgico I<br> (MET-370)</center></td>
+					                          <td id= "proyecto_metalurgicoII"><center>Proyecto Metalúrgico II<br> (MET-380)</center></td>
+					                        </tr>
+
+					                        <tr>
+					                          <td id = "introduccion_fisica"><center>Introducción a la Física <br> (FIS-100)</center></td>
+					                          <td id = "fisica_generalI"><center>Física General I <br> (FIS-110)</center></td>
+					                          <td id = "fisica_generalIII"><center>Física General III <br> (FIS-130)</center></td>
+					                          <td id = "fisica_generalII"><center>Física General II <br> (FIS-120)</center></td>
+					                          <td id = "fisica_generalIV"><center>Física General IV <br> (FIS-140)</center></td>
+					                          <td id = "mecanica_solidos"><center>Mecánica de Sólidos <br> (MET-240)</center></td>
+					                          <td id ="beneficio_de_minerales"><center>Beneficio de Materiales <br> (ICQ-328)</center></td>
+					                          <td id ="comportamiento_mecanico"><center>Comportamiento Mecánico de Mat <br> (MET-244)</center></td>
+					                          <td id ="soldadura"><center>Soldadura <br> (MET-320)</center></td>
+					                          <td><center> </center></td>
+					                          <td id ="admnistracion_general"><center>Administración General<br> (IWN-261)</center></td>
+					                          <td><center></center></td>
+					                        </tr>
+
+					                        <tr>
+					                           <td id = "quimica_sociedad"><center>Química y Sociedad<br> (QUI-010)</center></td>
+					                          <td><center> </center></td>
+					                          <td id ="quimica_basica"><center>Química Básica <br> (QUI-021)</center></td>
+					                          <td id = "lab_quimica_basica"><center>Lab. De Química Básica <br> (QUI-103)</center></td>
+					                          <td id ="quimica_de_materiales"><center>Química de Materiales <br> (QUI-022)</center></td>
+					                          <td id ="mecanica_de_fluidos"><center>Mecánica de Fluidos <br> (IWQ-221)</center></td>
+					                          <td id ="transferencia_calor"><center>Transferencia de Calor <br> (IWQ-222)</center></td>
+					                          <td id ="laboratorio_de_ingenieria_quimica"><center>Lab. Ingeniería Química<br> (ILQ-225)</center></td>
+					                          <td><center></center></td>
+					                          <td id ="fundamentos_de_control_industrial"><center>Fundamentos de Control Industrial<br> (ILQ-350)</center></td>
+					                          <td><center>Electivo I</center></td>
+					                          <td><center>Electivo II</center></td>
+					                        </tr>
+
+					                        <tr>
+
+					                          <td id = "educacion_fisicaI"><center>Educación Física I <br> (DEW-100)</center></td>
+					                          <td id = "educacion_fisicaII"><center>Educación Física II <br> (DEW-101)</center></td>
+					                          <td id ="deporte"><center>Deportes <br> (DEW-101)</center></td>
+					                          <td id = "calculo_procesos"><center>Cálculo de Procesos <br> (MET-110)</center></td>
+					                          <td id ="grafica_en_ingenieria"><center>Gráfica en Ingeniería <br> (IWM-185)</center></td>
+					                          <td id ="geologia_minerologia"><center>Geología y Minerología <br> (MET-280)</center></td>
+					                          <td id ="analisis_y_diseno_de_experimentos_industriales"><center>Diseño y Análisis de Experimentos <br> (IWQ-214)</center></td>
+					                          <td><center></center></td>
+					                          <td id ="investigacion_operaciones"><center> Gestión e Inv. de Operaciones<br> (ILN-250) </center></td>
+					                          <td id = "informacion_y_control_financiero"><center> Información y Control Financiero<br> (IWN-270) <center></td>
+					                          <td><center></center></td>
+					                          <td id ="admnistracion_la_produccion"><center> Administración de la Producción<br> (ICN-345) <center></td>
+					                          
+					                        </tr>
+
+
+					                         <tr>
+
+					                          <td><center> </center></td>
+					                          <td id ="programacion"><center>Programación <br> (IWI-131)</center></td>
+					                          <td id = "inglesI"><center>Inglés para Ingeniería I  <br> (HIW-310)</center></td>
+					                          <td><center></center></td>
+					                          <td id ="ingles_para_ingenieria_ii"><center>Inglés para Ingeniería II  <br> (HIW-311)</center></td>
+					                          <td><center></center></td>
+					                          <td><center></center></td>
+					                          <td id ="economia_ia"><center> Economía 1-A<br> (IWN-170) </center></td>
+					                          <td id ="electrotecnia_basica"><center>Electrotecnia Básica<br> (IWN-271) <center></td>
+					                          <td><center>Electivo Especialidad I</center></td>
+					                          <td><center>Electivo Especialidad II</center></td>
+					                          <td><center> <center></td>
+					                          
+					                        </tr>
+
+					                        <tr>
+
+					                          <td><center> </center></td>
+					                          <td><center></center></td>
+					                          <td><center></center></td>
+					                          <td><center></center></td>
+					                          <td><center></center></td>
+					                          <td><center></center></td>
+					                          <td><center></center></td>
+					                          <td><center> Humanístico I<br> (HRW-001) </center></td>
+					                          <td><center>  <center></td>
+					                          <td><center>Humanístico II<br> (HRW-002) </center></td>
+					                          <td><center>Humanístico III<br> (HRW-003) </center></td>
+					                          <td><center> <center></td>
+					                          
+					                        </tr>
+
+					                      </table>
+					                       </div>
+
+
+								</div>
+
+								
+							<p id="posy"></p>
+									
+							</div>
+	
+									
+						</div><!-- /.box (chat box) -->
+					</div>
+				</section>
+			</div><!-- /.row (main row) -->
+		</section><!-- /.content -->
+
+
+		
+{% endblock %}
+{% block scripts %}
+
+<script src="{{ baseUrl() }}/js/asignaturasplan.js"></script>
+
+
+
+{% endblock %}

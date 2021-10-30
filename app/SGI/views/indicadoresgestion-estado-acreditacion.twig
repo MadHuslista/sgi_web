@@ -1,0 +1,169 @@
+{% extends "base.twig" %}
+{% block title %}Estado de Acreditación{% endblock %}
+{% block contentheader %}Estado de Acreditación{% endblock %}
+{% block content %}
+
+		<section class="content">
+			<div class="row">
+				<section class="col-lg-12 connectedSortable">
+					<div class="box box-success">
+							<br>
+							<div class="box-body chat" id="chat-box">
+								<div class="row" style="margin: auto;width: 100%; padding-left: 300px;">
+							
+
+									<div class="col-xs-8" style="align-text:center">
+										<div class="col-sx-12">
+											<h4><b><center>Ingeniería Civil Metalúrgica</center></b></h4>
+											<canvas id="canvas"></canvas>
+										</div>
+										<br>
+
+										
+									</div>										
+								</div>
+							</div>
+
+							
+							<div class="box-header">
+
+							<div class="col-xs-4" >
+											<button class="btn btn-block btn-primary" id="exportar_grafico" style="margin-top: 20px; 	margin-left: 400px;"><i class="fa fa-area-chart"></i> Exportar Gráfico</button>
+											<br>
+							</div>	
+
+								<div class="col-lg-12">
+
+									<br>
+									<table data-count="{{ count }}" id="publicaciones" class="table table-bordered table-hover">
+
+										<thead>
+											<tr>
+												<th>Plan</th>
+												<th>Años</th>
+												<th>Periodo</th>
+												<th>Agencia</th>
+												<th>Doc. Acta Acreditación</th>
+											</tr>
+										</thead>
+
+										<tbody>
+												
+											{% for p in datos %}
+												<tr>
+													<td>{{ p.plan }} </td>
+													<td>{{ p.duracion }}</td>
+													<td>{{ p.inicio }}-{{ p.fin }}</td>
+													<td>{{ p.agencia }}</td>
+													<td><a href="#"><i class="fa fa-eye"></i>{{ p.acta }}</a></td>
+												</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+
+									<div class="row">
+											<div class="col-xs-4" style="margin-left: 400px;">
+												 <button class="btn btn-block btn-primary" id="exportar_tabla"><i class="fa fa-table"  ></i> Exportar Tabla</button>
+											</div>		
+									</div>
+			
+								</div>
+
+							</div>
+					</div>
+				</section>
+			</div>	
+		</section><!-- /.content -->
+		<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ baseUrl() }}/js/jquery.redirect.js"></script>
+<script src="{{ baseUrl() }}/js/xlsx.core.min.js"></script>
+<script src="{{ baseUrl() }}/js/Blob.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/tabla.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/bootstrap-datepicker.js"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.js"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.min.js"></script>
+<script src="{{ baseUrl() }}/js/ChartNew.js"></script>
+
+
+<script>
+
+$(document).ready(function () {
+
+	var data = {
+        csrf_token: $("#csrf").val(),
+    }
+
+	 $.ajax({
+            type: "get",
+            url:"/ajax/buscarAcreditacion",
+            data: data,
+            success: function(val){
+
+            	datos = jQuery.parseJSON(val);
+                MostrarGrafico(datos);
+                
+            }
+     });
+
+     return false;
+});
+
+function MostrarGrafico(data){
+
+	var MyPieChart;
+	var ctx = $("#canvas").get(0).getContext("2d");
+
+	MyPieChart = new Chart(ctx).Pie(data,{
+		responsive: true,
+		legend : true,
+		savePng : true,
+		savePngOutput: "Save",
+		annotateDisplay : true,
+		annotateLabel: "<%= v1 %> - <%= v2 %> (<%=Math.round(100*v2/v4)%>%)",
+	});
+}
+
+
+$("#exportar_grafico").on('click', function(){
+	$.ajax({
+		url:'../api/save_canvas',
+		type:'POST',
+		data:{
+			data:document.getElementById("canvas").toDataURL("image/png"),
+			csrf_token: $("#csrf").val()
+		}
+	}).success(function(data){
+		var a = document.createElement('a');
+		a.href = "../img/grafico.png";
+		a.download = "Estado_Acreditacion.png";
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+	});
+});
+
+$("#exportar_tabla").on('click', function(){
+		window.location.href = "{{ baseUrl() }}/excelEstadoAcreditacion";
+
+});
+
+
+$("#buscar").on('click',function(){
+		$.redirect("../programa/listar-publicaciones",{ s: $('#s').val()}, 'GET');
+});
+
+$("#s").keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		$.redirect("../programa/listar-publicaciones",{ s: $('#s').val()}, 'GET');
+	}
+	event.stopPropagation();
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.twig" %}
+{% block content %}
+
+<!-- Este template nunca se debería visualizar, sólo redirige al login saliendo del
+	 iframe del SSO -->
+	 
+<script type="text/javascript">window.top.location.href = "{{ url }}"; </script>
+	<div class="row">
+	<div id ="login" class="text-center">
+		
+
+	<div class="error">
+		<p class="bg-danger"></p>
+	</div>
+
+	</div>
+	</div>
+{% endblock %}

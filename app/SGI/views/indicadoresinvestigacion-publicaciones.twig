@@ -1,0 +1,121 @@
+{% extends "base.twig" %}
+{% block title %}Listado de Publicaciones{% endblock %}
+{% block contentheader %}Listado de Publicaciones{% endblock %}
+{% block content %}
+
+		<section class="content">
+			<div class="row">
+				<section class="col-lg-12 connectedSortable">
+				<div class="box box-success">
+
+					<div class="box-header">
+
+							<div class="col-xs-9">
+								<div class="form-group">
+									<label class="col-sm-2 control-label" style="padding-left:0px;">Ordenar por:</label>
+
+									<div class="col-sm-4">
+										<select id="filtro" name="filtro" class="form-control">
+										 	<option value="anio">Año</option>
+										 	<option value="autor">Autor</option>
+										 	<option value="titulo">Título</option>
+										</select>
+									</div>
+
+									<div class="col-sm-4">
+										<select id="ordenfiltro" name="ordenfiltro" class="form-control">
+										 	<option value="asc">Menor a Mayor</option>
+										 	<option value="desc">Mayor a menor</option>
+										</select>
+									</div>
+
+									<div class="col-sm-2">
+										<button class="btn btn-block btn-default">Ordenar</button>
+									</div>
+
+								</div>
+							</div>
+
+							<div class="col-xs-3">
+								<div class="input-group input-group-sm">
+		                			<input type="text" class="form-control" placeholder="" id="s" name="s">
+		                    		<span class="input-group-btn">
+		                      			<button class="btn btn-info btn-flat" id="buscar" type="button"><i class="fa fa-search"></i> Buscar</button>
+		                    		</span>
+		              			</div>
+							</div>
+
+
+							  <div class="col-lg-12">
+									<br>
+									<table data-count="{{ count }}" id="publicaciones" class="table table-bordered table-hover">
+												<thead>
+												<tr>
+													<th>Título</th>
+													<th width="18%">Autor</th>
+													<th>Año</th>
+													<th>Ver</th>
+												</tr>
+											</thead>
+											<tbody>
+												<!--tr>
+													<td align="left">{{ p.title }}</td>
+													<td>{{ p.corresponding_author }}</td>
+													<td>{{ p.year }}</td>
+													<td><a href="{{ siteUrl('/programa/ver-publicacion/')}}{{ p.id }} "><i class="fa fa-eye"></i></a></td>
+												</tr-->
+												{% for p in datos %}
+													<tr>
+														<td align="justify">{{ p.nombre }} </td>
+														<td align="center">{{ p.academico }} {{ p.apellido }}</td>
+														<td>{{ p.año }}</td>
+														<td><a href="{{ siteUrl('/indicadoresinvestigacion/ver-publicacion/')}}{{ p.id }} "><i class="fa fa-eye"></i></a></td>
+													</tr>
+												{% endfor %}
+												
+												
+											</tbody>
+									</table>
+
+									<div class="row">
+											<div class="col-xs-3">
+												 <button class="btn btn-block btn-primary" style="margin-left: 450px;"  id="exportar_tabla"><i class="fa fa-table"></i> Exportar Tabla</button>
+											</div>
+									
+									</div>
+							</div>
+						</div>
+					</div>
+					</section><!-- /.connectedSortable -->
+			</div>
+		</section><!-- /.content -->
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/jquery.redirect.js"></script>
+<script src="{{ baseUrl() }}/js/xlsx.core.min.js"></script>
+<script src="{{ baseUrl() }}/js/Blob.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/tabla.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.min.js"></script>
+
+<script>
+$("#buscar").on('click',function(){
+		$.redirect("../programa/listar-publicaciones",{ s: $('#s').val()}, 'GET');
+});
+$("#s").keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		$.redirect("../programa/listar-publicaciones",{ s: $('#s').val()}, 'GET');
+	}
+	event.stopPropagation();
+});
+
+$("#exportar_tabla").on('click', function(){
+
+	window.location.href = "{{ baseUrl() }}/excelListarPublicaciones";
+		
+});
+
+</script>
+</script>
+{% endblock %}

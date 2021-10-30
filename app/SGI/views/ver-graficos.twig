@@ -1,0 +1,308 @@
+{% extends "base.twig" %}
+{% block title %}Gráficos de Presupuesto{% endblock %}
+{% block contentheader %}Gráficos de Presupuesto{% endblock %}
+
+{% block head %}
+<link href="{{ baseUrl() }}/css/dashboard/datepicker3.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/select2.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section class="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box box-info">
+
+                <div class="box-header with-border">
+                  	<h3 class="box-title">Ingrese los datos para cargar los gráficos</h3>
+                </div><!-- /.box-header -->
+
+
+                <!-- form start -->
+                
+                  <div class="box-body">
+
+										{% if (flash['error']) %}<div class="alert alert-danger"><strong>Error!</strong> {{flash['error']}}</div>
+										{% endif %}
+										{% if (flash['success']) %}<div class="alert alert-success">{{flash['success']}}</div>
+										{% endif %}
+
+										<div class="form-group">
+                      						<label for="organizacion" class="col-sm-3 control-label"> Seleccione el presupuesto a cargar</label>
+                      							<div class="col-sm-3">
+													<select class="form-control select2" id="organizacion" style="width: 100%;">
+														{% for j in presupuestos %}
+															<option value="{{j.id}}-{{j.anio}}">{{j.codigo }} - {{j.nombre}} ({{j.anio}})</option>
+														{% endfor %}
+													</select>
+                      							</div>
+
+												  <div class="col-sm-6">
+													<select class="form-control select2" id="cuentas"  style="width: 100%;">
+														
+													</select>
+                      							</div>
+
+											
+										
+
+					   					</div>
+
+
+                  		<hr>
+
+                  		<center>
+	                  		<div class="box-footer">
+								
+	                    		<button id="cargar"  class="btn btn-info" >Cargar</button>
+	                  		</div><!-- /.box-footer -->
+                  		</center>
+                
+
+             			</div><!-- /.box -->
+				</div>
+
+		<div id="grafico-presupuesto" class="nav-tabs-custom">
+							<!-- Tabs within a box -->
+							<ul class="nav nav-tabs pull-right">
+								<li class="pull-left header"><i class="fa fa-inbox"></i> Presupuesto Ejecutado <span id="nombre_organizacion"> </span></li>
+							</ul>
+
+							<div class="tab-content no-padding canvas">
+								<!-- Morris chart - Sales -->
+								<canvas id="canvas"  class = "img-responsive"></canvas>
+
+									
+
+									
+							</div>
+
+							<div class="table-responsive">
+							
+										<table class="table table-bordered table-hover "   >
+											<thead>
+												<tr>
+													<th><span id="anio"> </span></th>
+													<th>Enero</th>
+													<th>Febrero</th>
+													<th>Marzo</th>
+													<th>Abril</th>
+													<th>Mayo</th>
+													<th>Junio</th>
+													<th>Julio</th>
+													<th>Agosto</th>
+													<th>Septiembre</th>
+													<th>Octubre</th>
+													<th>Noviembre</th>
+													<th>Diciembre</th>
+													<th>Total</th>
+												</tr>
+											</thead>
+											<tbody id="tabla">
+												
+											</tbody>
+										</table>
+							</div>
+
+									
+			</div>
+
+
+							
+
+	</div>
+
+
+		
+</div>
+
+	
+
+	<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select2.full.min.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select_es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/tinymce/tinymce.min.js"></script>
+
+
+<script src="{{ baseUrl() }}/js/ChartNew.js"></script>
+<script src="{{ baseUrl() }}/js/jquery.redirect.js"></script>
+<script src="{{ baseUrl() }}/js/xlsx.core.min.js"></script>
+<script src="{{ baseUrl() }}/js/Blob.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/tabla.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.min.js"></script>
+
+<script src="{{ baseUrl() }}/js/bootstrap-datepicker.js"></script>
+
+<script>
+
+$("#grafico-presupuesto").hide();
+
+
+
+function MostrarGrafico(presupuestado,ejecutado){
+
+	var myBarChart1;
+	var data1 = {
+		labels: ["Enero", "Febrero", "Marzo", "Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+		datasets: [
+			{
+				label: "Presupuestado",
+				fillColor: "#1d6ae5",
+				strokeColor: "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data: presupuestado
+			},
+			{
+				label: "Ejecutado",
+				fillColor: "#ff9c43",
+				strokeColor: "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data: ejecutado
+			}
+	]
+
+	};
+	var ctx1 = $("#canvas").get(0).getContext("2d");
+	myBarChart1 = new Chart(ctx1).Bar(data1, {
+	responsive: true,
+	bezierCurve : false,
+	datasetFill : false,
+
+	scaleOverride : true,
+	scaleSteps : 5,
+	scaleStepWidth : Math.ceil(Math.max.apply(Math,[Math.max.apply(Math,data1.datasets[0].data),Math.max.apply(Math,data1.datasets[1].data)])/5),
+	scaleStartValue : 0 ,
+
+	legend : true,
+	
+	xAxisLabel: "Meses",
+	yAxisLabel: "Valor (Pesos Chilenos)",
+	annotateDisplay : true,
+	annotateLabel: "<%= v1 %> - <%= v3 %>",
+	});
+}
+
+$("#organizacion").change(function(){
+
+
+	$.ajax({
+	url:'{{baseUrl()}}/ajax/getCuentas',
+	type:'POST',
+	data:{
+			organizacion: $("#organizacion").val(),
+			
+			csrf_token: $("#csrf").val()
+	}
+	}).success(function(data){
+		datos = jQuery.parseJSON(data);
+		$('#cuentas').html('');
+		
+        $.each(datos, function(i, value) {
+			console.log(value);
+          $('#cuentas').append($('<option>').text(value.codigo + ": "+ value.nombre).attr('value', value.id));
+        });
+	});
+}).trigger('change');
+
+$("#cargar").click(function(e){
+	$("#grafico-presupuesto").hide();
+	
+	
+
+	if ( !$("#cuentas").val()){
+		alert("Debe seleccionar una cuenta asociada a la organización");
+	}else{
+
+	
+		e.preventDefault();
+		var data_ajax = {
+			presupuesto: $("#organizacion").val(),
+			cuenta: $("#cuentas").val(),
+			
+			
+			csrf_token: $("#csrf").val()
+		}
+
+
+		$.ajax({
+			url:'{{baseUrl()}}/ajax/getDatosGrafico', 
+			type:'POST',
+			data:data_ajax
+
+		}).success(function(data){
+			var datos = jQuery.parseJSON(data);
+
+			console.log(datos);
+
+			var presupuesto = datos[0];
+			var ejecutado = datos[1];
+			var anio = datos[2];
+			
+			$("#nombre_organizacion").text($("#organizacion option:selected").text() + " - " + $("#cuentas option:selected").text());
+
+			$("#canvas").remove();
+			$(".canvas").append('<canvas id="canvas"  class = "img-responsive"></canvas>');
+		
+			$("#grafico-presupuesto").show();
+
+			MostrarGrafico(presupuesto,ejecutado);
+
+			$('#tabla').html('');
+
+			$("#anio").text(anio);
+
+			var fila = '<tr> <th>Presupuesto </th> '
+			var total_presupuesto = 0;
+
+			$.each(presupuesto, function(i, value) {
+
+          		fila+= '<td> $'+value.toLocaleString('es')+'</td>';
+				total_presupuesto+= value;
+        	});
+
+			fila+="<td> $"+total_presupuesto.toLocaleString('es')+" </td></tr>";
+			$('#tabla').append(fila);
+
+			var fila = '<tr> <th>Ejecutado </th> ';
+			var total_ejecutado = 0;
+
+			$.each(ejecutado, function(i, value) {
+
+          		fila+= '<td> $'+value.toLocaleString('es')+'</td>';
+				total_ejecutado+=value;
+        	});
+
+			fila+="<td> $"+total_ejecutado.toLocaleString('es')+" </td></tr>";
+			$('#tabla').append(fila);
+
+			
+
+
+
+        });
+	}
+});
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.twig" %}
+{% block title %}Carga Movimiento {% endblock %}
+{% block contentheader %}Error - Carga Nuevos Movimientos{% endblock %}
+
+{% block head %}
+<link href="{{ baseUrl() }}/css/dashboard/datepicker3.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/select2.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section class="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box box-info">
+
+                <div class="box-header with-border">
+
+									<a class="pull-right btn btn-success" href="{{ siteUrl('/movimiento/carga-masiva') }}" style="color:#ffffff;"><i class="fa fa-reply"></i> Volver</a>
+                  	<h3 class="box-title">
+
+											<div style="color: red;">Se han cargado los movimientos, excepto los siguientes: 
+												   </div>
+                  	</h3>
+                </div><!-- /.box-header -->
+								<table class="table table-bordered table-striped">
+									<tbody>
+										{{ errores | raw }}
+									</tbody>
+								</table>
+
+
+            </div><!-- /.box -->
+		</div>
+	</div>
+
+
+	<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select2.full.min.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select_es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/tinymce/tinymce.min.js"></script>
+
+<script>
+
+
+
+</script>
+
+{% endblock %}

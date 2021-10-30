@@ -1,0 +1,250 @@
+{% extends "base.twig" %}
+{% block title %}Tasa retencion anio 1{% endblock %}
+{% block contentheader %}Tasa Retención 1° Año{% endblock %}
+{% block content %}
+<section class="content">
+	<div class="row">
+		<section class="col-lg-12 connectedSortable">
+			<div class="box box-success">
+				<div class="box-header">
+					<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+					</div>
+				</div>
+				<div class="box-body chat" id="chat-box">
+					<div class="row">
+						<div class="col-xs-12">
+							<canvas id="canvas1" height="150" width="500"></canvas>
+						</div>
+						<div class="col-xs-2 col-sm-3">
+							 <button class="btn btn-block btn-primary" id="exportar_grafico1"><i class="fa fa-area-chart"></i> Exportar Gráfico</button>
+							 <br>
+						</div>
+					</div>					
+					<div class="row">
+						<div class="col-xs-12">
+							<table class="table table-bordered table-hover" id="tabla">
+								<thead>
+									<tr>
+										<th colspan="8">TASA DE RETENCION AL PRIMER AÑO</th>
+									</tr>
+									<tr>
+										<th colspan="8">Casa Central y Campus Santiago</th>
+									</tr>
+									<tr>
+										<th>Comuna</th>
+										<th>Jornada</th>
+										<th>Modalidad</th>
+										<th>2012</th>
+										<th>2013</th>
+										<th>2014</th>
+										<th>2015</th>
+										<th>2016</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Valparaiso</td>
+										<td>Diurna</td>
+										<td>Presencial</td>
+										<td>{{ret_primer_anio.anio_5}}%</td>
+										<td>{{ret_primer_anio.anio_4}}%</td>
+										<td>{{ret_primer_anio.anio_3}}%</td>
+										<td>{{ret_primer_anio.anio_2}}%</td>
+										<td>{{ret_primer_anio.anio_1}}%</td>
+									</tr>
+									<tr>
+										<td colspan="3">PROMEDIO DEL AÑO DE LA SEDE</td>
+										<td id="prom_anio_5">{{ret_primer_anio.anio_5}}%</td>
+										<td id="prom_anio_4">{{ret_primer_anio.anio_4}}%</td>
+										<td id="prom_anio_3">{{ret_primer_anio.anio_3}}%</td>
+										<td id="prom_anio_2">{{ret_primer_anio.anio_2}}%</td>
+										<td id="prom_anio_1">{{ret_primer_anio.anio_1}}%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-xs-12" style="display: none;">
+							<table class="table table-bordered table-hover" id="tabla">
+								<thead>
+									<tr>
+										<th style="vertical-align: middle;">Año</th>
+										<th style="vertical-align: middle;">Matriculados</th>
+										<th style="vertical-align: middle;">Matriculados al 1°Año</th>
+										<th style="vertical-align: middle;">Tasa Retención 1°Año</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2006</td>
+										<td>0</td>
+										<td>0</td>
+										<td>-</td>
+									</tr>
+									<tr>
+										<td>2007</td>
+										<td>19</td>
+										<td>19</td>
+										<td>100%</td>
+									</tr>
+									<tr>
+										<td>2008</td>
+										<td>38</td>
+										<td>31</td>
+										<td>82%</td>
+									</tr>
+									<tr>
+										<td>2009</td>
+										<td>40</td>
+										<td>30</td>
+										<td>75%</td>
+									</tr>
+									<tr>
+										<td>2010</td>
+										<td>51</td>
+										<td>38</td>
+										<td>75%</td>
+									</tr>
+									<tr>
+										<td>2011</td>
+										<td>42</td>
+										<td>37</td>
+										<td>88%</td>
+									</tr>
+									<tr>
+										<td>2012</td>
+										<td>44</td>
+										<td>35</td>
+										<td>80%</td>
+									</tr>
+									<tr>
+										<td>2013</td>
+										<td>49</td>
+										<td>41</td>
+										<td>84%</td>
+									</tr>
+									<tr>
+										<td>2014</td>
+										<td>60</td>
+										<td>42</td>
+										<td>70%</td>
+									</tr>
+									<tr>
+										<td>2015</td>
+										<td>62</td>
+										<td>55</td>
+										<td>89%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="col-xs-2 col-sm-3">
+							<button class="btn btn-block btn-primary" id="exportar_tabla"><i class="fa fa-table"></i> Exportar Tabla</button>
+						</div>					
+
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</section>
+<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/xlsx.core.min.js"></script>
+<script src="{{ baseUrl() }}/js/Blob.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/tabla.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/bootstrap-datepicker.js"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.js"></script>
+<script src="{{ baseUrl() }}/js/ChartNew.js"></script>
+<script>
+$("#exportar_tabla").on('click', function(){
+		/*$("#tabla").table2excel({
+			exclude: ".noExl",
+			name: "Worksheet Name",
+			filename: "Estudiantes programas doctorado real.xls"
+
+
+		});*/
+		export_table_to_excel('tabla', 'Estudiantes programas doctorado real');
+});
+$("#exportar_tabla2").on('click', function(){
+		/*$("#tabla2").table2excel({
+			exclude: ".noExl",
+			name: "Worksheet Name",
+			filename: "Estudiantes programas doctorado proyectado.xls"
+
+		});*/
+		export_table_to_excel('tabla2', 'Estudiantes programas doctorado proyectado');
+});
+
+$("#exportar_grafico").on('click', function(){
+		$("#canvas").mousedown();
+});
+</script>
+<script>
+// Canvas 1
+var anio5 = $('#prom_anio_5').html().slice(0,-1);
+var anio4 = $('#prom_anio_4').html().slice(0,-1);
+var anio3 = $('#prom_anio_3').html().slice(0,-1);
+var anio2 = $('#prom_anio_2').html().slice(0,-1);
+var anio1 = $('#prom_anio_1').html().slice(0,-1);
+var myBarChart1;
+var data1 = {
+	labels: ["2012", "2013", "2014", "2015","2016"],
+	datasets: [
+		{
+            label: "Tasa Retención al primer año",
+            fillColor: "#ff9c43",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [anio5, anio4, anio3, anio2, anio1]
+        }
+ ]
+
+};
+var ctx1 = $("#canvas1").get(0).getContext("2d");
+myBarChart1 = new Chart(ctx1).Bar(data1, {
+responsive: true,
+bezierCurve : false,
+datasetFill : false,
+/* El objeto 'scales' en las versiones 2.x es muy distinto por lo cual este codigo quedará obsoleto. Para version 2.x revisar la documentación oficial. 
+*/
+// override a objeto scale
+scaleOverride : true,
+scaleSteps : 5, 		// cantidad de intervalos
+scaleStepWidth : 20, 	// intervalo minimo
+scaleStartValue : 0 , 	// punto de partida
+// fin override a objeto scale
+legend : true,
+savePng : true,
+savePngOutput: "Save",
+xAxisLabel: "Años",
+yAxisLabel: "Tasa Retención 1° Año",
+annotateDisplay : true,
+annotateLabel: "<%= v1 %> <%= v2 %> - <%= v3 %>%",
+});
+
+$("#exportar_grafico1").on('click', function(){
+	$.ajax({
+	url:'../api/save_canvas',
+	type:'POST',
+	data:{
+			data:document.getElementById("canvas1").toDataURL("image/png"),
+			csrf_token: $("#csrf").val()
+	}
+
+}).success(function(data){
+	var a = document.createElement('a');
+	a.href = "../img/grafico.png";
+	a.download = "grafico.png";
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
+});
+});
+
+</script>
+{% endblock %}

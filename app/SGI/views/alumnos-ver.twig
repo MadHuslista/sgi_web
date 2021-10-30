@@ -1,0 +1,364 @@
+{% extends "base.twig" %}
+{% block title %}{{persona.name}} {{persona.last_name}} {{persona.m_name}}{% endblock %}
+{% block head %}
+<link href="{{ baseUrl() }}/css/token-input.css" type="text/css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+<link href="{{ baseUrl() }}/css/bootstrap-tokenfield.min.css" type="text/css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/datepicker.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/token-input-facebook.css" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block contentheader %}Perfil de Alumno <a class="pull-right btn btn-success" href="{{ siteUrl('/usuario/editar') }}/{{persona.id}}" style="color:#ffffff;"><i class="fa fa-edit"></i> Editar usuario</a>{% endblock %}
+{% block content %}
+
+		<section class="content">
+			<!-- Main row -->
+			<div class="row">
+				<!-- Left col -->
+				<div class="col-md-4">
+
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-body box-profile">
+									  <img src="{{ baseUrl() }}/img/personas/{{persona.avatar}}" class="img-circle img-responsive" style="width:160px; max-width:100%;margin:auto;" alt="{{persona.name}} {{persona.last_name}} {{persona.m_name}}" title="{{persona.name}} {{persona.last_name}} {{persona.m_name}}">
+                  <h3 class="profile-username text-center">{{persona.name}} {{persona.last_name}} {{persona.m_name}}</h3>
+                  <p class="text-muted text-center">
+									{% if titulos is empty %}
+											Título No Definido
+									{% else %}
+											{% for titulo in titulos %}
+													{% if titulo.name %}
+															{{ titulo.name }}
+															{% if titulo.university %}
+																	, {{ titulo.university }}
+															{% endif %}
+															{% if titulo.country %}
+																	, {{ titulo.country }}
+															{% endif %}
+															<br>
+													{% endif %}
+											{% endfor %}
+									{% endif %}
+									</p>
+
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                      <b>Publicaciones</b> <a class="pull-right">{{ total_pub }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Proyectos</b> <a class="pull-right">{{ cant_proyectos }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Tesis</b> <a class="pull-right">{{ cant_tesis }}</a>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              <!-- About Me Box -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Antecedentes Generales</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+									{% if persona.type == "Estudiante" %}
+									<strong><i class="fa fa-book margin-r-5"></i> Programa Actual</strong>
+									<p class="text-muted">
+										{{estudios.calidad}} en <a href="{{ siteUrl('/programa/perfil/')}}{{ estudios.id }} ">{{estudios.name}}</a>
+									</p>
+									{% endif %}
+
+
+                  <strong><i class="fa fa-book margin-r-5"></i>  Matrículas</strong>
+									{% if matriculas is not null and matriculas is not empty and matriculas|length > 0 %}
+									<ul>
+									{% for b in matriculas %}
+										<li>{{b.mat_ano}}-{{b.mat_semestre}}</li>
+									{% endfor %}
+								</ul>
+								{% else %}
+								<p>El alumno no posee matrículas en programas USM</p>
+								{% endif %}
+
+                  <hr>
+
+                  <strong><i class="fa fa-map-marker margin-r-5"></i> Institución:</strong>
+                  <p class="text-muted">{{ institucion }}</p>
+
+                  <hr>
+
+                  <strong><i class="fa fa-pencil margin-r-5"></i> Tesis:</strong>
+									<p>
+										<br>
+									{% if tesis is not null and tesis is not empty and tesis|length > 0 %}
+											<ul>
+											{% for t in tesis %}
+												<li>{{t.title}}</li>
+											{% endfor %}
+										</ul>
+									{% else %}
+											El alumno no registra tesis
+									{% endif %}
+								</p>
+                  <hr>
+
+                  <strong><i class="fa fa-file-text-o margin-r-5"></i> Líneas de Investigación</strong>
+                  <p>
+										{% if lineas is empty %}
+												No Definido
+										{% else %}
+												{% for linea in lineas %}
+														{{ lineas.name }}<br>
+												{% endfor %}
+										{% endif %}
+									</p>
+
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+				<section class="col-lg-8 connectedSortable">
+					<!-- Chat box -->
+					<div class="box box-success">
+						<div class="box-header">
+
+							<h3 style="font-size:24px;" class="box-title"><i class="fa fa-comments-o"></i> Resumen de Actividad</h3>
+							<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+							</div>
+						</div>
+						<div class="box-body chat" id="chat-box">
+							<div class="row">
+
+								<div class="col-xs-4">
+									<h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i> Becas Financieras</h3>
+									{% if financieras is not null and financieras is not empty and financieras|length > 0 %}
+
+										<ul>
+										{% for b in financieras %}
+											<li>{{b["year"]}}: {{b["amount"]}}</li>
+										{% endfor %}
+									</ul>
+									{% else %}
+									<p>El alumno no posee becas financieras</p>
+									{% endif %}
+								</div>
+								<div class="col-xs-4">
+										<h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i> Becas de Arancel</h3>
+										{% if arancel is not null and arancel is not empty and arancel|length > 0 %}
+										<ul>
+										{% for b in arancel %}
+											<li>{{b.year}}-{{b.month}}: {{b.amount}}</li>
+										{% endfor %}
+									</ul>
+									{% else %}
+									<p>El alumno no posee becas de arancel</p>
+									{% endif %}
+								</div>
+								<div class="col-xs-4">
+										<h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i> Becas Alimentación</h3>
+										{% if ba is not null and ba is not empty and ba|length > 0 %}
+										<ul>
+										{% for b in ba %}
+											<li>{{b["anio"]}}-{{b["periodo"]}}: {{b["cant"]}}</li>
+										{% endfor %}
+									</ul>
+									{% else %}
+									<p>El alumno no posee becas de alimentación</p>
+									{% endif %}
+								</div>
+								<div class="col-xs-12">
+										<h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i> Becas Asistencia a Congresos</h3>
+										{% if bc is not null and bc is not empty and bc|length > 0 %}
+										<table id="table_pub" class="table">
+												<thead>
+														<th>Año</th>
+														<th>Congreso</th>
+														<th>País</th>
+														<th>Monto</th>
+												</thead>
+												<tbody>
+													{% for b in bc %}
+													<tr>
+														<td>{{b.year}}</td>
+														<td>{{b.congress}}</td>
+														<td>{{b.country}}</td>
+														<td>{{b.amount}}</td>
+													</tr>
+													{% endfor %}
+												</tbody>
+										</table>
+										{% else %}
+										<p>El alumno no posee becas de asistencia a congresos</p>
+										{% endif %}
+									</div>
+									<div class="col-xs-12">
+											<h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i> PIIC</h3>
+											{% if piics is not null and piics is not empty and piics|length > 0 %}
+											<table id="table_pub" class="table">
+													<thead>
+															<th>Año</th>
+															<th>Tema</th>
+															<th>Profesor Responsable</th>
+															<th>Monto</th>
+													</thead>
+													<tbody>
+														{% for b in piics %}
+														<tr>
+															<td>{{b.year}}</td>
+															<td>{{b.title}}</td>
+															<td>{{b.profesor}}</td>
+															<td>{{b.monto}}</td>
+														</tr>
+														{% endfor %}
+													</tbody>
+											</table>
+											{% else %}
+											<p>El alumno no posee becas PIIC</p>
+											{% endif %}
+										</div>
+
+										<div class="col-xs-12">
+												<h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i> Pasantías y Estadías de Investigación</h3>
+												{% if estadias is not null and estadias is not empty and estadias|length > 0 %}
+												<table id="table_pub" class="table table-hover">
+														<thead>
+																<th>Año</th>
+																<th>Establecimiento</th>
+																<th>País</th>
+																<th>Fecha</th>
+																<th>Período</th>
+																<th>Monto</th>
+														</thead>
+														<tbody>
+															{% for b in estadias %}
+															<tr>
+																<td>{{b.year}}</td>
+																<td>{{b.establecimiento}}</td>
+																<td>{{b.country}}</td>
+																<td>{{b.tiempo}}</td>
+																<td>{{b.fecha}}</td>
+																<td>{{b.monto}}</td>
+															</tr>
+															{% endfor %}
+														</tbody>
+												</table>
+												{% else %}
+												<p>El alumno no posee becas de pasantías y Estadías de Investigación</p>
+												{% endif %}
+											</div>
+
+                    <div class="col-xs-12">
+                        <h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i>
+ Publicaciones</h3>
+                    </div>
+										{% if total_pub > 0 %}
+										<div class="col-xs-4" id="cant-pub" data-val="{{ total_pub }}">
+											<strong>Publicaciones Totales: </strong>{{ total_pub }}<br>
+										</div>
+
+										<div class="col-xs-2">
+											<strong>ISI: </strong>{{ cant_tipos_pub.ISI }}<br>
+										</div>
+										<div class="col-xs-3">
+											<strong>ISI/SCI: </strong>{{ cant_tipos_pub.ISISCI }}<br>
+										</div>
+										<div class="col-xs-3">
+											<strong>SCI: </strong>{{ cant_tipos_pub.SCI }}<br>
+										</div>
+
+                    <div class="col-xs-6" style="padding-top:40px;">
+                        <label for = "myChart">
+                        Cantidad de publicaciones en el tiempo<br />
+                        <canvas data-id="{{ id }}" id="myChart" width="400" height="200"></canvas>
+                        </label>
+                    </div>
+                    <div class="col-xs-6" style="padding-top:40px;">
+                        <label for = "myChart2">
+                        Cantidad tipos de publicaciones<br />
+                        <canvas data-id="{{ id }}" id="myChart2" width="400" height="200"></canvas>
+                        </label>
+                    </div>
+                    <div class="col-xs-12">
+                    <div class="collapse" id="collapseExample">
+                        <div class="well">
+                            <table id="table_pub" class="table">
+                                <thead>
+                                    <th>Título</th>
+                                    <th>OtrosAutores</th>
+                                    <th>Año</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+										<div class="col-xs-12">
+											<button id="verpub" class="btn btn-primary"  role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-plus"></i> Ver Publicaciones</button>
+
+										</div>
+										{% else %}
+											<div class="col-xs-12">
+												<p>El usuario no registra publicaciones</p>
+											</div>
+											{% endif %}
+                    <div class="col-xs-12">
+											<hr>
+                        <h3 id="titleproy"><i class="fa fa-object-group" aria-hidden="true"></i>
+ Proyectos</h3>
+                    </div>
+										{% if cant_proyectos > 0 %}
+                    <div class="col-xs-12"  id="cant-proyectos" data-val="{{ cant_proyectos }}">
+                        <strong>Total Proyectos: </strong>{{ cant_proyectos }}<br>
+                    </div>
+                     <div class="col-xs-6" style="padding-top:40px;">
+                        <label for = "myChart3">
+                        Cantidad de proyectos en el tiempo<br />
+                        <canvas data-id="{{ id }}" id="myChart3" width="400" height="200"></canvas>
+                        </label>
+                    </div>
+                    <div class="col-xs-6" style="padding-top:40px;">
+                        <label for = "myChart4">
+                        Cantidad tipos de Proyectos<br />
+                        <canvas data-id="{{ id }}" id="myChart4" width="400" height="200"></canvas>
+                        </label>
+                    </div>
+                    <div class="col-xs-12">
+                    <div class="collapse" id="collapseProy">
+                        <div id="ret-proy" class="well"></div>
+                    </div>
+                    </div>
+										<div class="col-xs-12">
+											<button id="verproy" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseProy" aria-expanded="false" aria-controls="collapseProy"><i class="fa fa-plus"></i> Ver Proyectos</button>
+
+										</div>
+										{% else %}
+										<div class="col-xs-12">
+											<p>El usuario no registra proyectos</p>
+										</div>
+										{% endif %}
+
+
+			<!--<div class="form-group">
+				<button type="button" class="btn btn-default word-export" id="exportar">
+					<span >EXPORTAR</span>
+				</button>
+
+				<a id="dlink"  style="display:none;"></a>
+
+				 <input type="button" onclick="tableToExcel('tabla', 'ficha_docente', 'myfile.xls')" value="Export to Excel">
+			</div>-->
+            </div>
+					</div><!-- /.box (chat box) -->
+			</div><!-- /.row (main row) -->
+
+		</section><!-- /.content -->
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/jquery.wordexport.js" type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/docx.js"></script>
+<script src="{{ baseUrl() }}/js/Chart.min.js"></script>
+<script src="{{ baseUrl() }}/js/persona.js"></script>
+{% endblock %}

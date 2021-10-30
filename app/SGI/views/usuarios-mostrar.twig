@@ -1,0 +1,1166 @@
+{% extends "base.twig" %}
+{% block title %}{{persona.name}} {{persona.last_name}} {{persona.m_name}}{% endblock %}
+
+{% block head %}
+<link href="{{ baseUrl() }}/css/token-input.css" type="text/css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+<link href="{{ baseUrl() }}/css/bootstrap-tokenfield.min.css" type="text/css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/datepicker.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/token-input-facebook.css" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block contentheader %}
+	Perfil de Usuario 
+	{% if rol == '2' %}
+		<a class="pull-right btn btn-success" href="{{ siteUrl('/usuario/editar') }}/{{persona.id}}" style="color:#ffffff;"><i class="fa fa-edit"></i> Editar usuario</a>
+	{% endif %}
+	{% if rol == '2' or user_id == persona.id %}
+		<a class="pull-right btn btn-success" href="{{ siteUrl('/usuario/cv') }}/{{persona.id}}" style="color:#ffffff;"><i class="fa fa-file"></i> Exportar CV</a>
+	{% endif %}
+{% endblock %}
+{% block content %}
+<section class="content">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="box box-primary">
+				<div class="box-body box-profile">
+					<img src="{{ baseUrl() }}/img/personas/{{persona.avatar}}" class="img-circle img-responsive" style="width:160px; max-width:100%;margin:auto;" alt="{{persona.name}} {{persona.last_name}} {{persona.m_name}}" title="{{persona.name}} {{persona.last_name}} {{persona.m_name}}">
+					<h3 class="profile-username text-center">{{persona.name}} {{persona.last_name}} {{persona.m_name}}</h3>
+					{% if profesores is empty %}
+						<p class="text-muted text-center">Título No Definido</p>
+					{% else %}
+						{% for profesor in profesores %}
+							<p class="text-muted text-center">{{ profesor.titulo_obtenido }}, {{ profesor.institucion_titulo }}, {{ profesor.pais_titulo }}</p>
+							<br>
+						{% endfor %}
+					{% endif %}
+					<ul class="list-group list-group-unbordered">
+						<li class="list-group-item">
+							<b>Publicaciones</b> <a class="pull-right">{{ total_publicaciones }}</a>
+						</li>
+						<li class="list-group-item">
+							<b>Proyectos</b> <a class="pull-right">{{ total_proyectos }}</a>
+						</li>
+						<li class="list-group-item">
+							<b>Tesis</b> <a class="pull-right">{{ total_tesis }}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Antecedentes Generales</h3>
+				</div>
+				<div class="box-body">
+					{% if persona.type == "Estudiante" %}
+						<strong><i class="fa fa-book margin-r-5"></i> Programa Actual</strong>
+						<p class="text-muted">
+							{{estudios.calidad}} en <a href="{{ siteUrl('/programa/perfil/')}}{{ estudios.id }} ">{{estudios.name}}</a>
+						</p>
+					{% endif %}
+					<strong><i class="fa fa-book margin-r-5"></i>	Grado(s) Academico(s)</strong>
+					{% for alumno in alumnos %}
+						<p class="text-muted">{{ alumno.grado_obtenido }}</p>
+					{% endfor %}
+					<hr>
+					<strong><i class="fa fa-map-marker margin-r-5"></i> Institución:</strong>
+					<p class="text-muted">{{ persona.institucion }}</p>
+					<hr>
+					<strong><i class="fa fa-file-text-o margin-r-5"></i> Programa Asociado</strong>
+					<p>{{ claustro | raw }}</p>
+					<hr>
+					<strong><i class="fa fa-pencil margin-r-5"></i> Área(s):</strong>
+					<p>
+						<br>
+						{% if exalumnos is empty %}
+							No Definida
+						{% else %}
+							{% for exalumno in exalumnos %}
+								<span class="label label-info">{{exalumno.area}}</span>
+							{% endfor %}
+						{% endif %}
+					</p>
+					<!--p>
+						<br>
+						{% if areas is empty %}
+							No Definida
+						{% else %}
+							{% for a in areas %}
+								<span class="label label-info">{{ a }}</span>
+							{% endfor %}
+						{% endif %}
+					</p-->
+					<hr>
+					<strong><i class="fa fa-file-text-o margin-r-5"></i> Líneas de Investigación</strong>
+					<br><br>
+					{% if perfil_lineas_investigativas is empty %}
+						No Definido
+					{% else %}
+						{% for linea_investigativa in perfil_lineas_investigativas %}
+							<p><span class="label label-info">{{linea_investigativa}}</span></p>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		<section class="col-lg-8 connectedSortable">
+			<div class="box box-success">
+				<div class="box-header">
+					<h3 style="font-size:24px;" class="box-title"><i class="fa fa-comments-o"></i> Resumen de Actividad</h3>
+					<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+					</div>
+				</div>
+				<div class="box-body chat" id="chat-box">
+					<div class="row">
+						<div class="col-xs-12">
+							<h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i> Publicaciones</h3>
+						</div>
+						{% if total_publicaciones > 0 %}
+							<div class="col-xs-12" id="cant-pub" data-val="{{ total_publicaciones }}">
+								<strong>Publicaciones Totales: </strong>{{ total_publicaciones }}<br>
+							</div>
+							<div class="col-xs-6" style="padding-top:40px;">
+								<label for = "myChart">
+									Cantidad de publicaciones en el tiempo<br />
+									<canvas data-id="{{ profesores[0].id }}" id="myChart" width="400" height="200"></canvas>
+								</label>
+							</div>
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseExample">
+									<div class="well">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>Título</th>
+													<th>Volumen</th>
+													<th>Revista</th>
+													<th>Año</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for publicacion in publicaciones %}
+													<tr>														
+														<td>{{publicacion.titulo}}</td>
+														<td>{{publicacion.volumen}}</td>
+														<td>{{publicacion.revista}}</td>
+														<td>{{publicacion.anio}}</td>
+														{% if rol == '2' or user_id == persona.id %}
+															<td>
+																<a href="#modal1" data-toggle="modal"><i class="fa fa-close" style="color:red" onclick="changeModal('1','{{publicacion.titulo}}','{{publicacion.id}}')"></i></a>
+															</td>
+														{% endif %}
+													</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+									{% if rol == '2' or user_id == persona.id %}
+										<div class="modal fade" id="modal1" role="dialog">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/eliminar-publicacion" method="POST" role="form" autocomplete="off" id="eliminar-publicacion">
+														<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+															<h4 class="modal-title">Confirmación</h4>
+														</div>
+														<div class="modal-body">
+															<p>¿Desea borrar la publicación <b id="pub-tit-mod"></b>?</p>
+														</div>
+														<div class="modal-footer">
+															<button id="pub-id-del" name="id" type="submit" class="btn btn-danger" onclick="$('#modal1').modal('hide')" form="eliminar-publicacion">Eliminar Publicación</button>
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								</div>
+							</div>
+							<div class="col-xs-12">
+								<button id="verpub" class="btn btn-primary pull-left"	role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-plus"></i> Ver Publicaciones</button>
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevapub" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapsePubForm" aria-expanded="false" aria-controls="collapsePubForm"><i class="fa fa-plus"></i> Agregar Publicación</button>
+								{% endif %}
+							</div>
+						{% else %}
+							<div class="col-xs-12">
+								<p>El usuario no registra publicaciones</p>
+							</div>
+							<div class="col-xs-12">
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevapub" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapsePubForm" aria-expanded="false" aria-controls="collapsePubForm"><i class="fa fa-plus"></i> Agregar Publicación</button>
+								{% endif %}
+							</div>
+						{% endif %}
+						{% if rol == '2' or user_id == persona.id %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapsePubForm">
+									<div class="well" style="margin-top: 20px;">
+										<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/agregar-publicacion" method="POST" role="form" autocomplete="off">
+											<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+											<div class="form-group">
+												<label for="titulo" class="col-sm-4 control-label">Título</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="titulo" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="volumen" class="col-sm-4 control-label">Volumen</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" name="volumen" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="revista_id" class="col-sm-4 control-label">Revista</label>
+												<div class="col-sm-8">
+													<select class="form-control" name="revista_id" required>
+														<option value="0" disabled selected>Revista</option>
+														{% for r in revistas %}
+															<option value="{{r.id}}">{{r.nombre}}</option>
+														{% endfor %}
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año" class="col-sm-4 control-label">Año</label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año" min="1950" max="2100" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<input type="submit" class="form-control btn btn-primary"	name="submit" value="Agregar Publicación">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="col-xs-12">
+							<hr>
+							<h3 id="titleproy"><i class="fa fa-object-group" aria-hidden="true"></i> Proyectos</h3>
+						</div>
+						{% if total_proyectos > 0 %}
+							<div class="col-xs-12"	id="cant-proyectos" data-val="{{ total_proyectos }}">
+								<strong>Total Proyectos: </strong>{{ total_proyectos }}<br>
+							</div>
+							<div class="col-xs-6" style="padding-top:40px;">
+								<label for = "myChart3">
+									Cantidad de proyectos en el tiempo<br />
+									<canvas data-id="{{ profesores[0].id }}" id="myChart3" width="400" height="200"></canvas>
+								</label>
+							</div>
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseProy">
+									<div id="ret-proy" class="well">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>Nombre</th>
+													<th>Año Inicio</th>
+													<th>Año Fin</th>
+													<th>Línea Investigativa</th>
+													<th>Financiamiento</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for proyecto in proyectos %}
+													<tr>
+														<td>{{proyecto.nombre}}</td>
+														<td>{{proyecto.anio_inicio}}</td>
+														<td>{{proyecto.anio_fin}}</td>
+														<td>{{proyecto.linea_investigativa}}</td>
+														<td>{{proyecto.financiamiento}}</td>
+														{% if rol == '2' or user_id == persona.id %}
+															<td>
+																<a href="#modal2" data-toggle="modal"><i class="fa fa-close" style="color:red" onclick="changeModal('2','{{proyecto.nombre}}','{{proyecto.id}}')"></i></a>
+															</td>
+														{% endif %}
+													</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+									{% if rol == '2' or user_id == persona.id %}
+										<div class="modal fade" id="modal2" role="dialog">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/eliminar-proyecto" method="POST" role="form" autocomplete="off" id="eliminar-proyecto">
+														<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+															<h4 class="modal-title">Confirmación</h4>
+														</div>
+														<div class="modal-body">
+															<p>¿Desea borrar el proyecto <b id="proy-tit-mod"></b>?</p>
+														</div>
+														<div class="modal-footer">
+															<button id="proy-id-del" name="id" type="submit" class="btn btn-danger" onclick="$('#modal2').modal('hide')" form="eliminar-proyecto">Eliminar Proyecto</button>
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								</div>
+							</div>
+							<div class="col-xs-12">
+								<button id="verproy" class="btn btn-primary pull-left" role="button" data-toggle="collapse" href="#collapseProy" aria-expanded="false" aria-controls="collapseProy"><i class="fa fa-plus"></i> Ver Proyectos</button>
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevoproy" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseProyForm" aria-expanded="false" aria-controls="collapseProyForm"><i class="fa fa-plus"></i> Agregar Proyecto</button>
+								{% endif %}
+							</div>
+						{% else %}
+							<div class="col-xs-12">
+								<p>El usuario no registra proyectos</p>
+							</div>
+							<div class="col-xs-12">
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevoproy" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseProyForm" aria-expanded="false" aria-controls="collapseProyForm"><i class="fa fa-plus"></i> Agregar Proyecto</button>
+								{% endif %}
+							</div>
+						{% endif %}
+						{% if rol == '2' or user_id == persona.id %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseProyForm">
+									<div class="well" style="margin-top: 20px;">
+										<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/agregar-proyecto" method="POST" role="form" autocomplete="off">
+											<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+											<div class="form-group">
+												<label for="nombre" class="col-sm-4 control-label">Nombre Proyecto</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="nombre" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año_inicio" class="col-sm-4 control-label">Año Inicio</label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año_inicio" min="1950" max="2100" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año_fin" class="col-sm-4 control-label">Año Fin</label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año_fin" min="1950" max="2100" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="linea_id" class="col-sm-4 control-label">Línea Investigativa</label>
+												<div class="col-sm-8">
+													<select class="form-control" name="linea_id" required>
+														<option value="0" disabled selected>Línea Investigativa</option>
+														{% for l in lineas_investigativas %}
+															<option value="{{l.id}}">{{l.nombre}}</option>
+														{% endfor %}
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="finan_id" class="col-sm-4 control-label">Financiamiento</label>
+												<div class="col-sm-8">
+													<select class="form-control" name="finan_id" required>
+														<option value="0" disabled selected>Financiamiento</option>
+														{% for f in financiamientos %}
+															<option value="{{f.id}}">{{f.nombre}}</option>
+														{% endfor %}
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<input type="submit" class="form-control btn btn-primary"	name="submit" value="Agregar Proyecto">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="col-xs-12">
+							<hr>
+							<h3><i class="fa fa-archive" aria-hidden="true"></i> Tesis</h3>
+						</div>
+						{% if total_tesis > 0 %}
+							<div class="col-xs-4">
+								<strong>Total Tesis Guiadas: </strong>{{ total_tesis }}<br>
+							</div>
+							<!--<div class="col-xs-3">
+								<strong>Pregrado: </strong>{{ cant_tipos_tesis.pregrado }}<br>
+							</div>
+							<div class="col-xs-3">
+								<strong>Magister: </strong>{{ cant_tipos_tesis.magister }}<br>
+							</div>-->
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseTes">
+									<div id="ret-tes" class="well">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>Titulo</th>
+													<th>Estudiante</th>
+													<th>Tipo</th>
+													<th>Año</th>
+													<th>Participacion</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for t in tesis %}
+													<tr>
+														<td>{{t.titulo}}</td>
+														<td>{{t.nombre_alumno}}</td>
+														<td>{{t.tipo}}</td>
+														<td>{{t.año}}</td>
+														<td>{{t.participacion}}</td>
+														{% if rol == '2' or user_id == persona.id %}
+															<td>
+																<a href="#modal3" data-toggle="modal"><i class="fa fa-close" style="color:red" onclick="changeModal('3','{{t.titulo}}','{{t.id}}')"></i></a>
+															</td>
+														{% endif %}
+													</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+									{% if rol == '2' or user_id == persona.id %}
+										<div class="modal fade" id="modal3" role="dialog">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/eliminar-tesis" method="POST" role="form" autocomplete="off" id="eliminar-tesis">
+														<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+															<h4 class="modal-title">Confirmación</h4>
+														</div>
+														<div class="modal-body">
+															<p>¿Desea borrar la tesis <b id="tes-tit-mod"></b>?</p>
+														</div>
+														<div class="modal-footer">
+															<button id="tes-id-del" name="id" type="submit" class="btn btn-danger" onclick="$('#modal3').modal('hide')" form="eliminar-tesis">Eliminar Tesis</button>
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								</div>
+							</div>
+							<div class="col-xs-12">
+								<button id="vertes" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseTes" aria-expanded="false" aria-controls="collapseTes"><i class="fa fa-plus"></i> Ver Tesis</button>
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevates" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseTesForm" aria-expanded="false" aria-controls="collapseTesForm"><i class="fa fa-plus"></i> Agregar Tesis</button>
+								{% endif %}
+							</div>
+						{% else %}
+							<div class="col-xs-12">
+								<p>El usuario no registra tesis guiadas</p>
+							</div>
+							<div class="col-xs-12">
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevates" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseTesForm" aria-expanded="false" aria-controls="collapseTesForm"><i class="fa fa-plus"></i> Agregar Tesis</button>
+								{% endif %}
+							</div>
+						{% endif %}
+						{% if rol == '2' or user_id == persona.id %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseTesForm">
+									<div class="well" style="margin-top: 20px;">
+										<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/agregar-tesis" method="POST" role="form" autocomplete="off">
+											<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+											<div class="form-group">
+												<label for="titulo" class="col-sm-4 control-label">Título</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="titulo" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="nombre_alumno" class="col-sm-4 control-label">Nombre Estudiante</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" name="nombre_alumno" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año" class="col-sm-4 control-label">Año</label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año" min="1950" max="2100" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="tipo" class="col-sm-4 control-label">Tipo Tesis</label>
+												<div class="col-sm-8">
+													<select class="form-control" name="tipo" required>
+														<option value="0" disabled selected>Tipo Tesis</option>
+														<option value="Pregrado">Pregrado</option>
+														<option value="Magíster">Magíster</option>
+														<option value="Doctorado">Doctorado</option>
+														<option value="Postdoctorado">Postdoctorado</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="participacion" class="col-sm-4 control-label">Tipo Participación</label>
+												<div class="col-sm-8">
+													<select class="form-control" name="participacion" required>
+														<option value="0" disabled selected>Tipo Participación</option>
+														<option value="Director">Director</option>
+														<option value="Comisión">Comisión</option>
+														<option value="Cotutela">Cotutela</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<input type="submit" class="form-control btn btn-primary"	name="submit" value="Agregar Tesis">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="col-xs-12">
+							<hr>
+							<h3><i class="fa fa-archive" aria-hidden="true"></i> Congresos</h3>
+						</div>
+						{% if total_congresos > 0 %}
+							<div class="col-xs-4">
+								<strong>Total Congresos: </strong>{{ total_congresos }}<br>
+							</div>
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseCon">
+									<div id="ret-con" class="well">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>Congreso</th>
+													<th>Título</th>
+													<th>Año</th>
+													<th>Ciudad</th>
+													<th>País</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for c in congresos %}
+													<tr>
+														<td>{{c.nombre}}</td>
+														<td>{{c.titulo}}</td>
+														<td>
+															<a href="#" data-toggle="tooltip" title="{{c.fecha_inicio}} a {{c.fecha_termino}}" style="color: red;">{{c.año}}</a>
+														</td>
+														<td>{{c.ciudad}}</td>
+														<td>{{c.pais}}</td>
+														{% if rol == '2' or user_id == persona.id %}
+															<td>
+																<a href="#modal4" data-toggle="modal"><i class="fa fa-close" style="color:red" onclick="changeModal('4','{{c.titulo}}'+' del congreso '+'{{c.nombre}}','{{c.id}}')"></i></a>
+															</td>
+														{% endif %}
+													</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
+									{% if rol == '2' or user_id == persona.id %}
+										<div class="modal fade" id="modal4" role="dialog">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/eliminar-congreso" method="POST" role="form" autocomplete="off" id="eliminar-congreso">
+														<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+															<h4 class="modal-title">Confirmación</h4>
+														</div>
+														<div class="modal-body">
+															<p>¿Desea borrar <b id="cong-tit-mod"></b>?</p>
+														</div>
+														<div class="modal-footer">
+															<button id="cong-id-del" name="id" type="submit" class="btn btn-danger" onclick="$('#modal4').modal('hide')" form="eliminar-congreso">Eliminar Congreso</button>
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								</div>
+							</div>
+							<div class="col-xs-12">
+								<button id="vercon" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseCon" aria-expanded="false" aria-controls="collapseCon"><i class="fa fa-plus"></i> Ver Congresos</button>
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevocon" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseConForm" aria-expanded="false" aria-controls="collapseConForm"><i class="fa fa-plus"></i> Agregar Congreso</button>
+								{% endif %}
+							</div>
+						{% else %}
+							<div class="col-xs-12">
+								<p>El usuario no registra congresos</p>
+							</div>
+							<div class="col-xs-12">
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevates" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseConForm" aria-expanded="false" aria-controls="collapseConForm"><i class="fa fa-plus"></i> Agregar Congreso</button>
+								{% endif %}
+							</div>
+						{% endif %}
+						{% if rol == '2' or user_id == persona.id %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseConForm">
+									<div class="well" style="margin-top: 20px;">
+										<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/agregar-congreso" method="POST" role="form" autocomplete="off">
+											<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+											<div class="form-group">
+												<label for="nombre" class="col-sm-4 control-label">Nombre Congreso</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="nombre" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="titulo" class="col-sm-4 control-label">Título</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="titulo" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="fecha_inicio" class="col-sm-4 control-label">Fecha Inicio</label>
+												<div class="col-sm-8">
+													<input id="finicio" type="text" class="form-control datepicker" name="fecha_inicio" readonly required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="fecha_termino" class="col-sm-4 control-label">Fecha Termino</label>
+												<div class="col-sm-8">
+													<input id="ftermino" type="text" class="form-control datepicker" name="fecha_termino" readonly required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="ciudad" class="col-sm-4 control-label">Ciudad</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="ciudad" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="pais" class="col-sm-4 control-label">País</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="pais" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<input type="submit" class="form-control btn btn-primary"	name="submit" value="Agregar Congreso">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="col-xs-12">
+							<hr>
+							<h3 id="titleExa"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Experiencia Académica</h3>
+						</div>
+						{% if experiencia_academica is empty %}
+							<div class ="col-xs-12">
+								<p> El usuario no registra experiencia académica</p>
+							</div>
+							<div class="col-xs-12">
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevaexpacad" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseExpAcadForm" aria-expanded="false" aria-controls="collapseExpAcadForm"><i class="fa fa-plus"></i> Agregar Experiencia Academica</button>
+								{% endif %}
+							</div>
+						{% else %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseExa">
+									{% for exp_acad in experiencia_academica %}
+										<hr>
+										{% if rol == '2' or user_id == persona.id %}
+											<a href="#modal5" data-toggle="modal" style="float: right;"><i class="fa fa-close" style="color:red" onclick="changeModal('5','','{{exp_acad.id}}')"></i></a>
+										{% endif %}
+										<p align="justify"><b>{{exp_acad.institucion}}</b></p>
+										<p align="justify"><b>{{exp_acad.departamento}}</b></p>
+										{% if exp_acad.año_fin == null %}
+											<p align="justify">{{exp_acad.año_inicio}} a la fecha</p>
+										{% elseif exp_acad.año_inicio == exp_acad.año_fin %}
+											<p align="justify">{{exp_acad.año_inicio}}</p>
+										{% else %}
+											<p align="justify">{{exp_acad.año_inicio}} - {{exp_acad.año_fin}}</p>
+										{% endif %}
+										<p align="justify">{{exp_acad.descripcion}}</p>
+									{% endfor %}
+								</div>
+								{% if rol == '2' or user_id == persona.id %}
+									<div class="modal fade" id="modal5" role="dialog">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/eliminar-exp-academica" method="POST" role="form" autocomplete="off" id="eliminar-exp-academica">
+													<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Confirmación</h4>
+													</div>
+													<div class="modal-body">
+														<p>¿Desea borrar esta esta experiencia académica?</p>
+													</div>
+													<div class="modal-footer">
+														<button id="exp_acad-id-del" name="id" type="submit" class="btn btn-danger" onclick="$('#modal5').modal('hide')" form="eliminar-exp-academica">Eliminar Experiencia Académica</button>
+														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							</div>
+							<div class="col-xs-12">
+								<button id="verExa" class="btn btn-primary pull-left" role="button" data-toggle="collapse" href="#collapseExa" aria-expanded="false" aria-controls="collapseExa"><i class="fa fa-plus"></i> Ver Detalle</button>
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevaexpacad" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseExpAcadForm" aria-expanded="false" aria-controls="collapseExpAcadForm"><i class="fa fa-plus"></i> Agregar Experiencia Academica</button>
+								{% endif %}
+							</div>
+						{% endif %}
+						{% if rol == '2' or user_id == persona.id %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseExpAcadForm">
+									<div class="well" style="margin-top: 20px;">
+										<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/agregar-exp-academica" method="POST" role="form" autocomplete="off">
+											<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+											<div class="form-group">
+												<label for="institucion" class="col-sm-4 control-label">Institucion</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="institucion" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="departamento" class="col-sm-4 control-label">Departamento</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" name="departamento" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año_inicio" class="col-sm-4 control-label">Año Inicio</label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año_inicio" min="1950" max="2100" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año_fin" class="col-sm-4 control-label">Año Fin <a href="#" data-toggle="tooltip" title="Dejar en blanco si es a la fecha." style="color: red;">*</a></label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año_fin" min="1950" max="2100">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="descripcion" class="col-sm-4 control-label">Descripción</label>
+												<div class="col-sm-8">
+													<textarea class="form-control" name="descripcion" style="resize: vertical;" maxlength="500" required></textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<input type="submit" class="form-control btn btn-primary"	name="submit" value="Agregar Experiencia Académica">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="col-xs-12">
+							<hr>
+							<h3 id="titleExl"><i class="fa fa-university" aria-hidden="true"></i> Administración Académica</h3>
+						</div>
+						{% if administracion_academica is empty %}
+							<div class="col-xs-12">
+								<p> El usuario no registra administración académica</p>
+							</div>
+							<div class="col-xs-12">
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevaaacad" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseAdmAcadForm" aria-expanded="false" aria-controls="collapseAdmAcadForm"><i class="fa fa-plus"></i> Agregar Administración Academica</button>
+								{% endif %}
+							</div>
+						{% else %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseAdmAcad">
+									<br>
+									<ol style="line-height: 2;">
+										{% for adm_acad in administracion_academica %}
+											{% if rol == '2' or user_id == persona.id %}
+												{% if adm_acad.año_fin == null %}
+													<li>
+														{{adm_acad.cargo}}, {{adm_acad.institucion}}, {{adm_acad.año_inicio}} a la fecha.
+														<a href="#modal6" data-toggle="modal" style="float: right;"><i class="fa fa-close" style="color:red" onclick="changeModal('6','','{{adm_acad.id}}')"></i></a>
+													</li>
+												{% elseif adm_acad.año_inicio == adm_acad.año_fin %}
+													<li>
+														{{adm_acad.cargo}}, {{adm_acad.institucion}}, {{adm_acad.año_inicio}}
+														<a href="#modal6" data-toggle="modal" style="float: right;"><i class="fa fa-close" style="color:red" onclick="changeModal('6','','{{adm_acad.id}}')"></i></a>
+													</li>
+												{% else %}
+													<li>
+														{{adm_acad.cargo}}, {{adm_acad.institucion}}, {{adm_acad.año_inicio}} - {{adm_acad.año_fin}}.
+														<a href="#modal6" data-toggle="modal" style="float: right;"><i class="fa fa-close" style="color:red" onclick="changeModal('6','','{{adm_acad.id}}')"></i></a>
+													</li>
+												{% endif %}
+											{% else %}
+												{% if adm_acad.año_fin == null %}
+													<li>{{adm_acad.cargo}}, {{adm_acad.institucion}}, {{adm_acad.año_inicio}} a la fecha.</li>
+												{% elseif adm_acad.año_inicio == adm_acad.año_fin %}
+													<li>{{adm_acad.cargo}}, {{adm_acad.institucion}}, {{adm_acad.año_inicio}}.</li>
+												{% else %}
+													<li>{{adm_acad.cargo}}, {{adm_acad.institucion}}, {{adm_acad.año_inicio}} - {{adm_acad.año_fin}}.</li>
+												{% endif %}
+											{% endif %}
+										{% endfor %}
+									</ol>
+								</div>
+								{% if rol == '2' or user_id == persona.id %}
+									<div class="modal fade" id="modal6" role="dialog">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/eliminar-adm-academica" method="POST" role="form" autocomplete="off" id="eliminar-adm-academica">
+													<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Confirmación</h4>
+													</div>
+													<div class="modal-body">
+														<p>¿Desea borrar esta esta experiencia de administración académica?</p>
+													</div>
+													<div class="modal-footer">
+														<button id="adm_acad-id-del" name="id" type="submit" class="btn btn-danger" onclick="$('#modal6').modal('hide')" form="eliminar-adm-academica">Eliminar Administración Académica</button>
+														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							</div>
+							<div class="col-xs-12">
+								<button id="verAAcad" class="btn btn-primary pull-left" role="button" data-toggle="collapse" href="#collapseAdmAcad" aria-expanded="false" aria-controls="collapseAdmAcad"><i class="fa fa-plus"></i> Ver Detalle</button>
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevaaacad" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseAdmAcadForm" aria-expanded="false" aria-controls="collapseAdmAcadForm"><i class="fa fa-plus"></i> Agregar Administración Academica</button>
+								{% endif %}
+							</div>
+						{% endif %}
+						{% if rol == '2' or user_id == persona.id %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseAdmAcadForm">
+									<div class="well" style="margin-top: 20px;">
+										<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/agregar-adm-academica" method="POST" role="form" autocomplete="off">
+											<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+											<div class="form-group">
+												<label for="cargo" class="col-sm-4 control-label">Cargo</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" name="cargo" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="institucion_id" class="col-sm-4 control-label">Institución</label>
+												<div class="col-sm-8">
+													<select class="form-control" name="institucion_id" required>
+														<option value="0" disabled selected>Institucion</option>
+														{% for i in instituciones %}
+															<option value="{{i.id}}">{{i.name}}</option>
+														{% endfor %}
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año_inicio" class="col-sm-4 control-label">Año Inicio</label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año_inicio" min="1950" max="2100" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año_fin" class="col-sm-4 control-label">Año Fin <a href="#" data-toggle="tooltip" title="Dejar en blanco si es a la fecha." style="color: red;">*</a></label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año_fin" min="1950" max="2100">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<input type="submit" class="form-control btn btn-primary"	name="submit" value="Agregar Administración Académica">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="col-xs-12">
+							<hr>
+							<h3 id="titleAda"><i class="fa fa-rocket" aria-hidden="true"></i> Experiencia Laboral</h3>
+						</div>
+						{% if experiencia_laboral is empty %}
+							<div class ="col-xs-12">
+								<p> El usuario no registra experiencia laboral</p>
+							</div>
+							<div class="col-xs-12">
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevaexplabo" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseExpLaboForm" aria-expanded="false" aria-controls="collapseExpLaboForm"><i class="fa fa-plus"></i> Agregar Experiencia Academica</button>
+								{% endif %}
+							</div>
+						{% else %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseExl">
+									<br>
+									<ul style="line-height: 2;">
+										{% for exp_labo in experiencia_laboral %}
+											{% if rol == '2' or user_id == persona.id %}
+												{% if exp_labo.año_fin == null %}
+													<li>
+														{{exp_labo.descripcion}}, {{exp_labo.empresa}}, {{exp_labo.año_inicio}} a la fecha.
+														<a href="#modal7" data-toggle="modal" style="float: right;"><i class="fa fa-close" style="color:red" onclick="changeModal('7','','{{exp_labo.id}}')"></i></a>
+													</li>
+												{% elseif exp_labo.año_inicio == exp_labo.año_fin %}
+													<li>
+														{{exp_labo.descripcion}}, {{exp_labo.empresa}}, {{exp_labo.año_inicio}}
+														<a href="#modal7" data-toggle="modal" style="float: right;"><i class="fa fa-close" style="color:red" onclick="changeModal('7','','{{exp_labo.id}}')"></i></a>
+													</li>
+												{% else %}
+													<li>
+														{{exp_labo.descripcion}}, {{exp_labo.empresa}}, {{exp_labo.año_inicio}} - {{exp_labo.año_fin}}.
+														<a href="#modal7" data-toggle="modal" style="float: right;"><i class="fa fa-close" style="color:red" onclick="changeModal('7','','{{exp_labo.id}}')"></i></a>
+													</li>
+												{% endif %}
+											{% else %}
+												{% if exp_labo.año_fin == null %}
+													<li>{{exp_labo.descripcion}}, {{exp_labo.empresa}}, {{exp_labo.año_inicio}} a la fecha.</li>
+												{% elseif exp_labo.año_inicio == exp_labo.año_fin %}
+													<li>{{exp_labo.descripcion}}, {{exp_labo.empresa}}, {{exp_labo.año_inicio}}.</li>
+												{% else %}
+													<li>{{exp_labo.descripcion}}, {{exp_labo.empresa}}, {{exp_labo.año_inicio}} - {{exp_labo.año_fin}}.</li>
+												{% endif %}
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+								{% if rol == '2' or user_id == persona.id %}
+									<div class="modal fade" id="modal7" role="dialog">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/eliminar-exp-laboral" method="POST" role="form" autocomplete="off" id="eliminar-exp-laboral">
+													<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Confirmación</h4>
+													</div>
+													<div class="modal-body">
+														<p>¿Desea borrar esta esta experiencia laboral?</p>
+													</div>
+													<div class="modal-footer">
+														<button id="exp_labo-id-del" name="id" type="submit" class="btn btn-danger" onclick="$('#modal7').modal('hide')" form="eliminar-exp-laboral">Eliminar Experiencia Laboral</button>
+														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							</div>
+							<div class="col-xs-12">
+								<button id="verExl" class="btn btn-primary pull-left" role="button" data-toggle="collapse" href="#collapseExl" aria-expanded="false" aria-controls="collapseExl"><i class="fa fa-plus"></i> Ver Detalle</button>
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevaexpacad" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseExpLaboForm" aria-expanded="false" aria-controls="collapseExpLaboForm"><i class="fa fa-plus"></i> Agregar Experiencia Laboral</button>
+								{% endif %}
+							</div>
+						{% endif %}
+						{% if rol == '2' or user_id == persona.id %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseExpLaboForm">
+									<div class="well" style="margin-top: 20px;">
+										<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/agregar-exp-laboral" method="POST" role="form" autocomplete="off">
+											<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+											<div class="form-group">
+												<label for="empresa" class="col-sm-4 control-label">Empresa</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"	name="empresa" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año_inicio" class="col-sm-4 control-label">Año Inicio</label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año_inicio" min="1950" max="2100" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="año_fin" class="col-sm-4 control-label">Año Fin <a href="#" data-toggle="tooltip" title="Dejar en blanco si es a la fecha." style="color: red;">*</a></label>
+												<div class="col-sm-8">
+													<input type="number" class="form-control" name="año_fin" min="1950" max="2100">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="descripcion" class="col-sm-4 control-label">Descripción</label>
+												<div class="col-sm-8">
+													<textarea class="form-control" name="descripcion" style="resize: vertical;" maxlength="500" required></textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<input type="submit" class="form-control btn btn-primary"	name="submit" value="Agregar Experiencia Laboral">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="col-xs-12">
+							<hr>
+							<h3 id="titleOtros"><i class="fa fa-info-circle" aria-hidden="true"></i> Otros</h3>
+						</div>
+						{% if datos_extra is empty %}
+							<div class="col-xs-12">
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevoextra" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseOtrosForm" aria-expanded="false" aria-controls="collapseOtrosForm"><i class="fa fa-plus"></i> Agregar</button>
+								{% endif %}
+							</div>
+						{% else %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseOtros">
+									<br>
+									<ul style="line-height: 2;">
+										{% for o in datos_extra %}
+											{% if rol == '2' or user_id == persona.id %}
+												<li>
+													{{o.detalle}}
+													<a href="#modal8" data-toggle="modal" style="float: right;"><i class="fa fa-close" style="color:red" onclick="changeModal('8','','{{o.id}}')"></i></a>
+												</li>
+											{% else %}
+												<li>{{o.detalle}}</li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+								{% if rol == '2' or user_id == persona.id %}
+									<div class="modal fade" id="modal8" role="dialog">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/eliminar-dato-extra" method="POST" role="form" autocomplete="off" id="eliminar-dato-extra">
+													<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Confirmación</h4>
+													</div>
+													<div class="modal-body">
+														<p>¿Desea quitar este dato?</p>
+													</div>
+													<div class="modal-footer">
+														<button id="dato_extra-id-del" name="id" type="submit" class="btn btn-danger" onclick="$('#modal8').modal('hide')" form="eliminar-dato-extra">Eliminar Dato Extra</button>
+														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							</div>
+							<div class="col-xs-12">
+								<button id="verOtros" class="btn btn-primary pull-left" role="button" data-toggle="collapse" href="#collapseOtros" aria-expanded="false" aria-controls="collapseOtros"><i class="fa fa-plus"></i> Ver Detalle</button>
+								{% if rol == '2' or user_id == persona.id %}
+									<button id="nuevaexpacad" class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseOtrosForm" aria-expanded="false" aria-controls="collapseOtrosForm"><i class="fa fa-plus"></i> Agregar</button>
+								{% endif %}
+							</div>
+						{% endif %}
+						{% if rol == '2' or user_id == persona.id %}
+							<div class="col-xs-12">
+								<div class="collapse" id="collapseOtrosForm">
+									<div class="well" style="margin-top: 20px;">
+										<form action="{{ baseUrl() }}/usuarios/usuario/{{persona.id}}/agregar-dato-extra" method="POST" role="form" autocomplete="off">
+											<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+											<div class="form-group">
+												<label for="detalle" class="col-sm-4 control-label">Dato a Agregar</label>
+												<div class="col-sm-8">
+													<textarea class="form-control" name="detalle" style="resize: vertical;" maxlength="500" required></textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+													<input type="submit" class="form-control btn btn-primary"	name="submit" value="Agregar">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<hr/>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</section>
+<div style="font-size:0;height:2280px;"></div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/FileSaver.js"	type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/jquery.wordexport.js" type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/docx.js"></script>
+<script src="{{ baseUrl() }}/js/Chart.min.js"></script>
+<script src="{{ baseUrl() }}/js/persona.js"></script>
+<script>
+$(document).ready(function(){
+	var today = new Date();
+	var dd = today.getDate() < 10 ? '0'+today.getDate() : today.getDate();
+	var mm = (today.getMonth() + 1) < 10 ? '0'+(today.getMonth() + 1) : (today.getMonth() + 1);
+	var yy = today.getFullYear();
+	//$('.datepicker').datepicker({dateFormat: 'dd-mm-yy'}).val(dd+'-'+mm+'-'+yy);
+	$("#finicio").datepicker({
+		dateFormat: 'dd-mm-yy',
+		changeYear: true,
+		onSelect: function(selected) {
+			$("#ftermino").datepicker("option","minDate", selected)
+		}
+	}).val(dd+'-'+mm+'-'+yy);
+	$("#ftermino").datepicker({
+		dateFormat: 'dd-mm-yy',
+		changeYear: true,
+		onSelect: function(selected) {
+			$("#finicio").datepicker("option","maxDate", selected)
+		}
+	}).val(dd+'-'+mm+'-'+yy);
+});
+
+function changeModal(modal, title, id){
+	console.log(modal+' '+title+' '+id);
+	switch(modal){
+		case '1':
+			$('#pub-id-del').val(id);
+			$('#pub-tit-mod').html(title);
+			break;
+		case '2':
+			$('#proy-id-del').val(id);
+			$('#proy-tit-mod').html(title);
+			break;
+		case '3':
+			$('#tes-id-del').val(id);
+			$('#tes-tit-mod').html(title);
+			break;
+		case '4':
+			$('#cong-id-del').val(id);
+			$('#cong-tit-mod').html(title);
+			break;
+		case '5':
+			$('#exp_acad-id-del').val(id);
+			//$('#exp_acad-tit-mod').html(title);
+			break;
+		case '6':
+			$('#adm_acad-id-del').val(id);
+			//$('#adm_acad-tit-mod').html(title);
+			break;
+		case '7':
+			$('#exp_labo-id-del').val(id);
+			//$('#exp_labo-tit-mod').html(title);
+			break;
+		case '8':
+			$('#dato_extra-id-del').val(id);
+			//$('#dato_extra-tit-mod').html(title);
+			break;
+	}
+}
+
+</script>
+{% endblock %}

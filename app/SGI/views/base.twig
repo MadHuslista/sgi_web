@@ -1,0 +1,542 @@
+<html>
+
+<head>
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{% block title %}{% endblock %} - SGI</title>
+<link rel="shortcut icon" href="http://usm.cl/assets/img/icon/favicon.ico">
+<link href="{{ baseUrl() }}/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/font-awesome.min.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/dashboard/select2.min.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/dashboard/AdminLTE.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/dashboard/skin-blue.min.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/sgi.css" rel="stylesheet">
+
+<link href="{{ baseUrl() }}/css/modal.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{{ baseUrl() }}/build/css/custom.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
+<link href="{{ baseUrl() }}/css/datepicker.css" rel="stylesheet">
+<style>
+  .ui-datepicker-year{
+    color: black;
+  }
+</style>
+
+
+
+
+{% block head %}{% endblock %}
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini" id="body" data-baseurl="{{ siteUrl('/') }}">
+    <div class="wrapper">
+      <header class="main-header">
+        <!--<a href="{{ siteUrl('/') }}" class="logo">
+        <img style="padding-top:10px; width:210px;" src="{{ baseUrl() }}/img/logo-header.png"/>-->
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <!--<span class="logo-mini"><b>SGI</b></span>-->
+          <!-- logo for regular state and mobile devices -->
+          <!--<span class="logo-lg"><b>Sistema de Gestión de la Información</b></span>
+        </a>-->
+      <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <div class="pull-left">
+              <h3 id="titulo"><i class="fa fa-graduation-cap"></i> Sistema de Gestión de la Información DIMM</h3>
+          </div>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account: style can be found in dropdown.less -->
+
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="hidden-xs pull-left" style="padding-right:15px;">Bienvenido {{nombre_usuario}}</span>
+                  <img src="{{ baseUrl() }}/img/personas/{{avatar}}" class="user-image" alt="User Image">
+
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="{{ baseUrl() }}/img/personas/{{avatar}}" class="img-circle" alt="User Image">
+                    <p>
+                      {{nombre_completo}}
+                      <small></small>
+                    </p>
+                  </li>
+
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="{{ siteUrl('/usuarios/usuario') }}/{{user_id}}" class="btn btn-default btn-flat">Perfil</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="{{ siteUrl('/logout') }}" class="btn btn-default btn-flat">Salir</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <nav id="main-menu" class="navbar navbar-default" role="navigation" >
+        <div class="container-fluid">
+
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ siteUrl('/') }}"><img src="{{ baseUrl() }}/img/logo-header.png"/></a>
+          </div>
+
+
+          <div class="collapse navbar-collapse pull-left " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-graduation-cap"></i> Indicadores Académicos<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                  <li class="dropdown-submenu" >
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/matricula-nueva-anio-1') }}">Matricula Nueva 1° Año</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/vacantes-ofrecidas') }}">Vacantes Ofrecidas/Matricula Efectiva</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/caracterizacion-estudiantes') }}">Caracterización Estudiantes</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tasa-retencion-anio-1') }}">Tasa Retención 1° Año</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tasa-retencion-total') }}">Tasa Retención Total</a>
+                    </li>
+                    <!--li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/progresion-academica') }}">Progresion Académica</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/desercion-academica') }}">Deserción Académica</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/eliminacion-academica') }}">Eliminación Académica</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tiempo-permanencia') }}">Tiempo de Permanencia</a>
+                    </li-->
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tasa-egreso-por-cohorte') }}">Tasa Egreso por Cohorte</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tasa-titulacion-por-cohorte') }}">Tasa Titulación por Cohorte</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tasa-titulacion-oportuna-por-cohorte') }}">Tasa Titulación Oportuna por Cohorte</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tiempo-real-titulacion') }}">Tiempo Real Titulación</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/empleabilidad-laboral-cohorte') }}">Empleabilidad Laboral por Cohorte/Características</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tiempo-insercion-cohorte') }}">Tiempo Promedio Inserción por Cohorte</a></li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/tabla-asignaturas') }}">Asignaturas Plan de Estudios</a>
+                    </li>
+                    <li>
+                      <a href="{{ siteUrl('/indicadoresacademicos/asignaturas-criticas') }}">Asignaturas Críticas-Tasa Aprobación Asignaturas</a>
+                    </li>
+                  </li>
+
+                </ul>
+              </li>
+
+              <!--li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-graduation-cap"></i>I. Académicos 2<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/tiempo-real-titulacion') }}">Tiempo Real Titulación</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/empleabilidad-laboral-cohorte') }}">Empleabilidad Laboral por Cohorte/Características</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/tiempo-insercion-cohorte') }}">Tiempo Promedio Inserción por Cohorte</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/tabla-asignaturas') }}">Asignaturas Plan de Estudios</a></li>
+
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/asignaturas-criticas') }}">Asignaturas Críticas-Tasa Aprobación Asignaturas</a></li>
+                  <!--
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/integrantes-evaluacion-plan-estudio') }}">Integrantes Evaluación Plan de Estudios</a></li>
+                  <li><a href="{{ siteUrl('indicadoresacademicos/integrantes-evaluacion-desarrollo-asignaturas') }}">Integrantes Evaluación Desarrollo Asignaturas</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/seleccion-y-admision-regular') }}">Sistema de Selección y Admisión Alumnos Regulares</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/seleccion-y-admision-especial') }}">Sistema de Selección y Admisión Alumnos Especiales</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresacademicos/actividades-mejoramiento-academicos') }}">Actividades Mejoramiento Académico</a></li>
+                  <!--li><a href="#">->/a></li>
+                  <li><a href="{{ siteUrl('/programa/acreditacion-programas') }}">Estado de acreditación programas</a></li>
+                  <li><a href="{{ siteUrl('/programa/cantidad-matriculados-anio') }}">Matrícula total</a></li>
+                  <li><a href="{{ siteUrl('/programa/alumnos-graduados-postgrado') }}">Graduación total</a></li-->
+                  <!--<li><a href="{{ siteUrl('/acreditacion/asignaturas-pregrado-postgrado') }}">Asignaturas de pregrado que son contabilizadas como postgrado (electivos)</a></li>-->
+                  <!--li><a href="{{ siteUrl('/programa/origen-total') }}">Origen total estudiantes</a></li-->
+                  <!--<li><a href="{{ siteUrl('/acreditacion/infraestructura') }}">Infraestructura doctorado, magíster en ciencias, magíster profesional.</a></li>-->
+                  <!--<li><a href="{{ siteUrl('/acreditacion/docentes-usm') }}">Profesores USM y resumen</a></li>-->
+                  <!--li><a href="{{ siteUrl('/programa/matriculados-por-programa') }}">Matrícula por programa</a></li>
+                  <li><a href="{{ siteUrl('/programa/graduados-por-programa') }}">Graduación por programa</a></li>
+
+                  <li><a href="{{ siteUrl('/programa/origen-por-programa') }}">Origen estudiantes por programa</a></li>
+                  <li><a href="{{ siteUrl('/programa/docentes-postgrado') }}">Perfil académicos doctorado, magíster en ciencias, magíster profesional.</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/actividades-difusion-postgrado') }}">Difusión</a></li>
+                  <li><a href="{{ siteUrl('/programa/cantidad-becas-usm') }}">Becas total USM</a></li>
+                  <li><a href="{{ siteUrl('/programa/cantidad-becas-externas') }}">Becas total externas</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/perfeccionamiento-profesores') }}">Perfeccionamiento académicos</a></li>
+                  <li><a href="{{ siteUrl('/programa/sabaticos') }}">Sabáticos académicos</a></li>
+
+                </ul>
+              </li-->
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-book"></i> Investigación <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ siteUrl('/indicadoresinvestigacion/publicaciones') }}">Publicaciones</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresinvestigacion/proyectos') }}">Proyectos</a></li>
+                  <!--li>---</li-->
+                  <!--<li><a href="#">Becas financieras – Programas de doctorados</a></li>
+                  <li><a href="{{ siteUrl('/programa/claustro-programas') }}">Claustro postgrado</a></li>
+                  <li><a href="{{ siteUrl('/programa/listar-congresos') }}">Congresos</a></li>
+                  <li><a href="{{ siteUrl('/programa/cantidad-becas-conycit') }}">Conycit</a></li>
+                  <li><a href="{{ siteUrl('/programa/fecha-creacion-programas') }}">Fecha de creación programas postgrado</a></li>
+                  <li><a href="{{ siteUrl('/programa/alumnos-graduados-postgrado') }}">Graduados</a></li>
+                  <li><a href="{{ siteUrl('/programa/cantidad-matriculados-anio') }}">Matriculados por año</a></li>
+                  <li><a href="{{ siteUrl('/programa/cantidad-becas-doctorado') }}">Número de becas asignadas a estudiantes de doctorado</a></li>
+
+                  <li><a href="{{ siteUrl('/programa/cantidad-programas-extranjeros') }}">Número de extranjeros magíster profesional, magíster científico y doctorado</a></li>
+                  <li><a href="{{ siteUrl('/programa/docentes-postgrado') }}">Profesores que imparten postgrado</a></li>
+                  <li><a href="{{ siteUrl('/programa/cantidad-becas-magister') }}">Número de becas asignadas a estudiantes de magíster</a></li>-->
+                  <!--li><a href="{{ siteUrl('/acreditacion/becas-arancel') }}">Becas de arancel</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/becas-financieras') }}">Becas manutención</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/becas-alimentacion') }}">Becas alimentación</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/becas-congresos') }}">Becas asistencia a congresos</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/becas-investigacion') }}">Becas estadías de investigación</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/becas-puente') }}">Becas puente</a></li-->
+                  <!--<li><a href="{{ siteUrl('/en-construccion') }}">Becas término de tesis</a></li>-->
+                  <!--li><a href="{{ siteUrl('/programa/piic') }}">Becas programa PIIC</a></li>
+                  <li><a href="{{ siteUrl('/programa/programa-unidad') }}">Unidades académicas asociadas a los programas de postgrado</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/programas-ingles') }}">Estudiantes programas de inglés</a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/tasa-retencion') }}">Tasa de retención </a></li>
+                  <li><a href="{{ siteUrl('/acreditacion/tasa-graduacion') }}">Tasa graduación</a></li-->
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Vinculación <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ siteUrl('/indicadoresvinculacion/calendario-actividades-promocion') }}">Calendario Actividades Promoción</a></li>
+                  <li><a tabindex="-1" href="{{ siteUrl('/indicadoresvinculacion/bd-ex-alumnos') }}">Base de datos Ex Alumnos</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresvinculacion/area-desempenio-ex-alumnos') }}">Area desempeño Ex Alumnos</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresvinculacion/centro-ex-alumnos') }}">Centro Ex Alumnos</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresvinculacion/actividades-ex-alumnos') }}">Actividades Ex Alumnos</a></li>
+                  <li><a tabindex="-1" href="{{ siteUrl('/indicadoresvinculacion/bd-empleadores') }}">Base de datos Empleadores</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresvinculacion/convenios-vigentes') }}">Convenios vigentes</a></li>
+                  <li><a tabindex="-1" href="{{ siteUrl('/indicadoresvinculacion/ofertas-practica') }}">Practicas</a></li>
+                  <li><a tabindex="-1" href="{{ siteUrl('/indicadoresvinculacion/memorias-realizadas') }}">Memorias</a></li>
+                  <!--li><a href="#">------</a></li>
+                  <li><a href="{{ siteUrl('/programa/listar-publicaciones') }}">Listar publicaciones</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-resumen') }}">Resumen publicaciones</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-resumen-departamento') }}">Resumen por programa</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-resumen-total') }}">Resumen Por programa total</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-navegacion') }}">Navegación</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-calidad') }}">Calidad</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-productividad') }}">Productividad</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-grafo') }}">Grafo de colaboración</a></li-->
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bar-chart"></i> Gestión <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ siteUrl('/indicadoresgestion/estado-acreditacion') }}">Estado Acreditación Programas</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresgestion/m2-academicos') }}">M2 Instalaciones Académicas</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresgestion/m2-administrativos') }}">M2 Instalaciones Administrativas</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresgestion/inversion-infraestructura') }}">Inversión Infraestructura</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresgestion/inversion-equipamiento') }}">Inversión en Equipamiento</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresgestion/planes-desarrollo') }}">Planes de Desarrollo Aprobados</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresgestion/presupuesto-operaciones') }}">Presupuesto Operaciones</a></li>
+                  <li><a href="{{ siteUrl('/indicadoresgestion/ejecucion-presupuestaria') }}">Ejecución presupuestaria</a></li>
+
+
+                  <!-- ocultos -->
+
+                  <li><a href="{{ siteUrl('/indicadoresgestion/graficos-presupuesto') }}">Gráficos Presupuesto Ejecutado</a></li> 
+                  
+                  
+
+                  <!--li><a href="#">------</a></li>
+                  <li><a href="{{ siteUrl('/programa/listar-publicaciones') }}">Listar publicaciones</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-resumen') }}">Resumen publicaciones</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-resumen-departamento') }}">Resumen por programa</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-resumen-total') }}">Resumen Por programa total</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-navegacion') }}">Navegación</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-calidad') }}">Calidad</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-productividad') }}">Productividad</a></li>
+                  <li><a href="{{ siteUrl('/programa/publicaciones-grafo') }}">Grafo de colaboración</a></li-->
+                </ul>
+              </li>
+            <!--<li><a href="#"><i class="fa fa-bar-chart"></i>
+    Indicadores de Gestión de Postgrado</a></li>-->
+            </ul>
+
+          </div> <!-- /.collapse navbar-collapse -->
+
+        </nav>
+
+    <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar ">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+
+          <ul class="sidebar-menu">
+            <li class="header">Menú SGI</li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-info-circle"></i>
+                <span>Información general</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ siteUrl('/informacion-general/plan-estrategico') }}"><i class="fa fa-circle-o"></i> Plan Estratégico</a></li>
+                <li><a href="{{ siteUrl('/informacion-general/estatutos-institucionales') }}"><i class="fa fa-circle-o"></i> Estatutos Institucionales</a></li>
+                <li><a href="{{ siteUrl('/informacion-general/proyecto-educativo') }}"><i class="fa fa-circle-o"></i> Proyecto Educativo <br>Institucional</a></li>
+                <li><a href="{{ siteUrl('/informacion-general/proceso-admision') }}"><i class="fa fa-circle-o"></i> Proceso de Admision</a></li>
+                <li><a href="{{ siteUrl('/informacion-general/fortalecimiento-tecnicas-estudio') }}"><i class="fa fa-circle-o"></i> Fortalecimiento técnicas y<br> hábitos de estudio</a></li>
+                <li><a href="{{ siteUrl('/informacion-general/pruebas-alcance-nacional') }}"><i class="fa fa-circle-o"></i> Descripcion Pruebas <br>de Alcance Nacional</a></li>
+                <li><a href="{{ siteUrl('/informacion-general/practicas') }}"><i class="fa fa-circle-o"></i> Prácticas</a></li>
+              </ul>
+
+
+              
+              <!--<ul class="treeview-menu">
+                <li><a href="{{ siteUrl('paginas/descripcion-postgrado') }}"><i class="fa fa-circle-o"></i> Descripción postgrado</a></li>
+                <li><a href="{{ siteUrl('paginas/descripcion-propositos') }}"><i class="fa fa-circle-o"></i> Propósitos</a></li>
+                <li><a href="{{ siteUrl('paginas/descripcion-politicas') }}"><i class="fa fa-circle-o"></i> Políticas</a></li>
+                <li><a href="{{ siteUrl('paginas/descripcion-rrhh') }}"><i class="fa fa-circle-o"></i> RRHH</a></li>
+                <li><a href="{{ siteUrl('paginas/descripcion-organigrama') }}"><i class="fa fa-circle-o"></i> Organigrama</a></li>
+                <li><a href="{{ siteUrl('paginas/descripcion-organizacion') }}"><i class="fa fa-circle-o"></i> Organización</a></li>
+                <li><a href="{{ siteUrl('paginas/descripcion-escuela-graduados') }}"><i class="fa fa-circle-o"></i> Escuela de graduados</a></li>
+                <li><a href="{{ siteUrl('paginas/descripcion-articulacion') }}"><i class="fa fa-circle-o"></i> Articulación <br>Pregrado-Postgrado</a></li>
+              </ul>-->
+            </li>
+            <!--li class="treeview">
+              <a href="#">
+                <i class="fa fa-graduation-cap"></i>
+                <span>Antecedentes </br>Académicos</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ siteUrl('/paginas/procedimientos/elaboracion-procedimientos') }}"><i class="fa fa-circle-o"></i> 00-Elaboración de Procedimientos</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/creacion-programas') }}"><i class="fa fa-circle-o"></i> 01-Creación Programas</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/admision-estudiantes') }}"><i class="fa fa-circle-o"></i> 02-Admisión estudiantes</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/registro-y-matricula-estudiantes') }}"><i class="fa fa-circle-o"></i> 03-Matrícula Estudiantes</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/programacion-asignaturas') }}"><i class="fa fa-circle-o"></i> 04-Programación Asignaturas</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/inscripcion-asignaturas') }}"><i class="fa fa-circle-o"></i> 05-Inscripción Asignaturas</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/seguimiento-estudiantes') }}"><i class="fa fa-circle-o"></i> 06-Seguimiento Estudiantes</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/postulacion-becas') }}"><i class="fa fa-circle-o"></i> 07-Postulación Becas</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/convalidacion-asignaturas') }}"><i class="fa fa-circle-o"></i> 08-Convalidación Asignaturas</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/proceso-graduacion') }}"><i class="fa fa-circle-o"></i> 09-Proceso Graduación</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/solicitud-documentos') }}"><i class="fa fa-circle-o"></i> 10-Solicitud Documentos</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/congelacion-de-estudios') }}"><i class="fa fa-circle-o"></i> 11-Congelación de estudios</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/reincorporacion-a-estudios') }}"><i class="fa fa-circle-o"></i> 12-Reincorporación a estudios</a></li>
+                <li><a href="{{ siteUrl('/paginas/procedimientos/estudiantes-extranjeros') }}"><i class="fa fa-circle-o"></i> 13-Estudiantes Extranjeros</a></li>
+              </ul>
+            </li-->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>PDE DIMM 2014-2018</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ siteUrl('/pde-dimm') }}"><i class="fa fa-circle-o"></i> Plan Estratégico DIMM</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-graduation-cap"></i>
+                <span>Planes de Estudio</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <!--<li><a href="{{ siteUrl('/paginas/plan-estrategico') }}"><i class="fa fa-circle-o"></i> Plan Estratégico</a></li>-->
+
+                <li><a href="{{ siteUrl('/malla-curricular-5406') }}"><i class="fa fa-circle-o"></i> Plan de Estudios 5406</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Reglamentos</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a  href="{{ siteUrl('/reglamentos/estudiantes') }}"><i class="fa fa-circle-o"></i> Estudiantes</a></li>
+                <li><a  href="{{ siteUrl('/reglamentos/institucion-carrera') }}"><i class="fa fa-circle-o"></i> Institución o Carrera</a></li>
+                <li><a  href="{{ siteUrl('/reglamentos/personal') }}"><i class="fa fa-circle-o"></i> Personal</a>
+                <li><a  href="{{ siteUrl('/reglamentos/precesos-docentes') }}"><i class="fa fa-circle-o"></i> Procesos Docentes</a>
+                <li><a  href="{{ siteUrl('/reglamentos/titulacion') }}"><i class="fa fa-circle-o"></i> Titulación</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Documentos</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <!--li><a  href="{{ siteUrl('/documentos/lineamientos-institucionales') }}"><i class="fa fa-circle-o"></i>Lineamientos institucionales</a></li-->
+                <li><a  href="{{ siteUrl('/documentos/plan-vinculacion-medio') }}"><i class="fa fa-circle-o"></i>Plan de vinculación <br>con el medio institucional</a></li>
+                <li><a  href="{{ siteUrl('/documentos/politicas-amenazas') }}"><i class="fa fa-circle-o"></i>Políticas institucionales <br>para amenazas sustanciales</a></li>
+                <li><a  href="{{ siteUrl('/documentos/politicas-recursos') }}"><i class="fa fa-circle-o"></i>Politicas Institucionales <br>de uso de recursos</a></li>
+
+                <li><a  href="{{ siteUrl('/documentos/criterio8') }}"><i class="fa fa-circle-o"></i>Documentos legales <br>asociados a criterio 8</a></li>
+
+                <li><a  href="{{ siteUrl('/documentos/accesibilidad-universal') }}"><i class="fa fa-circle-o"></i>Políticas y protocolo <br>de accesibilidad universal</a></li>
+
+                <li><a  href="{{ siteUrl('/documentos/estatutos-federacion') }}"><i class="fa fa-circle-o"></i>Estatutos Federación</a></li>
+
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="{{ siteUrl('/documentos/actas-consejo-departamento') }}">
+                <i class="fa fa-book"></i>
+                <span>Actas </br> Consejo de Departamento</span>
+                
+              </a>
+              
+            </li>
+            <!--li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>RRHH</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a  href="{{ siteUrl('/paginas/acuerdos-acreditacion/doctorado') }}"><i class="fa fa-circle-o"></i> Doctorado</a></li>
+                <li><a  href="{{ siteUrl('/paginas/acuerdos-acreditacion/msc') }}"><i class="fa fa-circle-o"></i> Magíster Cientifico</a></li>
+                <li><a  href="{{ siteUrl('/paginas/acuerdos-acreditacion/ms') }}"><i class="fa fa-circle-o"></i> Magíster Profesional</a></li>
+              </ul>
+            </li-->
+          </ul>
+          {% if 2 == rol %}
+          <ul class="sidebar-menu">
+            <li class="header">Administración</li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Usuarios</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                {#<li><a href="{{ siteUrl('/administracion/usuario/agregar') }}"><i class="fa fa-circle-o"></i> Agregar Usuario</a></li>#}
+                <li><a href="{{ siteUrl('/usuarios/listar-usuarios') }}"><i class="fa fa-circle-o"></i> Lista de Usuarios</a></li>
+                <!--
+                <li><a href="{{ siteUrl('/usuarios/listar-usuarios') }}"><i class="fa fa-circle-o"></i> Lista de Usuarios</a></li>-->
+                <li><a href="{{ siteUrl('/usuarios/registro-actividad') }}"><i class="fa fa-circle-o"></i> Registro de Actividad</a></li>
+                <!--<li><a href="{{ siteUrl('/usuarios/listar-alumnos') }}"><i class="fa fa-circle-o"></i> Listar Alumnos</a></li>-->
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Personas</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ siteUrl('/alumnos/listar-alumnos') }}"><i class="fa fa-circle-o"></i> Listar Alumnos</a></li>
+                <li><a href="{{ siteUrl('/profesores/listar-profesores') }}"><i class="fa fa-circle-o"></i> Listar Profesor</a></li>
+              </ul>
+            </li>
+
+            <!--<li><a href="{{ siteUrl('/programa/listar-programas') }}"><i class="fa fa-book"></i> <span>Programas</span></a></li>
+            -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Carga de Datos</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ siteUrl('/en-construccion') }}"><i class="fa fa-circle-o"></i> Agregar Alumnos</a></li>
+                <li><a href="{{ siteUrl('/revistas/listar-revistas') }}"><i class="fa fa-circle-o"></i> Listar Revistas</a></li>
+
+                <!-- ocultos -->
+                <li><a href="{{ siteUrl('/presupuesto/carga-masiva') }}"><i class="fa fa-circle-o"></i>Carga Anual Presupuesto </a></li> 
+                <li><a href="{{ siteUrl('/movimiento/carga-masiva') }}"><i class="fa fa-circle-o"></i>Ingresar Movimientos</a></li> 
+              </ul>
+            </li>
+            <!--
+            <li class="header">Generación de Informes</li>
+            <li><a href="{{ siteUrl('/programa/exportar-informe') }}"><i class="fa fa-book"></i> <span>Programas</span></a></li>
+            -->
+
+          </ul>
+          {% endif %}
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" >
+
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <center>
+              {% block contentheader %}{% endblock %}
+            </center>
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        {% block content %}{% endblock %}
+        <!-- /.Main content -->
+
+      </div><!-- /.content-wrapper -->
+
+     <!--  Footer -->
+      <footer class="main-footer">
+        <div class="col-xs-6">
+          <div class="pull-left hidden-xs ">
+           <img src="{{ baseUrl() }}/img/footer-usm.png" style="width:40%;"/>
+            <br/>
+          </div>
+        </div>
+        <div class="pull-right" >
+          <strong>Copyright &copy; 2017 </strong> Todos los derechos reservados. <b>Version</b> 1.0.18a17
+        </div>
+        <br/> <br/>
+      </footer><!-- /.Footer -->
+
+      <script type="text/javascript" src="{{ baseUrl() }}/js/jquery-2.2.0.min.js"></script>
+      <script type="text/javascript" src="{{ baseUrl() }}/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/app.min.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+
+
+  {% block scripts %}{% endblock %}
+  </body>
+
+</html>

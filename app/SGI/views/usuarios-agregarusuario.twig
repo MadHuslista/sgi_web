@@ -1,0 +1,195 @@
+{% extends "base.twig" %}
+{% block title %}Ingresar Nuevo Usuario{% endblock %}
+{% block contentheader %}Ingresar Nuevo Usuario{% endblock %}
+
+{% block head %}
+<link href="{{ baseUrl() }}/css/dashboard/datepicker3.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/select2.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section class="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box box-info">
+
+                <div class="box-header with-border">
+                  	<h3 class="box-title">Datos Personales</h3>
+                </div><!-- /.box-header -->
+
+
+                <!-- form start -->
+                <form id="form-agregar" enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ siteUrl('/usuario/agregar') }}">
+                  <div class="box-body">
+
+					<div class="form-group">
+                      <label for="autor" class="col-sm-1 control-label">Nombres </label>
+                      	<div class="col-sm-3">
+							<input type="text"  class="form-control"  name="name" id="nombre" placeholder="">
+                      	</div>
+						<label for="autores" class="col-sm-1 control-label">Apellido Paterno </label>
+						<div class="col-sm-3">
+							<input type="text"  class="form-control"  name="last_name" id="last_name" placeholder="">
+	                    </div>
+						<label for="otroautor" class="col-sm-1 control-label">Apellido Materno </label>
+	                    <div class="col-sm-3">
+	                        <input type="text" class="form-control"  name="m_name" id="m_name" placeholder="">
+	                    </div>
+                    </div>
+
+                      <div class="form-group">
+                      	<label for="titulo" class="col-sm-1 control-label">Rut</label>
+
+                      	<div class="col-sm-3">
+							<input type="text" class="form-control"  name="run" id="run" placeholder="123456789-k">
+                      	</div>
+
+						<label for="titulo" class="col-sm-1 control-label">Nacionalidad</label>
+                      	<div class="col-sm-3">
+							<input type="text" class="form-control"  name="nacionalidad" id="nacionalidad" placeholder="">
+                      	</div>
+
+						<label for="journal" class="col-sm-1 control-label">Institución</label>
+                      	<div class="col-sm-3">
+							<select class="form-control select2"  id="institution" name="institution" style="width: 100%;">
+								{% for j in instituciones %}
+									<option value="{{j.id}}">{{j.name}}</option>
+								{% endfor %}
+							</select>
+                      	</div>
+                      </div>
+
+						 <div class="form-group">
+                      		<label for="volumen" class="col-sm-1 control-label">Nombre de Usuario</label>
+                      		<div class="col-sm-3">
+                        		<input type="text" class="form-control"  name="username" id="username" placeholder="juan.perez">
+                      		</div>
+							<label for="doi" class="col-sm-1 control-label">Email</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control"  name="email" id="email" placeholder="correo@mail.com">
+							</div>
+							<label for="anio" class="col-sm-1 control-label">Fecha de Nacimiento</label>
+							<div class="col-sm-3">
+									<input type="text" class="form-control"  id="birthday" name="birthday"  placeholder="">
+							</div>
+                    	  </div>
+
+						  <div class="form-group">
+								<label for="phone" class="col-sm-1 control-label">Teléfono</label>
+	                      		<div class="col-sm-3">
+	                        		<input type="text" class="form-control"  id="phone" name="phone"  placeholder="">
+	                      		</div>
+
+								  <label for="gender" class="col-sm-1 control-label">Sexo</label>
+			                      <div class="col-sm-3">
+			                        	<select class="form-control"  id="gender" name="gender">
+												<option value="M">Masculino</option>
+												<option value="F">Femenino</option>
+										</select>
+			                      </div>
+								
+								  <label for="rol" class="col-sm-1 control-label">Rol</label>
+			                      <div class="col-sm-3">
+										<select class="form-control"  id="roles" name="roles" style="width: 100%;">
+											{% for j in roles %}
+												<option value="{{j.id}}">{{j.name}}</option>
+											{% endfor %}
+										</select>
+			                      </div>
+
+                    	</div>
+						
+						<div class="form-group">
+							<label for="avatar" class="col-sm-1 control-label">Imagen para mostrar</label>
+	                      	<div class="col-sm-2">
+	                        	<img src="{{ baseUrl() }}/img/personas/{{avatar}}" class="img-circle" alt="User Image"><br><br><input type="file" name="avatar" value="" accept="image/*">
+	                      	</div>
+                    	</div>
+                    	
+                    	<center>
+                    		<strong style = "color:red;"> 
+                    			* Todos los campos obligatorios
+                    		</strong>
+                    	</center>	
+                    	
+						
+                  		</div><!-- /.box-body -->
+                  		<hr>
+
+                  		<center>
+	                  		<div class="box-footer">
+								<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+	                    		<button id="guardar" type="submit" class="btn btn-info" >Guardar</button>
+	                  		</div><!-- /.box-footer -->
+                  		</center>
+                </form>
+
+             </div><!-- /.box -->
+		</div>
+	</div>
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select2.full.min.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/select_es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/dashboard/bootstrap-datepicker.es.js"></script>
+<script type="text/javascript" src="{{ baseUrl() }}/js/tinymce/tinymce.min.js"></script>
+
+<script>
+$( document ).ready(function() {
+
+
+		$("#guardar").on('click', function(){
+	
+				var nombres = document.getElementById('nombre').value;
+				var apellido_pat = document.getElementById('last_name').value; 
+				var apellido_mat = document.getElementById('m_name').value; 
+				var rut = document.getElementById('run').value; 
+				var nacionalidad = document.getElementById('nacionalidad').value; 
+				var institucion = document.getElementById('institution').value;
+				var username =  document.getElementById('username').value;
+				var correo = document.getElementById('email').value; 
+				var cumpleanios = document.getElementById('birthday').value; 
+				var fono = document.getElementById('phone').value;  
+				var genero = document.getElementById('gender').value; 
+				
+				if (nombres == " " || apellido_pat== "" || apellido_mat== "" ||  rut== "" ||  nacionalidad== "" || institucion=="" || username== "" || correo=="" || cumpleanios =="" || fono== "" || genero=="" )
+				{
+					alert("¡No Pueden Quedar Datos Vacios!");
+					return false;
+				}
+				else{
+					alert("¡Usuario Registrado Correctamente!");
+
+				}
+
+
+		});
+
+	$(".select2").select2();
+
+	$('#birthday').datepicker({
+		  format: 'yyyy/mm/dd',
+		  language: 'es'
+	});
+
+	tinymce.init({
+    	selector: "textarea",
+    	plugins: [
+        	"advlist autolink lists link image charmap print preview anchor",
+        	"searchreplace visualblocks code fullscreen",
+        	"insertdatetime media table contextmenu paste"
+    	],
+    	toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+	});
+});	
+
+</script>
+
+{% endblock %}

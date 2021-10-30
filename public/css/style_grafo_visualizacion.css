@@ -1,0 +1,111 @@
+.invert {
+  background: #1f1f1f;
+  color: #dcdccc;
+}
+
+.invert h2, .invert h3 {
+  color: #7f9f7f;
+}
+
+.string, .regexp {
+  color: #f39;
+}
+
+.keyword {
+  color: #00c;
+}
+
+.comment {
+  color: #777;
+  font-style: oblique;
+}
+
+.number {
+  color: #369;
+}
+
+.class, .special {
+  color: #1181B8;
+}
+
+.BIOTECNOLOGIA{fill: #00FFFF;background:#00FFFF;}
+  .ELECTRICIDAD{fill: #FFFF00;background:#FFFF00;}
+  .ELECTRONICA{fill:#5C3317;background:#5C3317;}
+  .FISICA{fill: #A68064;background:#A68064;}
+  .IMM{fill: #00009C;background:#00009C;}
+  .INDUSTRIAS{fill: #EBC79E;background:#EBC79E;}
+  .INFORMATICA{fill: #CFB53B;background:#CFB53B;}
+  .ING{fill: #FF7F00;background:#FF7F00;}
+  .MATEMATICA{fill: #FF2400;background:#FF2400;}
+  .MECANICA{fill: #DB70DB;background:#DB70DB;}
+  .O{fill: #00FF7F;background:#00FF7F;}
+  .QUIMICA{fill: #236B8E;background:#236B8E;}
+  .ARQUITECTURA{fill: #38B0DE;background:#38B0DE;}
+  .CETAM{fill: #DB9370;background:#DB9370;}
+  .SIN DESCRIPCION{fill: #D8D8BF;background:#D8D8BF;}
+
+
+  path.arc {
+	cursor: move;
+	fill: #fff;
+  }
+  .node {
+	font-size: 10px;
+  }
+  .node:hover {
+	fill: #1f77b4;
+  }
+  .link {
+	fill: none;
+	stroke: #1f77b4;
+	stroke-opacity: .4;
+	pointer-events: none;
+  }
+  .link.source, .link.target {
+	stroke-opacity: 1;
+	stroke-width: 1px;
+  }
+  .node.target {
+	fill: #0A0A2A !important;
+  }
+  .node.source {
+	fill: #2ca02c !important;
+  }
+  .link.source {
+	stroke: #FE2E2E !important;
+  }
+  .link.target {
+	stroke: #FE2E2E !important;
+  }
+  #tension{
+	/*width: 200px;
+	margin-left: 20px;*/
+  }
+  .DescrVar{
+	width: 20px;
+	height: 15px;
+	margin-top: 2px;
+	margin-left: 5px;
+	margin-right: 2px;
+	float: left;
+	border-radius:3px;
+	-moz-border-radius:3px; /* Firefox */
+	-webkit-border-radius:3px; /* Safari y Chrome */
+  }
+  #contenedorDescr {
+	margin-top: 10px;
+	border-radius:3px;
+	-moz-border-radius:3px; /* Firefox */
+	-webkit-border-radius:3px; /* Safari y Chrome */
+
+	/* Otros estilos */
+	/*border:1px solid #333;*/
+
+	font-size: 12px;
+	float:left;
+	margin:auto;
+	vertical-align:middle;
+  }
+#network_extra{
+	float:right;
+}

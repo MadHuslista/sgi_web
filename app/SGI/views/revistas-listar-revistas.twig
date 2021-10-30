@@ -1,0 +1,151 @@
+{% extends "base.twig" %}
+{% block title %}Revistas{% endblock %}
+{% block contentheader %}Revistas{% endblock %}
+{% block content %}
+<section class="content">
+	<div class="row">}
+		<section class="col-lg-12 connectedSortable">
+			<div class="box box-success">
+				<div class="box-header">
+					<a class="pull-right btn btn-success" href="#agregar-revista-modal" data-toggle="modal" style="color:#ffffff;"><i class="fa fa-edit"></i>Agregar Revista</a>
+					<div class="col-xs-6">
+						<div class="input-group input-group-sm">
+							<input type="text" class="form-control" placeholder="" id="s" name="s">
+							<span class="input-group-btn">
+								<button class="btn btn-info btn-flat" id="buscar" type="button"><i class="fa fa-search"></i> Buscar</button>
+							</span>
+						</div>
+						<br>
+					</div>
+					<div class="col-xs-6">
+					</div>
+					<br>
+					<div class="col-lg-12">
+						<table data-count="{{ count }}" id="publicaciones" class="table table-striped table-bordered dt-responsive nowrap">
+							<thead>
+								<tr>
+									<th>Nombre Revista</th>
+									<th>Cantidad de Publicaciones asociadas</th>
+									<th>Editar</th>
+									<!--th>Eliminar</th-->
+								</tr>
+							</thead>
+							<tbody>
+								{% for r in revistas %}
+									<tr>
+										<td>{{r.nombre}}</td>
+										<td>{{r.r_count}}</td>
+										<td><a id ="editar" href="#editar-revista-modal" data-toggle="modal" onclick="changeModal('edit','{{r.id}}','{{r.nombre}}')"><i class="fa fa-eye"></i></a></td>
+										<!--td><a id ="eliminar" href="#eliminar-revista-modal" data-toggle="modal" onclick="changeModal('delete','{{r.id}}','{{r.r_count}}')"><i style= "color:red" class="fa fa-trash-o"></i></a></td-->
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						{{ autores.render()|raw }}
+					</div>
+					<div class="modal fade" id="agregar-revista-modal" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<form action="{{ baseUrl() }}/revistas/agregar-revista" method="POST" role="form" autocomplete="off" id="agregar-revista">
+									<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Agregar Revista</h4>
+									</div>
+									<div class="modal-body form-group">
+										<label for="nombre" class="col-sm-4 control-label">Nombre de la revista: </label>
+										<input class="col-sm-8" type="text" name="nombre" maxlength="255" required>
+									</div>
+									<div class="modal-footer">
+										<button name="id" type="submit" class="btn btn-primary" onclick="$('#agregar-revista-modal').modal('hide')" form="agregar-revista">Agregar Revista</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="editar-revista-modal" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<form action="{{ baseUrl() }}/revistas/editar-revista" method="POST" role="form" autocomplete="off" id="editar-revista">
+									<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Editar Revista</h4>
+									</div>
+									<div class="modal-body form-group">
+										<label for="nombre" class="col-sm-4 control-label">Nombre de la revista: </label>
+										<input id="editar-revista-nombre" class="col-sm-8" type="text" name="nombre" maxlength="255" required>
+									</div>
+									<div class="modal-footer">
+										<button id="editar-revista-id" name="id" type="submit" class="btn btn-warning" onclick="$('#editar-revista-modal').modal('hide')" form="editar-revista">Editar Revista</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!--
+					<div class="modal fade" id="eliminar-revista-modal" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<form action="{{ baseUrl() }}/revistas/eliminar-revista" method="POST" role="form" autocomplete="off" id="eliminar-revista">
+									<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Eliminar Revista</h4>
+									</div>
+									<div class="modal-body">
+										<p>¿Desea eliminar esta revista? <b id="eliminar-revista-advertencia"></b></p>
+									</div>
+									<div class="modal-footer">
+										<button id="eliminar-revista-id" name="id" type="submit" class="btn btn-danger" onclick="$('#agregar-revista-modal').modal('hide')" form="eliminar-revista">Eliminar Revista</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					-->
+				</div>
+			</div>
+		</section>
+	</div>
+</section>
+<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/jquery.redirect.js"></script>
+<script>
+$(document).ready(function () {
+	$('#publicaciones').DataTable({
+		"bLengthChange" : false, //thought this line could hide the LengthMenu
+		"bInfo":false,
+		"bFilter":false,
+		"iDisplayLength": 14
+	});
+});
+function changeModal(mode,id,name){
+	if(mode == 'edit'){
+		$('#editar-revista-id').val(id);
+		$('#editar-revista-nombre').val(name);
+	}else if(mode == 'delete'){
+		$('#eliminar-revista-id').val(id);
+		if(name > 0)
+			$('#eliminar-revista-advertencia').html('¡Completar esta acción eliminará '+name+' publicaciones!');
+	}
+}
+
+$("#buscar").on('click',function(){
+	$.redirect("{{ baseUrl() }}/revistas/listar-revistas",{ s: $('#s').val()}, 'GET');
+});
+
+$("#s").keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		$.redirect("{{ baseUrl() }}/revistas/listar-revistas",{ s: $('#s').val()}, 'GET');
+	}
+	event.stopPropagation();
+});
+</script>
+{% endblock %}

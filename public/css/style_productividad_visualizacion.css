@@ -1,0 +1,38 @@
+#chart1, #chart2 {
+  height: 70%;
+}
+
+
+#opt{
+	font-size:10px;
+	float:right;
+	margin-bottom:5px;
+}
+
+#title{
+	height:160px;
+	background-image: url('../../img/ficha.png');
+	background-repeat: no-repeat;
+	background-position: right 0px top;
+	padding: 30px 0px 0px 0px;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:#222222;
+	color:#FFF;
+}
+	
+	#title div{
+		left:0;
+		right:0;
+		margin:auto;
+		width:1030px;
+	}
+		
+		#title div p{
+			font-size:12px;
+		}
+		
+		
+		#title div h1, #title div p{
+			margin-bottom:0px;
+		}

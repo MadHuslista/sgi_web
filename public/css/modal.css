@@ -1,0 +1,2989 @@
+.table-modal, .th-modal, .td-modal {
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    text-align: justify;
+}
+
+.box-modal-objetivos-introduccion-ingenieria{
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-contenidos-introduccion-ingenieria {
+    height: 400px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-bibliografia-introduccion-ingenieria {
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-objetivos-quimica-sociedad{
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-contenidos-quimica-sociedad {
+    height: 1050px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm; 
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-bibliografia-quimica-sociedad {
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-introduccion-fisica{
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-requisitos-entrada-introduccion-fisica{
+    height: 110px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contribucion-egreso-introduccion-fisica{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-resultados-aprendizaje-introduccion-fisica{
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contenidos-tematicos-introduccion-fisica{
+
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-metodologias-introduccion-fisica{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-evaluacion-introduccion-fisica{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-objetivos-educacion-fisica{
+
+    height: 125px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+
+.box-modal-contenidos-educacion-fisica{
+
+    height: 205px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologia-educacion-fisica{
+
+    height: 125px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-descripcion-matematicaI{
+
+  height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-requisitos-entrada-matematicaI{
+
+  height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+
+.box-modal-contribucion-egreso-matematicaI{
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-resultados-aprendizaje-egreso-matematicaI{
+
+    height: 240px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-contenidos-tematicos-egreso-matematicaI{
+
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologias-matematicaI{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-descripcion-fisica_generalI{
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-requisitos-entrada-fisica_generalI{
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-contribucion-egreso-fisica_generalI{
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;  
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-resultados-aprendizaje-fisica_generalI{
+    height: 260px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-contenidos-tematicos-fisica_generalI{
+    height: 250px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+
+.box-modal-metodologias-fisica_generalI{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-evaluacion-fisica_generalI{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-objetivo-educacion-fisicaII{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-contenidos-educacion-fisicaII{
+
+    height: 240px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologia-educacion-fisicaII{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-descripcion-matematicaII{
+    
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-requisitos-entrada-matematicaII{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contribucion-egreso-matematicaII{
+
+    height: 210px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-resultados-aprendizaje-egreso-matematicaII{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-tematicos-egreso-matematicaII{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologias-matematicaII{
+
+    height: 110px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-descripcion-programacion{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-requisitos-entrada-programacion{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-contribucion-egreso-programacion{
+
+    height: 520px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-resultados-aprendizaje-egreso-programacion{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-tematicos-egreso-programacion{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologias-programacion{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-descripcion-fisica-generalIII{
+
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-requisitos-entrada-fisica-generalIII{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-contribucion-egreso-fisica-generalIII{
+
+    height: 220px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-resultados-aprendizaje-fisica-generalIII{
+
+    height: 280px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-contenidos-tematicos-fisica-generalIII{
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-metodologias-fisica-generalIII{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-evaluacion-fisica-generalIII{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-descripcion-matematicaIII{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-requisitos-entrada-matematicaIII{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-contribucion-egreso-matematicaIII{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-resultados-aprendizaje-egreso-matematicaIII{
+
+    height: 220px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-tematicos-egreso-matematicaIII{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologias-matematicaIII{
+
+    height: 110px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-labmatpro{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-requisitos-entrada-labmatpro{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contribucion-egreso-labmatpro{
+
+    height: 500px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-resultados-aprendizaje-egreso-labmatpro{
+
+    height: 320px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-contenidos-tematicos-egreso-labmatpro{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologias-labmatpro{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-objetivos-quimica-basica{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-quimica-basica{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologia-quimica-basica{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-texto-quimica-basica{
+
+    height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-quimica-basica{
+
+    height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-objetivos-inglesI{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-inglesI{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologia-inglesI{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-inglesI{
+
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-descripcion-fisica-generalII{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-requisitos-entrada-fisica-generalII{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-contribucion-egreso-fisica-generalII{
+
+    height: 220px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-resultados-aprendizaje-fisica-generalII{
+
+    height: 220px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-tematicos-fisica-generalII{
+
+    height: 220px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologias-fisica-generalII{
+
+  height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-evaluacion-fisica-generalII{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-descripcion-labmetext{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologiaA-labmetext{
+
+    height: 130px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-competencia-labmetext{
+
+    height: 300px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-resultados-labmetext{
+
+    height: 220px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologiaE-labmetext{
+
+    height: 110px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-labmetext{
+
+    height: 280px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-matematicaIV{
+
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-requisitos-entrada-matematicaIV{
+
+  height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contribucion-egreso-matematicaIV{
+
+  height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-resultados-aprendizaje-egreso-matematicaIV{
+
+   height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-tematicos-egreso-matematicaIV{
+
+  height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologias-matematicaIV{
+
+   height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-objetivos-laboratorio-de-quimica-basica{
+
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-laboratorio-de-quimica-basica{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-bibliografia-laboratorio-de-quimica-basica{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-descripcion-calculo-procesos{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-requisitos-calculo-procesos{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-competencia-calculo-procesos{
+
+    height: 630px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-resultados-calculo-procesos{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+
+.box-modal-metodologiaA-calculo-proceso{
+
+    height: 110px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologiaE-calculo-proceso{
+
+    height: 560px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-calculo-proceso{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-fisica-generalIV{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-requisitos-entrada-fisica-generalIV{
+
+    height: 145px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contribucion-egreso-fisica-generalIV{
+
+    height: 225px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-resultados-aprendizaje-fisica-generalIV{
+
+    height: 420px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contenidos-tematicos-fisica-generalIV{
+
+    height: 280px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-metodologias-fisica-generalIV{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-evaluacion-fisica-generalIV{
+
+    height: 145px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-termo-metI{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-requisitos-entrada-termo-metI{
+
+    height: 215px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-contribucion-egreso-termo-metI{
+
+    height: 260px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-resultados-aprendizaje-termo-metI{
+
+    height: 270px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-contenidos-tematicos-termo-metI{
+
+    height: 350px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-metodologias-termo-metI{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-objetivos-grafica-ingenieria{
+
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-grafica-ingenieria{
+
+    height: 330px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-bibliografia-grafica-ingenieria{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-objetivos-quimica-de-materiales{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-contenidos-quimica-de-materiales{
+    height: 210px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologia-quimica-de-materiales{
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-quimica-de-materiales{
+    height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-ciencias-materiales{
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-ciencias-materiales
+{
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-ciencias-materiales{
+    height: 730px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-ciencias-materiales{
+    height: 260px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-ciencias-materiales{
+    height: 220px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-ciencias-materiales{
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-objetivos-ingles-para-ingenieria-ii{
+
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-ingles-para-ingenieria-ii{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologia-ingles-para-ingenieria-ii{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-height:1000px;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-ingles-para-ingenieria-ii{
+
+    height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-geologia-minerologia{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-requisitos-geologia-minerologia{
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-competencia-geologia-minerologia{
+
+    height: 350px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-resultados-geologia-minerologia{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologiaA-geologia-minerologia{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-metodologiaE-geologia-minerologia{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-bibliografia-geologia-minerologia{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-metalurgica-fisI{
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-requisitos-entrada-metalurgica-fisI{
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contribucion-metalurgica-fisI{
+    height: 670px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-resultados-aprendizaje-metalurgica-fisI{
+    height: 350px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contenidos-tematicos-metalurgica-fisI{
+    height: 240px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-metodologias-metalurgica-fisI{
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-objetivos-mecanica-de-fluidos{
+
+  height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-mecanica-de-fluidos{
+
+  height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-metodologia-mecanica-de-fluidos{
+
+  height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-mecanica-de-fluidos{
+
+  height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-termo-metII{
+
+    height: 185px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-requisitos-entrada-termo-metII{
+
+    height: 175px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contribucion-egreso-termo-metII{
+
+    height: 255px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-resultados-aprendizaje-termo-metII{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contenidos-tematicos-termo-metII{
+
+    height: 245px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-metodologias-termo-metII{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-descripcion-mecanica-solidos{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-requisitos-entrada-mecanica-solidos{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contribucion-egreso-mecanica-solidos{
+
+    height: 340px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-resultados-aprendizaje-mecanica-solidos{
+
+    height: 300px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contenidos-tematicos-mecanica-solidos{
+
+    height: 280px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-metodologias-mecanica-solidos{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-objetivos-beneficio-de-minerales{
+
+    height: 130px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-beneficio-de-minerales{
+
+    height: 330px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-bibliografia-beneficio-de-minerales{
+
+    height: 240px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-metalurgica-fisII{
+
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-metalurgica-fisII{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-metalurgica-fisII{
+
+    height: 810px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-metalurgica-fisII{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-metalurgica-fisII{
+
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-metalurgica-fisII{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-cinetica-metalurgica{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-cinetica-metalurgica{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-cinetica-metalurgica{
+
+    height: 340px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-cinetica-metalurgica{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-cinetica-metalurgica{
+
+    height: 300px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-cinetica-metalurgica{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-comportamiento-mecanico{
+
+    height: 255px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-comportamiento-mecanico{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-comportamiento-mecanico{
+
+    height: 440px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-comportamiento-mecanico{
+
+    height: 380px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-comportamiento-mecanico{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-comportamiento-mecanico{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-descripcion-hidrometalurgia{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-requisitos-entrada-hidrometalurgia{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-hidrometalurgia{
+
+    height: 600px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-hidrometalurgia{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-hidrometalurgia{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-hidrometalurgia{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-fundicion{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-fundicion{
+
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-fundicion{
+
+    height: 770px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-fundicion{
+
+    height: 210px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-fundicion{
+
+    height: 270px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-fundicion{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-pirometalurgia{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-pirometalurgia{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-pirometalurgia{
+
+    height: 610px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-pirometalurgia{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-pirometalurgia{
+
+    height: 360px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-pirometalurgia{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-soldadura{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-soldadura{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-soldadura{
+
+    height: 760px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-soldadura{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-soldadura{
+
+    height: 340px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-soldadura{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-laboratorio-ingenieria-metalurgica{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-laboratorio-ingenieria-metalurgica{
+
+    height: 205px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-laboratorio-ingenieria-metalurgica{
+
+    height: 990px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-laboratorio-ingenieria-metalurgica{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-laboratorio-ingenieria-metalurgica{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-laboratorio-ingenieria-metalurgica{
+
+    height: 290px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-simulacion-de-procesos-metalurgicos{
+
+    height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-competencia-simulacion-de-procesos-metalurgicos{
+
+    height: 620px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-simulacion-de-procesos-metalurgicos{
+
+    height: 230px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-metodologiaA-simulacion-de-procesos-metalurgicos{
+
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologiaE-simulacion-de-procesos-metalurgicos{
+
+    height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-bibliografia-simulacion-de-procesos-metalurgicos{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-proyecto-metalurgicoI
+{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-proyecto-metalurgicoI{
+
+    height: 190px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-proyecto-metalurgicoI{
+
+    height: 730px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-proyecto-metalurgicoI{
+
+    height: 280px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-proyecto-metalurgicoI{
+
+    height: 250px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-proyecto-metalurgicoI{
+
+    height: 130px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-taller-titulacion{
+
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-requisitos-entrada-taller-titulacion{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-taller-titulacion{
+
+    height: 420px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-taller-titulacion{
+
+    height: 250px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-taller-titulacion{
+
+    height: 260px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-taller-titulacion{
+
+    height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-memoria{
+
+    height: 350px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-entrada-memoria{
+
+    height: 160px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contribucion-egreso-memoria{
+
+    height: 360px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-aprendizaje-memoria{
+
+    height: 300px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-contenidos-tematicos-memoria{
+
+    height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologias-memoria{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-descripcion-proyecto-metalurgicoII{
+
+    height: 280px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-requisitos-proyecto-metalurgicoII{
+
+    height: 300px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-competencia-proyecto-metalurgicoII{
+
+    height: 810px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-resultados-proyecto-metalurgicoII{
+
+    height: 460px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+.box-modal-metodologiaA-proyecto-metalurgicoII{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-metodologiaE-proyecto-metalurgicoII{
+
+    height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+.box-modal-bibliografia-proyecto-metalurgicoII{
+
+    height: 140px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+}
+
+
+
+
+
+
+.box-modal-objetivos-informacion-y-control-financiero{
+
+    height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+
+.box-modal-contenidos-informacion-y-control-financiero{
+
+  height: 320px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-bibliografia-informacion-y-control-financiero{
+
+   height: 180px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+
+.box-modal-objetivos-investigacion-operaciones{
+
+  height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-investigacion-operaciones{
+
+  height: 360px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologia-investigacion-operaciones{
+
+   height: 70px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-bibliografia-investigacion-operaciones{
+
+  height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-objetivos-administracion-produccion{
+
+  height: 130px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-administracion-produccion{
+
+   height: 450px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-bibliografia-administracion-produccion{
+
+  height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-objetivos-electrotecnia-basica{
+
+   height: 220px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-contenidos-electrotecnia-basica{
+
+  height: 350px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-bibliografia-electrotecnia-basica{
+
+    height: 130px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+.box-modal-objetivos-administracion-general{
+
+    height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-contenidos-administracion-general{
+
+   height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-administracion-general{
+height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-objetivos-economia-ia{
+
+  height: 170px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-economia-ia{
+
+  height: 360px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-economia-ia{
+
+   height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+
+
+.box-modal-objetivos-analisis-y-diseno-de-experimentos-industriales1{
+
+   height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-contenidos-analisis-y-diseno-de-experimentos-industriales{
+
+  height: 240px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+
+.box-modal-objetivos-analisis-y-diseno-de-experimentos-industriales2{
+
+  height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-analisis-y-diseno-de-experimentos-industriales{
+
+   height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+}
+
+
+.box-modal-objetivos-flotacion{
+     height: 130px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+.box-modal-contenidos-flotacion{
+
+  height: 400px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-bibliografia-flotacion{
+
+  height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+
+
+.box-modal-objetivos-laboratorio-de-ingenieria-quimica{
+
+  height: 150px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-contenidos-laboratorio-de-ingenieria-quimica{
+
+  height: 320px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-laboratorio-de-ingenieria-quimica{
+
+  height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+
+.box-modal-objetivos-fundamentos-de-control-industrial{
+
+   height: 100px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-fundamentos-de-control-industrial{
+
+  height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-bibliografia-fundamentos-de-control-industrial{
+  height: 200px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+}
+
+.box-modal-objetivos-transferencia-calor{
+
+    height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-contenidos-transferencia-calor{
+
+  height: 450px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-metodologia-transferencia-calor{
+
+  height: 80px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+.box-modal-bibliografia-transferencia-calor{
+
+   height: 120px;    
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 0.5cm;
+
+    max-width:1000px;
+    margin: auto;
+
+
+}
+
+
+.p-modal{
+  font-size: 16;
+  text-align: justify;
+}
+
+.ol-modal{
+  font-size: 16;
+  text-align: justify;
+}
+
+.ul-modal{
+  font-size: 16;
+  text-align: justify;
+}
+
+span.tab{
+    padding: 0 23px; /* Or desired space*/
+}

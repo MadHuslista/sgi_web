@@ -1,0 +1,121 @@
+{% extends "base.twig" %}
+{% block title %}Reglamentos de Personal{% endblock %}
+{% block contentheader %}Reglamentos de Personal{% endblock %}
+{% block content %}
+
+		<section class="content">
+			<!-- Main row -->
+			<div class="row">
+				<!-- Left col -->
+				<section class="col-lg-12 connectedSortable">
+					<div class="box box-success">
+						<div class="box-header">
+							<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+							</div>
+						</div>
+						<div class="box-body chat" id="chat-box">
+							<div class="container-fluid">
+								<div class="row">
+
+									<div class="col-xs-12">
+										<div class="table-responsive">
+		                    				<table class="table table-bordered table-hover" id="tabla">
+												<thead>
+													<tr>
+														<th style="vertical-align: middle;">Documento</th>
+														<th style="vertical-align: middle;">Ver</th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr>
+														<td>Reglamento Carrera Académica UTFSM</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.1. Reglamento Carrera Académica UTFSM.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Modificacion Carrera Academica - Decreto 22-2014</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.2. Modificacion Carrera Academica - Decreto 22-2014.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento Carrera Docente UTFSM</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.3. Reglamento Carrera Docente UTFSM.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento de Derechos y Deberes de Academicos</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.4. Reglamento de Derechos y Deberes de Academicos.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento de Derechos y Deberes de Docentes</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.5. Reglamento de Derechos y Deberes de Docentes.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento N°38 Evaluación apoyo academico</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.6. Reglamento N°38 Evaluación apoyo academico.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>DR N°258-2015 Modelo de Carga Académica Institucional</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.7. DR N°258-2015 Modelo de Carga Académica Institucional.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Proceso para la Contratación de Académicos</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.8. Proceso para la Contratación de Académicos.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Proceso para la Contratación de Docentes</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.9. Proceso para la Contratación de Docentes.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento Evaluación de Desempeño Docente – Académico (EDDA)</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.10. Reglamento Evaluación de Desempeño Docente – Académico (EDDA).pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento de Evaluación de Desempeño Académico (EDA)</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.11. Reglamento de Evaluación de Desempeño Académico (EDA).pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento Interno de Orden Higiene y Seguridad - RIOHS_UTFSM</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.12. Reglamento Interno de Orden Higiene y Seguridad - RIOHS_UTFSM.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento Patrocinio y Concesion de Becas</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.13. Reglamento Patrocinio y Concesion de Becas.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Reglamento General N°35. Permiso Sabático</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.14. Reglamento General N°35. Permiso Sabático.pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													<tr>
+														<td>Acta N°187 Consejo Superior (Plan de Retiro)</td>
+														<td><a href="{{ baseUrl() }}/docs/reglamentos/personal/6.15. Acta N°187 Consejo Superior (Plan de Retiro).pdf" target="_blank"><i class="fa fa-eye"></i></a></td>
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+									<!--div class="col-xs-2 col-sm-3">
+										<button class="btn btn-block btn-primary" id="exportar_tabla"><i class="fa fa-table"></i> Exportar Tabla</button>
+									</div-->					
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section><!-- /.Left col -->
+				<!-- right col (We are only adding the ID to make the widgets sortable)-->
+			</div><!-- /.row (main row) -->
+		</section><!-- /.content -->
+		<input id="csrf" type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/xlsx.core.min.js"></script>
+<script src="{{ baseUrl() }}/js/Blob.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/tabla.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/bootstrap-datepicker.js"></script>
+<script src="{{ baseUrl() }}/js/jquery.table2excel.js"></script>
+<script src="{{ baseUrl() }}/js/ChartNew.js"></script>
+<script>
+</script>
+{% endblock %}

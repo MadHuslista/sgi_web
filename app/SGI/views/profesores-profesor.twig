@@ -1,0 +1,348 @@
+{% extends "base.twig" %}
+{% block title %}{{persona.name}} {{persona.last_name}} {{persona.m_name}}{% endblock %}
+{% block head %}
+<link href="{{ baseUrl() }}/css/token-input.css" type="text/css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+<link href="{{ baseUrl() }}/css/bootstrap-tokenfield.min.css" type="text/css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/datepicker.css" rel="stylesheet">
+<link href="{{ baseUrl() }}/css/token-input-facebook.css" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block contentheader %}<h1>Perfil de Usuario <a class="pull-right btn btn-success" href="{{ siteUrl('/usuario/editar') }}/{{persona.id}}" style="color:#ffffff;"><i class="fa fa-edit"></i> Editar usuario</a></h1>{% endblock %}
+{% block content %}
+
+		<section class="content">
+			<!-- Main row -->
+			<div class="row">
+				<!-- Left col -->
+				<div class="col-md-4">
+
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-body box-profile">
+									  <img src="{{ baseUrl() }}/img/personas/{{persona.avatar}}" class="img-circle img-responsive" style="width:160px; max-width:100%;margin:auto;" alt="{{persona.name}} {{persona.last_name}} {{persona.m_name}}" title="{{persona.name}} {{persona.last_name}} {{persona.m_name}}">
+                  <h3 class="profile-username text-center">{{persona.name}} {{persona.last_name}} {{persona.m_name}}</h3>
+                  <p class="text-muted text-center">
+									{% if titulos is empty %}
+											Título No Definido
+									{% else %}
+											{% for titulo in titulos %}
+													{% if titulo.name %}
+															{{ titulo.name }}
+															{% if titulo.university %}
+																	, {{ titulo.university }}
+															{% endif %}
+															{% if titulo.country %}
+																	, {{ titulo.country }}
+															{% endif %}
+															<br>
+													{% endif %}
+											{% endfor %}
+									{% endif %}
+									</p>
+
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                      <b>Publicaciones</b> <a class="pull-right">{{ total_pub }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Proyectos</b> <a class="pull-right">{{ cant_proyectos }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Tesis</b> <a class="pull-right">{{ cant_tesis }}</a>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              <!-- About Me Box -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Antecedentes Generales</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+									{% if persona.type == "Estudiante" %}
+									<strong><i class="fa fa-book margin-r-5"></i> Programa Actual</strong>
+									<p class="text-muted">
+										{{estudios.calidad}} en <a href="{{ siteUrl('/programa/perfil/')}}{{ estudios.id }} ">{{estudios.name}}</a>
+									</p>
+									{% endif %}
+
+
+                  <strong><i class="fa fa-book margin-r-5"></i>  Grado(s) Academico(s)</strong>
+                  <p class="text-muted">
+										{{grados}}
+                  </p>
+
+                  <hr>
+
+                  <strong><i class="fa fa-map-marker margin-r-5"></i> Institución:</strong>
+                  <p class="text-muted">{{ institucion }}</p>
+
+                  <hr>
+
+									<strong><i class="fa fa-file-text-o margin-r-5"></i> Programa Asociado</strong>
+									<p>{{ claustro | raw }}</p>
+									<hr>
+
+                  <strong><i class="fa fa-pencil margin-r-5"></i> Área(s):</strong>
+									<p>
+										<br>
+									{% if areas is empty %}
+											No Definida
+									{% else %}
+											{% for a in areas %}
+												<span class="label label-info">{{ a }}</span>
+											{% endfor %}
+									{% endif %}
+								</p>
+                  <hr>
+
+                  <strong><i class="fa fa-file-text-o margin-r-5"></i> Líneas de Investigación</strong>
+                  <p>
+										{% if lineas is empty %}
+												No Definido
+										{% else %}
+												{% for linea in lineas %}
+														{{ lineas.name }}<br>
+												{% endfor %}
+										{% endif %}
+									</p>
+
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+				<section class="col-lg-8 connectedSortable">
+					<!-- Chat box -->
+					<div class="box box-success">
+						<div class="box-header">
+
+							<h3 style="font-size:24px;" class="box-title"><i class="fa fa-comments-o"></i> Resumen de Actividad</h3>
+							<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+							</div>
+						</div>
+						<div class="box-body chat" id="chat-box">
+							<div class="row">
+                    <div class="col-xs-12">
+                        <h3 id="titlepub"><i class="fa fa-book" aria-hidden="true"></i>
+ Publicaciones</h3>
+                    </div>
+										{% if total_pub > 0 %}
+										<div class="col-xs-4" id="cant-pub" data-val="{{ total_pub }}">
+											<strong>Publicaciones Totales: </strong>{{ total_pub }}<br>
+										</div>
+
+										<div class="col-xs-2">
+											<strong>ISI: </strong>{{ cant_tipos_pub.ISI }}<br>
+										</div>
+										<div class="col-xs-3">
+											<strong>ISI/SCI: </strong>{{ cant_tipos_pub.ISISCI }}<br>
+										</div>
+										<div class="col-xs-3">
+											<strong>SCI: </strong>{{ cant_tipos_pub.SCI }}<br>
+										</div>
+
+                    <div class="col-xs-6" style="padding-top:40px;">
+                        <label for = "myChart">
+                        Cantidad de publicaciones en el tiempo<br />
+                        <canvas data-id="{{ id }}" id="myChart" width="400" height="200"></canvas>
+                        </label>
+                    </div>
+                    <div class="col-xs-6" style="padding-top:40px;">
+                        <label for = "myChart2">
+                        Cantidad tipos de publicaciones<br />
+                        <canvas data-id="{{ id }}" id="myChart2" width="400" height="200"></canvas>
+                        </label>
+                    </div>
+                    <div class="col-xs-12">
+                    <div class="collapse" id="collapseExample">
+                        <div class="well">
+                            <table id="table_pub" class="table">
+                                <thead>
+                                    <th>Título</th>
+                                    <th>OtrosAutores</th>
+                                    <th>Año</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+										<div class="col-xs-12">
+											<button id="verpub" class="btn btn-primary"  role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-plus"></i> Ver Publicaciones</button>
+
+										</div>
+										{% else %}
+											<div class="col-xs-12">
+												<p>El usuario no registra publicaciones</p>
+											</div>
+											{% endif %}
+                    <div class="col-xs-12">
+											<hr>
+                        <h3 id="titleproy"><i class="fa fa-object-group" aria-hidden="true"></i>
+ Proyectos</h3>
+                    </div>
+										{% if cant_proyectos > 0 %}
+                    <div class="col-xs-12"  id="cant-proyectos" data-val="{{ cant_proyectos }}">
+                        <strong>Total Proyectos: </strong>{{ cant_proyectos }}<br>
+                    </div>
+                     <div class="col-xs-6" style="padding-top:40px;">
+                        <label for = "myChart3">
+                        Cantidad de proyectos en el tiempo<br />
+                        <canvas data-id="{{ id }}" id="myChart3" width="400" height="200"></canvas>
+                        </label>
+                    </div>
+                    <div class="col-xs-6" style="padding-top:40px;">
+                        <label for = "myChart4">
+                        Cantidad tipos de Proyectos<br />
+                        <canvas data-id="{{ id }}" id="myChart4" width="400" height="200"></canvas>
+                        </label>
+                    </div>
+                    <div class="col-xs-12">
+                    <div class="collapse" id="collapseProy">
+                        <div id="ret-proy" class="well"></div>
+                    </div>
+                    </div>
+										<div class="col-xs-12">
+											<button id="verproy" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseProy" aria-expanded="false" aria-controls="collapseProy"><i class="fa fa-plus"></i> Ver Proyectos</button>
+
+										</div>
+										{% else %}
+										<div class="col-xs-12">
+											<p>El usuario no registra proyectos</p>
+										</div>
+										{% endif %}
+                    <div class="col-xs-12">
+											<hr>
+                        <h3><i class="fa fa-archive" aria-hidden="true"></i>
+ Tesis</h3>
+                    </div>
+										{% if cant_tesis > 0 %}
+										<div class="col-xs-4">
+											<strong>Total Tesis Guiadas: </strong>{{ cant_tesis }}<br>
+										</div>
+										<!--<div class="col-xs-3">
+											<strong>Pregrado: </strong>{{ cant_tipos_tesis.pregrado }}<br>
+										</div>
+										<div class="col-xs-3">
+											<strong>Magister: </strong>{{ cant_tipos_tesis.magister }}<br>
+										</div>-->
+										<div class="col-xs-12">
+                    <div class="collapse" id="collapseTes">
+                        <div id="ret-tes" class="well"></div>
+                    </div>
+                    </div>
+										<div class="col-xs-12">
+											<button id="vertes" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseTes" aria-expanded="false" aria-controls="collapseTes"><i class="fa fa-plus"></i> Ver Tesis</button>
+
+										</div>
+										{% else %}
+										<div class="col-xs-12">
+											<p>El usuario no registra tesis guiadas</p>
+										</div>
+										{% endif %}
+
+										<div class="col-xs-12">
+											<hr>
+                        <h3><i class="fa fa-archive" aria-hidden="true"></i>
+ Congresos</h3>
+                    </div>
+										{% if cant_tesis > 0 %}
+										<div class="col-xs-4">
+											<strong>Total Congresos: </strong>{{ cant_congresos }}<br>
+										</div>
+										<div class="col-xs-12">
+                    <div class="collapse" id="collapseCon">
+                        <div id="ret-con" class="well"></div>
+                    </div>
+                    </div>
+										<div class="col-xs-12">
+											<button id="vercon" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseCon" aria-expanded="false" aria-controls="collapseCon"><i class="fa fa-plus"></i> Ver Congresos</button>
+
+										</div>
+										{% else %}
+										<div class="col-xs-12">
+											<p>El usuario no registra congresos</p>
+										</div>
+										{% endif %}
+
+										<div class="col-xs-12">
+											<hr>
+                        <h3 id="titleExa"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Experiencia Académica</h3>
+												{% if persona.experiencia_academica is empty %}
+												<p> El usuario no registra experiencia académica</p>
+												{% else %}
+												<div class="collapse" id="collapseExa">
+		                        {{persona.experiencia_academica | raw}}
+		                    </div>
+
+													<button id="verExa" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExa" aria-expanded="false" aria-controls="collapseExa"><i class="fa fa-plus"></i> Ver Detalle</button>
+												{% endif %}
+												<hr/>
+                    </div>
+
+										<div class="col-xs-12">
+                        <h3 id="titleExl"><i class="fa fa-university" aria-hidden="true"></i>
+ Administración Académica</h3>
+												{% if persona.administracion_academica is empty %}
+												<p> El usuario no registra administración académica</p>
+												{% else %}
+												<div class="collapse" id="collapseExl">
+													{{persona.administracion_academica | raw}}
+												</div>
+												<button id="verExl" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExl" aria-expanded="false" aria-controls="collapseExl"><i class="fa fa-plus"></i> Ver Detalle</button>
+
+												{% endif %}
+												<hr/>
+                    </div>
+
+										<div class="col-xs-12">
+                        <h3 id="titleAda"><i class="fa fa-rocket" aria-hidden="true"></i> Experiencia Laboral</h3>
+												{% if persona.experiencia_laboral is empty %}
+												<p> El usuario no registra experiencia laboral</p>
+												{% else %}
+												<div class="collapse" id="collapseAda">
+												{{persona.experiencia_laboral | raw}}
+												</div>
+												<button id="verAda" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseAda" aria-expanded="false" aria-controls="collapseAda"><i class="fa fa-plus"></i> Ver Detalle</button>
+
+												{% endif %}
+												<hr/>
+                    </div>
+
+										<div class="col-xs-12">
+                        <h3 id="titleOtros"><i class="fa fa-info-circle" aria-hidden="true"></i> Otros</h3>
+												{% if persona.experiencia_laboral is empty %}
+												<p> El usuario no ha ingresado datos adicionales</p>
+												{% else %}
+												<div class="collapse" id="collapseOtros">
+													{{persona.experiencia_otros | raw}}
+												</div>
+												<button id="verOtros" class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseOtros" aria-expanded="false" aria-controls="collapseOtros"><i class="fa fa-plus"></i> Ver Detalle</button>
+												{% endif %}
+												<hr/>
+                    </div>
+
+			<!--<div class="form-group">
+				<button type="button" class="btn btn-default word-export" id="exportar">
+					<span >EXPORTAR</span>
+				</button>
+
+				<a id="dlink"  style="display:none;"></a>
+
+				 <input type="button" onclick="tableToExcel('tabla', 'ficha_docente', 'myfile.xls')" value="Export to Excel">
+			</div>-->
+            </div>
+					</div><!-- /.box (chat box) -->
+			</div><!-- /.row (main row) -->
+
+		</section><!-- /.content -->
+{% endblock %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/js/FileSaver.js"  type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/jquery.wordexport.js" type="text/javascript"></script>
+<script src="{{ baseUrl() }}/js/docx.js"></script>
+<script src="{{ baseUrl() }}/js/Chart.min.js"></script>
+<script src="{{ baseUrl() }}/js/persona.js"></script>
+{% endblock %}

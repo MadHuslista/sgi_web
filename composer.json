@@ -1,0 +1,43 @@
+{
+    "name": "Sistema de gestión de información dirección de programas y postgrado",
+    "description": "Gestiona diversos indcadores de acreditación de la dirección de programas y postgrado",
+    "license": "proprietaria",
+    "authors": [
+        {
+            "name": "Jorge Courbis",
+            "email": "j.courbis.a@gmail.com"
+        },
+	{
+	    "name": "Carlos Vera",
+            "email": "carlos.vera@usm.cl"
+	}
+    ],
+    "autoload": {
+        "psr-0": {
+            "SGI": "app/",
+	    "Sso": "app/"
+        }
+    },
+    "archive": {
+        "exclude": ["vendor", ".DS_Store", "*.log"]
+    },
+    "require": {
+	"slim/slim": "2.*",
+	"slim/extras": "*",
+	"slim/views": "*",
+    "illuminate/database": "5.2.*",
+    "illuminate/pagination": "5.2.*",
+
+	"illuminate/events": "5.2.*",
+	"slimcontroller/slimcontroller": "0.4.3",
+	"twig/twig":"~1.2",
+	"tedivm/stash": "0.12.*",
+	"respect/validation" : "*",
+	"josegonzalez/dotenv": "2.*",
+    "codeguy/upload": "*",
+    "barryvdh/laravel-dompdf": "^0.7.1",
+    "phpoffice/phpexcel": "1.8.0",
+        "slim/flash": "^0.2.0",
+        "kanellov/slim-twig-flash": "^0.2.0"
+    }
+}
